@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile Development Roadmap</title>
+    <link rel="stylesheet" href="/style/pages/roadmap.css">
+    <th:block th:replace="~{fragments/stylesheet_links::my_links}"></th:block>
+</head>
+<body>
+<header>
+    <div th:replace="~{fragments/navigation.html :: navigation}"></div>
+    <div class="header-content">
+        <h1>Mobile Development with Android</h1>
+        <h3>Your Path to Becoming a Mobile Developer with Android: Step-by-Step Roadmap
+        </h3></div>
+</header>
+<main>
+
+    <section><h1>
+        1. Master the Basics of Programming</h1>
+        <ul>
+            <li>Learn programming fundamentals: variables, loops, conditionals, functions, and OOP principles.</li>
+            <li>Choose Kotlin or Java as your primary language for Android development (Kotlin is the preferred modern
+                choice).
+            </li>
+
+        </ul>
+    </section>
+    <hr>
+    <section><h1>2. Get Familiar with Android Studio</h1>
+        <ul>
+            <li>Install and configure Android Studio, the official IDE for Android development.</li>
+            <li>Learn to navigate the IDE, use emulators, and debug Android apps effectively.
+            </li>
+
+        </ul>
+    </section>
+    <hr>
+    <section><h1>3. Understand Android Fundamentals</h1>
+        <ul>
+            <li>Learn about Activities, Fragments, and their lifecycle.</li>
+            <li>Understand <b>XML</b> layouts and how to use Views and ViewGroups for UI design.</li>
+            <li>Grasp concepts like Intents, Permissions, and Manifest Files.</li>
+
+        </ul>
+    </section>
+    <hr>
+    <section><h1>Learn Kotlin (or Deepen Java Knowledge)</h1>
+
+        <ul>
+            <li> Explore Kotlin-specific features like null safety, extension functions, and coroutines for asynchronous
+                programming.
+            </li>
+            <li> Familiarize yourself with modern Java features if you're using Java.</li>
+
+
+        </ul>
+    </section>
+    <hr>
+    <section><h1>5. Master UI Design</h1>
+        <ul>
+            <li>Use <b>Jetpack</b> Compose for modern declarative UI design (or XML layouts for traditional design).</li>
+            <li>Learn Material Design principles to create aesthetically pleasing and user-friendly apps.
+            </li>
+        </ul>
+    </section>
+    <hr>
+    <section><h1>6. Work with Local Data Storage</h1>
+
+        <ul>
+            <li>Understand file handling and preferences with SharedPreferences.</li>
+            <li>Learn to use <b>SQLite and Room Database</b> for structured data storage.</li>
+
+        </ul>
+    </section>
+    <hr>
+    <section><h1>7. Learn Networking in Android</h1>
+        <ul>
+            <li>Use libraries like Retrofit or OkHttp to fetch data from APIs.</li>
+            <li>Understand how to parse JSON using tools like Gson or Kotlin's Serialization.</li>
+
+        </ul>
+    </section>
+    <hr>
+    <section><h1>8. Explore Jetpack Components</h1>
+        <b>Master Jetpack libraries like:</b>
+        <ul>
+            <li><b> Navigation:</b> For seamless app navigation.</li>
+            <li><b> LiveData and ViewModel: </b>For managing UI-related data.</li>
+            <li><b> WorkManager:</b> For background tasks.</li>
+            <li><b> DataStore:</b> For modern data persistence.</li>
+        </ul>
+    </section>
+    <hr>
+    <section><h1>9. Understand App Testing</h1>
+        <ul>
+            <li>Write unit tests using JUnit.</li>
+            <li> Debug and monitor app performance using ADB (Android Debug Bridge).</li>
+
+        </ul>
+    </section>
+    <hr>
+    <section><h1>10. Publish and Maintain Apps</h1>
+        <ul>
+            <li>Learn how to sign and publish your app on the Google Play Store.</li>
+            <li>Monitor app performance and crashes using tools like Firebase Crashlytics or Google Analytics.</li>
+            <li>Regularly update your app to fix bugs and introduce new features.</li>
+
+        </ul>
+    </section>
+    <a th:href="@{/templates/reviews}">Check reviews for our roadmaps</a>
+</main>
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

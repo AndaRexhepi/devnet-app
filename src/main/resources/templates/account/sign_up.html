@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="/style/pages/account/sign_up.css">
+    <th:block th:replace="~{fragments/stylesheet_links :: my_links}"></th:block>
+</head>
+<body>
+<header>
+    <div th:replace="~{fragments/navigation.html :: navigation}"></div>
+</header>
+<main>
+    <h1>Wohoo! Welcome</h1>
+    <div class="container">
+        <div class="form-container">
+            <h1>Sign up</h1>
+            <form>
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="Enter name...">
+                <label for="surname">Surname</label>
+                <input type="password" id="surname" placeholder="Enter surname...">
+                <label for="email">Email</label>
+                <input type="password" id="email" placeholder="Enter email...">
+                <label for="username">Username</label>
+                <input type="password" id="username" placeholder="Enter username...">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter password...">
+            </form>
+            <button class="submit-btn"><a>Sign up</a></button>
+        </div>
+    </div>
+    <div th:replace="~{fragments/footer :: footer}"> </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,232 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+main{
+    font-family: "IBM Plex Sans", sans-serif;
+    color: #333333;
+
+
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+.content {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between sidebar and main section */
+    gap: 20px;
+}
+.sidebar {
+
+    margin-left: 40px;
+    width: 300px; /* Fixed width for sidebar */
+    margin-right: 10px; /* Space to the right */
+    background-color: #eeeeee; /* Light background for sidebar */
+    padding: 15px; /* Padding inside sidebar */
+    border-radius: 20px;
+    height: fit-content/* Rounded corners */
+}
+
+.community {
+    display: flex; /* Use flexbox to layout community items */
+    margin-bottom: 15px; /* Space between communities */
+    padding: 10px; /* Padding inside community item */
+    background-color: #ffffff; /* White background for community item */
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Light shadow */
+    /*height: 100px;*/
+}
+.community-pic {
+    width: 50px; /* Fixed width for profile picture */
+    height: 50px; /* Fixed height for profile picture */
+    border-radius: 50%; /* Circular profile picture */
+    margin-right: 10px; /* Space to the right of the image */
+}
+
+.community-info {
+    flex-grow: 1;
+    margin: 0/* Allow this section to grow */
+}
+
+.community-info h3 {
+    margin: 0; /* Remove margin */
+    font-size: 1em; /* Font size for community name */
+}
+
+.members-count {
+    font-size: 0.9em; /* Smaller font for members count */
+    color: #666; /* Grey color for members count */
+}
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+    text-align: left;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+}
+.profile-header div{
+    margin-top: 20px;
+    margin-left: 10px;
+}
+.profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover; /* Ensures the image covers the circle */
+    border: 2px solid #ddd;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.posts-section {
+    flex: 3;
+}
+.join-button{
+    padding: 5px 15px;
+    background-color: #333333;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    border-color: transparent;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+.join-button a{
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+.communities-section {
+    flex: 1;
+    background: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.communities-section h3 {
+    margin-bottom: 10px;
+}
+
+.communities-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.community-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.community-item:last-child {
+    margin-bottom: 0;
+}
+
+.community-picture {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.community-info {
+    font-size: 14px;
+}
+
+.community-name {
+    font-weight: bold;
+    margin: 0;
+}
+
+.community-members {
+    color: #666;
+    margin: 0;
+}
+
+.name {
+    font-size: 2em;
+    margin: 10px 0 5px;
+}
+
+.surname {
+    font-size: 1.5em;
+    color: #666;
+}
+
+.username {
+    font-size: 1em;
+    color: #007bff; /* Bootstrap primary color */
+}
+
+.create-post-button {
+    text-align: left;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #333333; /* Bootstrap primary color */
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: 80%;
+}
+.create-post-button a{
+    text-decoration: none;
+    color: white;
+}
+
+
+.posts-section {
+    margin-top: 20px;
+}
+
+.posts-section h3 {
+    margin-bottom: 10px;
+}
+
+.post {
+    background: #f1f1f1;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+    .profile-picture {
+        width: 100px;
+        height: 100px;
+    }
+
+    .name {
+        font-size: 1.5em;
+    }
+
+    .surname {
+        font-size: 1.2em;
+    }
+
+    .create-post-button {
+        padding: 8px 16px;
+    }
+}

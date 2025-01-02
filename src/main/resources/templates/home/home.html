@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="/style/pages/index.css">
+        <th:block th:replace="~{fragments/stylesheet_links :: my_links}"></th:block>
+</head>
+<body>
+<header>
+    <div th:replace="~{fragments/navigation :: navigation}"></div>
+    <section class="header-text">
+        <h1> &lt;Hello World/&gt;</h1>
+        <p> Dive into Projects, Roadmaps and Expert Insights</p>
+    </section>
+    <section class="circles">
+        <div><p>+1Mil <br>Devs</p></div>
+        <div><p>Code <br>Curiosities</p></div>
+        <div><p>Core <br>Knowledge</p></div>
+        <div><p>In <br>Practice</p></div>
+    </section>
+
+</header>
+<main>
+    <section class="newbie_corner">
+        <div class="section-content">
+            <h1>Newbie Corner: <br> Your First Steps <br> in Coding</h1>
+            <p>Your Guide to Essential Coding Concepts</p>
+            <a href="newbiecorner">Newbie Corner</a>
+        </div>
+    </section>
+    <section class="reviews-section">
+        <div class="first-row">
+            <div id="analysis" class="articles">
+                <img src="../assets/Group.png" width="50px" height="50px">
+                <h4>In Depth Analysis</h4>
+                <p>Our in-depth analyses
+                    provide everything you need to know to make informed decisions.</p>
+            </div>
+            <div id="feedback" class="articles">
+                <img src="../assets/feedback.png" width="50px" height="50px">
+                <h4>User Feedback</h4>
+                <p>See how each tool performs in real-world projects and find out what others are saying.</p>
+            </div>
+            <div id="pros_cons" class="articles">
+                <img src="../assets/proscons.png" width="80px" height="40px">
+                <h4>Pros And Cons</h4>
+                <p> We break down the pros and cons so you can choose what fits your needs best.</p>
+            </div>
+        </div>
+        <div class="second-row">
+            <div id="insights" class="articles">
+                <img src="../assets/insights.png" width="50px" height="50px">
+                <h4>Performance Insights</h4>
+                <p>We delve into performance metrics to help you make optimal choices for your projects.</p>
+            </div>
+            <div id="ease_use" class="articles">
+                <img src="../assets/easeuse.png" width="50px" height="50px">
+                <h4>Ease of Use</h4>
+                <p>Find out which tools are the most user-friendly, with intuitive interfaces and smooth workflows.</p>
+            </div>
+            <div id="highlights" class="articles">
+                <img src="../assets/highlight.png" width="50px" height="60px">
+                <h4>Key Highlights</h4>
+                <p>We spotlight the capabilities that can make a real difference in your development process</p>
+            </div>
+        </div>
+    </section>
+    <section class="project_showcase">
+        <div class="section-text">
+            <h1>Meet The Minds Behind The Code</h1>
+            <p>Profiles in Software Development</p>
+            <a href="projectshowcase">Project Showcase</a>
+        </div>
+        <div class="cards">
+            <div class="project-card">
+                <div class="project-owner">
+                    <img src="../assets/alex_johnson.png" width="80px" height="80px">
+                    <div>
+                        <h5>Alex Johnson</h5>
+                        <p>Front-End Developer</p>
+                    </div>
+                </div>
+                <div class="project-details">
+                    <h4>E-Commerce Platform</h4>
+                    <p>Alex specializes in crafting intuitive and responsive web designs. His latest project focused on
+                        creating a dynamic e-commerce platform that adapts to user needs in real time.</p>
+                </div>
+                <div class="project-link">
+                    <a href="projectshowcase" id="alex-pr">Check Project</a>
+                </div>
+
+            </div>
+            <div class="project-card">
+                <div class="project-owner" id="priya">
+                    <img src="../assets/priya 1.png" width="80px" height="80px">
+                    <div>
+                        <h5>Priya Desai</h5>
+                        <p>Data Scientist</p>
+                    </div>
+                </div>
+                <div class="project-details">
+                    <h4>Machine Learning Model</h4>
+                    <p>Priya leverages data to drive insights and innovation in software solutions. Her recent work
+                        involves developing a machine learning model to enhance customer experience in mobile
+                        applications.</p>
+                </div>
+                <div class="project-link">
+                    <a href="projectshowcase">Check Project</a>
+                </div>
+
+            </div>
+            <div class="project-card">
+                <div class="project-owner">
+                    <img src="../assets/marcos.png" width="80px" height="80px">
+                    <div>
+                        <h5>Marcos Silva</h5>
+                        <p>Full-Stack Developer</p>
+                    </div>
+                </div>
+                <div class="project-details">
+                    <h4>Cloud-Based System</h4>
+                    <p>Marcos builds seamless integrations across platforms to support complex applications. His latest
+                        project centered on developing a cloud-based system for real-time team collaboration.</p>
+                </div>
+                <div class="project-link">
+                    <a href="projectshowcase">Check Project</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section class="paths">
+        <div class="paths-subheading">
+            <h2>
+                Structured Paths for Mastering <br>
+                Software Development from Scratch
+            </h2>
+            <p>
+                Build your skills and knowledge with practical, milestone-based learning paths.
+            </p>
+        </div>
+        <div class="icons-row1">
+            <img src="../assets/Java.png" width="70px" height="70px">
+            <img src="../assets/JavaScript.png" width="70px" height="70px">
+            <img src="../assets/Python.png" width="70px" height="70px">
+            <img src="../assets/HTML.png" width="70px" height="70px">
+        </div>
+        <div class="icons-row2">
+            <img src="../assets/React.png" width="70px" height="70px">
+            <img src="../assets/TypeScript.png" width="70px" height="70px">
+            <img src="../assets/CSS.png" width="70px" height="70px">
+            <img src="../assets/SQL.png" width="70px" height="70px">
+        </div>
+    </section>
+
+</main>
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

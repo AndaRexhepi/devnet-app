@@ -1,0 +1,100 @@
+header{
+    height: 100px;
+}
+
+/* Communities layout */
+.communities {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column;
+    width: 1000px /* Stack communities vertically */
+}
+main{
+   margin-left: 18%;
+    margin-top: 100px;
+    font-family: "IBM Plex Sans", sans-serif;
+}
+
+.community {
+    color: white;
+    display: flex; /* Use flexbox for community layout */
+    /*justify-content: space-between; !* Space between items *!*/
+    align-items: center; /* Center items vertically */
+    margin-bottom: 20px; /* Space between communities */
+    padding: 15px; /* Padding inside community item */
+    background-color: #333333; /* Light background for community item */
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Light shadow */
+}
+
+.community-pic {
+    width: 80px; /* Fixed width for community picture */
+    height: 80px; /* Fixed height for community picture */
+    border-radius: 5px; /* Rounded corners for image */
+    margin-right: 15px; /* Space to the right of the image */
+}
+
+.community-info {
+    flex-grow: 1; /* Allow this section to grow */
+}
+.community-info p{
+    width: 700px;
+    color: #888888;
+}
+
+.community-info h2 {
+
+    margin: 0; /* Remove margin */
+    font-size: 1.5em; /* Font size for community name */
+}
+.community-info h2 a{
+    text-decoration: none;
+    color: white;
+}
+.members-count {
+    font-size: 0.9em; /* Smaller font for members count */
+    color: #666; /* Grey color for members count */
+    margin-bottom: 10px; /* Space below members count */
+}
+.community img{
+    border-radius: 50%;
+}
+/* Join button styles */
+.join-button {
+    font-weight: bold;
+    padding: 10px 25px; /* Padding inside button */
+    background-color: #DE572A; /* Blue background */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 20px; /* Rounded corners */
+    cursor: pointer;
+    font-size: 15px /* Pointer cursor on hover */
+
+}
+.join-button a{
+    text-decoration: none;
+    color: white;
+}
+
+
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+    .container {
+        margin: 10px; /* Reduce margin on mobile */
+        padding: 15px; /* Reduce padding on mobile */
+    }
+
+    .community {
+        flex-direction: column; /* Stack image and info vertically on mobile */
+        align-items: flex-start; /* Align items to the start */
+    }
+
+    .community-pic {
+        margin-bottom: 10px; /* Space below image */
+    }
+
+    .join-button {
+        margin-top: 10px; /* Space above button */
+        width: 100%; /* Full width button */
+    }
+}

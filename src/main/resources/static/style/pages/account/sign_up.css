@@ -1,0 +1,56 @@
+header{
+    height: 100px;
+}
+main{
+    font-family: "IBM Plex Sans", sans-serif;
+    color: #333333;
+}
+h1{
+    text-align: center;
+    margin-top: 50px;
+}
+.form-container, form{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    justify-content: center;
+    text-align: left;
+
+}
+.container{
+    margin-left: 37%;
+    margin-top: 5%;
+    border-radius: 30px;
+    width: 400px;
+    height: 650px;
+    background-color: white;
+    border-color: transparent;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+}
+.form-container{
+    margin-left: 18%;
+    margin-top: 20px;
+}
+
+.form-container input{
+    width: 250px;
+    height: 30px;
+    border-radius: 20px;
+    background-color: #eeeeee;
+    border-color: transparent;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+    padding-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.submit-btn{
+    width: 265px;
+    height: 35px;
+    background-color: #F2992A;
+    color: white;
+    border-radius: 20px;
+    border-color: transparent;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+    margin-top: 10px;
+    font-size: 15px;
+}

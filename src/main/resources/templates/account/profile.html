@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="stylesheet" href="/style/pages/account/profile.css">
+  <th:block th:replace="~{fragments/stylesheet_links :: my_links}"></th:block>
+</head>
+<body>
+<header>
+  <div th:replace="~{fragments/navigation :: navigation}"></div>
+</header>
+<main>
+  <div class="container">
+    <div class="profile-header">
+      <img
+              src="../assets/header.png"
+              alt="Profile Picture"
+              class="profile-picture"
+      />
+      <div>
+      <h2 class="surname"> John Doe</h2>
+      <p class="username">@johndoe</p>
+      </div>
+    </div>
+    <button class="create-post-button"><a th:href="@{/create_post}">+ Create Post</a></button>
+    <div class="posts-section">
+    </div>
+
+  </div>
+  <aside class="sidebar">
+    <h2>Communities</h2>
+    <button class="join-button"><a th:href="@{/join_community}">Join a Community</a></button>
+    <div class="community">
+      <img src="../assets/header.png" alt="Community 1" class="community-pic">
+      <div class="community-info">
+        <h3>CodeCrafters</h3>
+
+        <span class="members-count">1200 members</span>
+      </div>
+
+    </div>
+    <div class="community">
+      <img src="../assets/header.png" alt="Community 2" class="community-pic">
+      <div class="community-info">
+        <h3>DevNet Nexus</h3>
+
+        <span class="members-count">900 members</span>
+      </div>
+
+    </div>
+    <div class="community">
+      <img src="../assets/header.png" alt="Community 3" class="community-pic">
+      <div class="community-info">
+        <h3>Innovate & Integrate</h3>
+
+        <span class="members-count">1500 members</span>
+      </div>
+    </div>
+    <div class="community">
+      <img src="../assets/header.png" alt="Community 4" class="community-pic">
+      <div class="community-info">
+        <h3>Syntax Squad</h3>
+
+        <span class="members-count">800 members</span>
+      </div>
+    </div>
+    <div class="community">
+      <img src="../assets/header.png" alt="Community 5" class="community-pic">
+      <div class="community-info">
+        <h3>ByteBuilders</h3>
+        <span class="members-count">600 members</span>
+      </div>
+    </div>
+    <div class="community">
+      <img src="../assets/header.png" alt="Community 5" class="community-pic">
+      <div class="community-info">
+        <h3>CodeConnect</h3>
+        <span class="members-count">1030 members</span>
+      </div>
+    </div>
+    <div class="community">
+      <img src="../assets/header.png" alt="Community 5" class="community-pic">
+      <div class="community-info">
+        <h3>DevSphere</h3>
+        <span class="members-count">400 members</span>
+      </div>
+    </div>
+    <div class="community">
+      <img src="../assets/header.png" alt="Community 5" class="community-pic">
+      <div class="community-info">
+        <h3>TechTribe</h3>
+        <span class="members-count">1800 members</span>
+      </div>
+    </div>
+    <div class="community">
+      <img src="../assets/header.png" alt="Community 5" class="community-pic">
+      <div class="community-info">
+        <h3>FutureStack</h3>
+        <span class="members-count">340 members</span>
+      </div>
+    </div>
+    <div class="community">
+      <img src="../assets/header.png" alt="Community 5" class="community-pic">
+      <div class="community-info">
+        <h3>BitBuilders</h3>
+        <span class="members-count">650 members</span>
+      </div>
+    </div>
+  </aside>
+</main>
+</body>
+</html>

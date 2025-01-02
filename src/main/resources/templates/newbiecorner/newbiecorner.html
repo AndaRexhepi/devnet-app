@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Newbie Corner</title>
+    <link rel="stylesheet" href="/style/pages/newbie_corner.css">
+    <th:block th:replace="~{fragments/stylesheet_links :: my_links}"></th:block>
+</head>
+<body>
+<header>
+    <div th:replace="~{fragments/navigation.html :: navigation}"></div>
+</header>
+<main>
+    <section class="section-content">
+        <h1>Start Your Journey into Software Development</h1>
+        <h4>Tailored Roadmaps for Every Beginner</h4>
+        <p>Explore four expertly crafted roadmaps designed to kickstart your learning: <br> Front-End Development,
+            Back-End
+            Development with Java, <br> Mobile Development (Android), and Game Development with C#. </p>
+    </section>
+    <section class="roadmaps">
+        <div class="card">
+            <div class="roadmap_content">
+                <div>
+                    <h1>
+                            Front-End Development
+                    </h1>
+                    <h2>
+                        Design Stunning User Experiences
+                    </h2>
+                    <p>
+                        Front-end development brings websites and applications to <br>life by crafting interactive and
+                        visually
+                        appealing interfaces. <br> This roadmap covers essential technologies like HTML, CSS,
+                        JavaScript,<br> and
+                        popular frameworks such as React and Angular.</p>
+                    <a th:href="@{/frontend_roadmap}">Go to Roadmap</a>
+                </div>
+                <div>
+                    <img src="../assets/illus1.svg" width="300px" height="300px">
+                </div>
+            </div>
+
+
+        </div>
+        <div class="card">
+            <div class="roadmap_content_2 roadmap_content">
+                <div>
+                    <h1>
+                        Back-End Development with Java
+                    </h1>
+                    <h2>
+                        Build the Engines Behind the Scenes
+                    </h2>
+                    <p>
+                        Dive into the backbone of software applications with Java-based <br>back-end development. This
+                        roadmap introduces you to Java’s core concepts, Spring Boot, database management, and
+                        server-side logic. </p>
+                    <a th:href="@{/backend_roadmap}">Go to Roadmap</a>
+                </div>
+                <div>
+                    <img src="../assets/javadev.svg" width="300px" height="300px">
+                </div>
+            </div>
+
+
+        </div>
+        <div class="card">
+            <div class="roadmap_content">
+                <div>
+                    <h1>
+                        Mobile Development
+                    </h1>
+                    <h2>
+                        Craft Innovative Mobile Experiences
+                    </h2>
+                    <p>
+                        Learn to build dynamic and user-friendly Android apps that millions of users can access. This
+                        roadmap focuses on Kotlin, Java, Android Studio, and modern design principles. From basic
+                        layouts to integrating APIs and advanced features.</p>
+                    <a th:href="@{/mobiledev_roadmap}">Go to Roadmap</a>
+                </div>
+                <div>
+                    <img src="../assets/mobiledev.svg" width="300px" height="300px">
+                </div>
+            </div>
+
+
+        </div>
+        <div class="card">
+            <div class="roadmap_content">
+                <div>
+                    <h1>
+                        Game Development with C#
+                    </h1>
+                    <h2>
+                        Create Engaging Worlds and Playable Adventures
+                    </h2>
+                    <p>
+                        Unleash your creativity by designing immersive games with C#. This roadmap guides you through
+                        using Unity, scripting gameplay mechanics, and optimizing performance. Whether you're aiming to
+                        develop simple 2D games or complex 3D experiences</p>
+                    <a th:href="@{/gamedev_roadmap}">Go to Roadmap</a>
+                </div>
+                <div>
+                    <img src="../assets/gamedev.svg" width="300px" height="300px">
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+</main>
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

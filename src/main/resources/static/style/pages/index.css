@@ -1,0 +1,296 @@
+/*header*/
+header {
+    height: 500px;
+}
+
+.header-text {
+    color: white;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    justify-content: center;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.header-text h1 {
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    font-size: 45px;
+}
+
+.header-text p {
+    font-size: 25px;
+}
+
+.circles {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.circles div {
+    width: 200px;
+    height: 200px;
+    border: 1px solid transparent;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.circles div:hover {
+    background: linear-gradient(to right, #D8A799, #E69675, #F68D59, #F79250, #F9994C);
+    transition-delay: 2s;
+    color: white;
+    transition: background 2s ease, color 2s ease;
+
+}
+
+.circles div p:hover {
+    color: white;
+}
+
+.circles div p {
+    text-align: center;
+    justify-content: center;
+    margin-top: 60px;
+    font-size: 25px;
+    font-weight: bold;
+    color: #333333;
+}
+
+/*header*/
+
+/*main*/
+.newbie_corner {
+    background-image: url(../../assets/girl.png);
+    background-repeat: no-repeat;
+    height: 442px;
+    width: 1200px;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    margin: 250px 0 100px 150px;
+
+}
+
+.newbie_corner .section-content {
+    margin-left: 50px;
+    font-size: 25px;
+    color: white;
+    margin-bottom: 35px;
+}
+
+.newbie_corner .section-content a {
+    border: 1px solid white;
+    padding: 10px 25px 10px 25px;
+    border-radius: 30px;
+    font-size: 20px;
+    text-decoration: none;
+    background-color: white;
+    color: #F2992A;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+.newbie_corner .section-content a:hover {
+    background-color: #F2992A;
+    color: white;
+    border-color: #F2992A;
+}
+
+.reviews-section {
+    margin-top: 200px;
+}
+
+.articles {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    text-align: center;
+}
+
+.first-row, .second-row {
+    display: flex;
+    justify-content: center;
+    gap: 150px;
+    margin-bottom: 80px;
+}
+
+.articles img {
+    margin-left: 120px;
+}
+
+.articles h4 {
+    color: #F2992A;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.articles p {
+    color: #333333;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 20px;
+}
+
+.project_showcase {
+    margin-top: 150px;
+    margin-bottom: 200px;
+}
+
+.section-text {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.section-text h1 {
+    color: #333333;
+    font-size: 35px;
+
+}
+
+.section-text p {
+    font-size: 20px;
+    color: #333333;
+    font-family: "IBM Plex Sans", sans-serif;
+    margin-top: 0;
+}
+
+.section-text a {
+    text-decoration: none;
+    border: 1px solid #F2992A;
+    background-color: #F2992A;
+    width: 200px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    border-radius: 30px;
+    padding: 10px 10px 10px 20px;
+    margin-left: 640px;
+    margin-top: 20px;
+}
+
+.cards {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    margin-top: 60px;
+}
+
+.project-card {
+    width: 320px;
+    height: 430px;
+    border: 1px solid #DE572A;
+    color: white;
+    background-color: #DE572A;
+    border-radius: 20px;
+}
+
+.project-owner {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 20px;
+    margin-left: 0;
+}
+
+.project-owner img {
+    border-radius: 50%;
+}
+
+.project-owner div h5 {
+    margin-bottom: 0;
+    margin-top: 15px;
+    font-size: 19px;
+}
+
+.project-owner div p {
+    margin-top: 0;
+}
+
+.project-owner div {
+    margin-left: 10px;
+    margin-top: 0;
+}
+
+#priya {
+    justify-content: left;
+    margin-left: 15px;
+}
+
+.project-details {
+    text-align: left;
+    margin-top: 20px;
+    margin-left: 15px;
+    margin-right: 20px;
+}
+
+.project-details h4 {
+    font-size: 20px;
+    margin-bottom: 0;
+}
+
+.project-details p {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 17px;
+}
+
+.project-link {
+    margin-top: 80px;
+}
+
+.project-link a {
+    text-decoration: none;
+    border: 1px solid #F2992A;
+    color: white;
+    background-color: #F2992A;
+    padding: 5px 12px 5px 12px;
+    border-radius: 20px;
+    margin-left: 20px;
+}
+
+.project-link a:hover {
+    background-color: white;
+    color: #F2992A;
+    border-color: #ffffff;
+    font-weight: bold;
+}
+
+#alex-pr {
+    margin-bottom: 0;
+}
+
+.paths-subheading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: #333333;
+}
+
+.paths-subheading h2 {
+    font-size: 30px;
+}
+
+.paths-subheading p {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 20px;
+}
+
+.icons-row1, .icons-row2 {
+    display: flex;
+    justify-content: center;
+    gap: 180px;
+}
+
+.icons-row1 {
+    margin-bottom: 100px;
+    margin-top: 100px;
+}
+
+/*main*/
+
+

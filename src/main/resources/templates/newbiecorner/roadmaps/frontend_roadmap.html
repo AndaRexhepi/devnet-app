@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Front-End Development Roadmap</title>
+    <link rel="stylesheet" href="/style/pages/roadmap.css">
+    <th:block th:replace="~{fragments/stylesheet_links::my_links}"></th:block>
+</head>
+<body>
+<header>
+    <div th:replace="~{fragments/navigation.html :: navigation}"></div>
+    <div class="header-content">
+        <h1>Front - End Development</h1>
+        <h3>Your Path to Becoming a Front-End Developer: Step-by-Step Roadmap</h3></div>
+</header>
+<main>
+
+    <section><h1>
+        1. Understand the Basics</h1>
+        <ul>
+            <li><b>Learn HTML:</b> Understand structure and semantics of web pages.</li>
+            <li><b>Learn CSS:</b> Master styling and layout, including selectors, box model, and positioning.</li>
+            <li><b>Learn JavaScript (Basics):</b> Grasp programming fundamentals like variables, loops,
+                conditionals, and functions.
+            </li>
+
+        </ul>
+    </section>
+    <hr>
+    <section><h1>2. Dive Deeper into JavaScript</h1>
+        <ul>
+            <li><b>Understand DOM Manipulation:</b> Use JavaScript to interact with and modify web pages.</li>
+            <li><b>Learn about ES6+ Features:</b> Modern JavaScript features like let, const, arrow functions,
+                template literals, and destructuring.
+            </li>
+            <li><b> Grasp Event Handling:</b> Manage user interactions like clicks, hovers, and input.</li>
+        </ul>
+    </section>
+    <hr>
+    <section><h1>3. Responsive Design</h1>
+        <ul>
+            <li><b>Media Queries:</b> Build websites that work across devices.</li>
+            <li>Learn about Flexbox and CSS Grid for creating complex layouts.</li>
+            <li> Familiarize yourself with mobilet-first design principles.</li>
+        </ul>
+    </section>
+    <hr>
+    <section><h1>4. Version Control</h1>
+        <b> Learn Git and GitHub:</b>
+        <ul>
+            <li> Create repositories.</li>
+            <li> Commit and push code.</li>
+            <li>Collaborate with others using pull requests</li>
+
+        </ul>
+    </section>
+    <hr>
+    <section><h1>5. Package Managers and Build Tools</h1>
+        <ul>
+            <li><b> Node.js & npm:</b> Understand how to use npm for installing libraries and dependencies.</li>
+            <li><b> Build Tools:</b> Learn tools like Webpack, Vite, or Parcel for bundling and optimizing your code.
+            </li>
+        </ul>
+    </section>
+    <hr>
+    <section><h1>6. Learn a Framework or Library</h1>
+        <ul>
+            <li><b>Master React.js: </b>A popular front-end library.</li>
+            <li> Explore alternatives like Vue.js or Angular for different use cases.</li>
+
+        </ul>
+    </section>
+    <hr>
+    <section><h1>7. CSS Frameworks and Preprocessors</h1>
+        <ul>
+            <li>Learn Bootstrap, Tailwind CSS, or similar frameworks for faster styling.</li>
+            <li> Use CSS preprocessors like Sass or Less for advanced styling capabilities.</li>
+
+        </ul>
+    </section>
+    <hr>
+    <section><h1>8. State Management</h1>
+        <ul>
+            <li>Understand state management within frameworks like React using Context API or
+                libraries like Redux or Zustand.
+            </li>
+        </ul>
+    </section>
+    <hr>
+    <section><h1>9. Testing and Debugging</h1>
+        <ul>
+            <li>Learn debugging tools in your browser.</li>
+            <li> Familiarize yourself with testing frameworks like Jest or Mocha for unit testing your code.</li>
+
+        </ul>
+    </section>
+    <hr>
+    <section><h1>10. Deploy and Optimize</h1>
+        <ul>
+            <li>Host your projects using platforms like Netlify, Vercel, or GitHub Pages.</li>
+            <li> Learn about SEO and web performance optimization (e.g., Lighthouse reports).</li>
+            <li> Understand Progressive Web Apps (PWAs) for creating installable and offline-capable apps.</li>
+
+        </ul>
+    </section>
+    <a th:href="@{/templates/reviews}">Check reviews for our roadmaps</a>
+</main>
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

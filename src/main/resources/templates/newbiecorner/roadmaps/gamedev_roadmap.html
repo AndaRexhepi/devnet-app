@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Development Roadmap</title>
+    <link rel="stylesheet" href="/style/pages/roadmap.css">
+    <th:block th:replace="~{fragments/stylesheet_links::my_links}"></th:block>
+</head>
+<body>
+<header>
+    <div th:replace="~{fragments/navigation.html :: navigation}"></div>
+    <div class="header-content">
+        <h1>Game Development with C#</h1>
+        <h3>Your Path to Becoming a Game Developer with C#: Step-by-Step Roadmap</h3>
+        </div>
+</header>
+<main>
+
+    <section><h1>
+        1. Learn the Basics of C# Programming</h1>
+        <ul>
+            <li>Understand fundamental programming concepts: variables, data types, loops, conditionals, and functions.</li>
+            <li>Study Object-Oriented Programming (OOP) principles such as classes, objects, inheritance, and polymorphism.
+            </li>
+
+        </ul>
+    </section>
+    <hr>
+    <section><h1>2. Get Familiar with Game Engines</h1>
+        <ul>
+            <li>Choose <b>Unity </b>as your primary game engine (Unity uses C# as its scripting language).</li>
+            <li>Install Unity Hub and learn to create and manage Unity projects.
+            </li>
+
+        </ul>
+    </section>
+    <hr>
+    <section><h1>3. Understand Unity Basics</h1>
+        <ul>
+            <li>Explore the Unity interface:<b> Scene View, Game View, Hierarchy, Inspector, and Project windows.</b></li>
+            <li>Learn how to add and manipulate GameObjects in a scene.</li>
+            <li>Study the Unity Component system and how scripts control GameObject behavior.</li>
+
+        </ul>
+    </section>
+    <hr>
+    <section><h1>4. Master C# Scripting in Unity</h1>
+
+        <ul>
+            <li> Learn to write scripts to control player movement, handle input, and manage game mechanics.
+            </li>
+            <li> Understand Unity-specific features like MonoBehaviour, Update, and FixedUpdate.</li>
+            Get comfortable using Unity APIs to interact with components like Rigidbodies, Colliders, and UI elements.</li>
+
+
+        </ul>
+    </section>
+    <hr>
+    <section><h1>5. Learn Game Physics and Animation</h1>
+        <ul>
+            <li>Use Unity Physics for collision detection, gravity, and other physics-based interactions.</li>
+            <li>Master Unity’s Animator and Animation Controllers for creating character and object animations.
+            </li>
+        </ul>
+    </section>
+    <hr>
+    <section><h1>6. Work with Game Assets</h1>
+
+        <ul>
+            <li>Learn to import and use 2D and 3D assets like sprites, textures, and models.</li>
+            <li>Understand how to handle sounds and music in your games using Audio Sources and Audio Mixers.</li>
+
+        </ul>
+    </section>
+    <hr>
+    <section><h1>7. Study Game Development Concepts</h1>
+        <ul>
+            <li>Learn about game loops and state management.</li>
+            <li>Explore level design principles and how to create engaging environments.</li>
+            <li>Understand common game design patterns like singleton and object pooling.</li>
+
+        </ul>
+    </section>
+    <hr>
+    <section><h1>8. Implement Player Interaction and UI</h1>
+        <ul>
+            <li>Work with Unity’s UI Toolkit to create menus, HUDs, and overlays.</li>
+            <li>Handle player input using Input System for keyboard, mouse, and controller support.</li>
+
+        </ul>
+    </section>
+    <hr>
+    <section><h1>9. Optimize and Debug</h1>
+        <ul>
+            <li>Use Unity’s Profiler to optimize game performance (e.g., frame rates, memory usage).</li>
+            <li>Debug using Unity’s Console and in-editor debugging tools.</li>
+            <li>Implement techniques like Level of Detail (LOD) and light baking for better performance.</li>
+        </ul>
+    </section>
+    <hr>
+    <section><h1>10. Build, Test, and Publish</h1>
+        <ul>
+            <li>Export games for different platforms: PC, console, or mobile.</li>
+            <li>Test games thoroughly to eliminate bugs and improve user experience.</li>
+            <li>Publish games on platforms like<b> Steam, Google Play, or App Store.</b></li>
+
+        </ul>
+    </section>
+    <a th:href="@{/templates/reviews}">Check reviews for our roadmaps</a>
+</main>
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

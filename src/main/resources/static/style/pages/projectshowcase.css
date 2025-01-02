@@ -1,0 +1,73 @@
+header{
+    height: 100px;
+}
+.section-content{
+    color: #333333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-top: 70px;
+}
+.section-content h1{
+    font-weight: normal;
+}
+.section-content p{
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 18px;
+}
+.project-section{
+    margin-top: 50px;
+}
+.project {
+    position: relative;
+    width: 400px;
+    height: 200px;
+    background-color: #F2992A;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: width 800ms ease-in-out;
+    margin-left: auto;
+    margin-right: auto;
+    transform-origin: center;
+    margin-top: 50px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.project-img{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.text-div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #F2922B, #E56B2B, #DE542D, #D5392C); /* Adds a semi-transparent background */
+    color: white;
+    font-size: 18px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+.text-div p{
+    width: 450px;
+    text-align: center;
+    font-family: "IBM Plex Sans", sans-serif;
+}
+
+.project:hover {
+    width: 800px;
+}
+
+.project:hover .text-div {
+    opacity: 1;
+}
+

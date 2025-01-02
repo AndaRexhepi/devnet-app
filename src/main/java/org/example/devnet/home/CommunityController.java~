@@ -1,0 +1,67 @@
+package org.example.softwaredevelopmentproject.controllers;
+
+import org.example.softwaredevelopmentproject.models.Post;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+@Controller
+public class CommunityController {
+
+    private final List<Post> posts = new ArrayList<>();
+
+    public CommunityController() {
+        posts.add(new Post(1, "Anda Rexhepi", "Devnet", "First Post", "This is the content of the first post.", 0, 0, LocalDateTime.now()));
+        posts.add(new Post(2, "Anda Rexhepi", "My community", "Second Post", "This is the content of the first post.", 0, 0, LocalDateTime.now()));
+        posts.add(new Post(2, "Anda Rexhepi", "Devs", "Third Post", "This is the content of the first post.", 0, 0, LocalDateTime.now()));
+    }
+
+    @GetMapping("/community")
+    public String community(Model model) {
+        model.addAttribute("posts", posts);
+        return "pages/community";
+    }
+
+    @GetMapping("/join_community")
+    public String joinCommunity(Model model) {
+        return "community/join_community";
+    }
+
+    @GetMapping("/community_profile")
+    public String communityProfile(Model model) {
+        model.addAttribute("posts", posts);
+        return "community/community_profile";
+    }
+
+    @GetMapping("/create_post")
+    public String createPost(Model model) {
+        model.addAttribute("post", new Post());
+        return "community/create_post";
+    }
+
+    @PostMapping("/create_post")
+    public String createPost(@ModelAttribute Post post) {
+        posts.add(post);
+        return "redirect:/community";
+    }
+
+    @PostMapping("/community/{id}/delete")
+    public String deletePost(@PathVariable int id) {
+        posts.removeIf(post -> post.getId() == id);
+        return "redirect:/community";
+    }
+
+
+}
+
+
+
+

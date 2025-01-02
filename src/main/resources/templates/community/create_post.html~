@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/style/pages/community/create_post.css">
+    <th:block th:replace="~{fragments/stylesheet_links :: my_links}"></th:block>
+</head>
+<body>
+<header>
+    <div th:replace="~{fragments/navigation :: navigation}"></div>
+</header>
+<main>
+    <div class="create-post-container">
+        <h1>Create a New Post</h1>
+        <form class="create-post-form" method="post" th:if="${post != null}"  th:object="${post}">
+            <div class="form-group">
+                <label for="community-select">Select Community:</label>
+                <select id="community-select" required th:field="*{community}">
+                    <option value="" disabled selected>Select a community</option>
+                    <option value="community1">CodeCrafters</option>
+                    <option value="community2">DevNet Nexus</option>
+                    <option value="community3">Innovate & Integrate</option>
+                    <option value="community3">ByteBuilders</option>
+                    <option value="community3">TechTribe</option>
+                    <option value="community3">CodeConnect</option>
+                    <option value="community3">DevSphere</option>
+                    <option value="community3">FutureStack</option>
+                    <option value="community3">BitBuilders</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="post-title">Title:</label>
+                <input
+                        type="text"
+                        id="post-title"
+                        required
+                        placeholder="Enter the title of your post"
+                        th:field="*{title}"
+                />
+            </div>
+            <div class="form-group">
+                <label for="post-body">Body:</label>
+                <textarea
+                        id="post-body"
+                        rows="5"
+                        required
+                        placeholder="Write your post here..."
+                        th:field="*{body}"
+                ></textarea>
+            </div>
+            <div class="form-group">
+                <label for="image-upload" class="custom-file-upload">Upload Image (optional)</label>
+                <input type="file" id="image-upload" accept="image/*" style="display: none;"/>
+            </div>
+            <button type="submit" class="submit-button" value="Submit Post">Submit Post</button>
+        </form>
+    </div>
+</main>
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

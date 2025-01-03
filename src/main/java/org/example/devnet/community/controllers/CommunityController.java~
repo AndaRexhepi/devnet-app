@@ -37,10 +37,8 @@ public class CommunityController {
         return "community/community_profile";
     }
 
-    
 
-
-}
+    }
 
 
 

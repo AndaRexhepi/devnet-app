@@ -21,106 +21,51 @@
     </section>
 
     <section class="reviews-section" id="reviews">
-        <div class="card-review">
-           <div class="stars">
-               <img src="/assets/Stars.png">
-           </div>
-           <div class="review">
-               The Front-End Development roadmap gave me a clear path to follow. It helped me land my first job, and I
-               felt confident using frameworks like React and mastering CSS. A must for beginners!
-           </div>
-           <div class="review-person">
-               <b>Alice Morgan</b> <br>
-               <i>Junior Front-End Developer</i>
-           </div>
-       </div>
-           <div class="card-review">
-               <div class="stars">
-                   <img src="/assets/Stars.png">
-               </div>
-               <div class="review">
-                   Your Back-End Java roadmap was my stepping stone to understanding Spring Boot and RESTful APIs.
-               </div>
-               <div class="review-person">
-                   <b>James Carter</b> <br>
-                   <i>Full-Stack Developer</i>
-               </div>
-           </div> <br>
-       <div class="card-review">
-           <div class="stars">
-               <img src="/assets/Stars.png">
-           </div>
-           <div class="review">
-               I used the Mobile Development roadmap to dive into Android programming. Learning Kotlin step by step was
-               seamless, and the project suggestions were incredibly practical. Highly recommend it!
-           </div>
-           <div class="review-person">
-               <b>Samantha Lee</b> <br>
-               <i>Mobile App Developer</i>
-           </div>
-       </div>
-           <div class="card-review">
-               <div class="stars">
-                   <img src="/assets/Stars.png">
-               </div>
-               <div class="review">
-                   Game development with C# felt overwhelming until I found your roadmap. It broke the process into
-                   digestible chunks, and now I’ve published my first game on Steam!
-               </div>
-               <div class="review-person">
-                   <b>Carlos Rivera</b> <br>
-                   <i> Indie Game Developer</i>
-               </div>
-           </div> <br>
-        <div class="card-review">
-            <div class="stars">
-                <img src="/assets/Stars.png">
+
+        <div class="card-review" th:each="review : ${reviews}" th:object="${review}">
+
+            <div class="five_stars" th:if="*{rating == 5.0}">
+                <img src="/assets/5Stars.png">
             </div>
-            <div class="review">
-                I transitioned into development using the Front-End roadmap. The focus on HTML, CSS, and JavaScript
-                fundamentals gave me a solid foundation.
+            <div class="four_stars" th:if="*{rating == 4.0}">
+                <img src="/assets/4Stars.png">
             </div>
-            <div class="review-person">
-                <b>Emma Brown</b> <br>
-                <i> UI/UX Designer turned Developer</i>
+            <div class="three_stars" th:if="*{rating == 3.0}">
+                <img src="/assets/3Stars.png">
             </div>
-        </div>
-            <div class="card-review">
-                <div class="stars">
-                    <img src="/assets/Stars.png">
-                </div>
-                <div class="review">
-                    The Java Back-End Development roadmap was phenomenal. I learned how to design secure and efficient
-                    databases with Hibernate and deploy services with Docker. I feel prepared to tackle any challenge!
-                </div>
-                <div class="review-person">
-                    <b>Daniel Kim
-                    </b> <br>
-                    <i>Backend Engineer</i>
-                </div>
-            </div><br>
-    </section>
-<section>
-  <h1 class="my_h1">  We would love to hear about your experience with our roadmaps!</h1>
-</section>
-    <section class="form-section">
-        <div class="form">
-            <div class="input-data flex">
-                <label for="name">Name</label>
-                <input type="text" id="name">
-                <label for="surname">Surname</label>
-                <input type="text" id="surname">
-                <label for="role">Role</label>
-                <input type="text" id="role">
+            <div class="two_stars" th:if="*{rating == 2.0}">
+                <img src="/assets/2Stars.png">
             </div>
-            <div class="review-input flex">
-                <label for="review">Review</label>
-                <textarea id="review" placeholder="Body"> </textarea>
-                <button class="submit-review">Submit</button>
+            <div class="one_star" th:if="*{rating == 1.0}">
+                <img src="/assets/1Star.png">
+            </div>
+            <div class="one5_star" th:if="*{rating == 1.5}">
+                <img src="/assets/1.5Star.png">
+            </div>
+            <div class="two5_stars" th:if="*{rating == 2.5}">
+                <img src="/assets/2.5Stars.png">
+            </div>
+            <div class="three5_stars" th:if="*{rating == 3.5}">
+                <img src="/assets/3.5Stars.png">
+            </div>
+            <div class="four5_stars" th:if="*{rating == 4.5}">
+                <img src="/assets/4.5Stars.png">
             </div>
 
+            <div class="review" th:text="*{review}">
+            </div>
+            <div class="review-person">
+                <b>James Carter</b> <br>
+                <i th:text="*{role}"></i>
+            </div>
         </div>
+        <br>
     </section>
+    <section>
+        <h1 class="my_h1"> We would love to hear about your experience with our roadmaps!</h1>
+        <button class="add-review"><a th:href="@{/new_review}">Share your experience</a></button>
+    </section>
+
     <div th:replace="~{fragments/footer.html :: footer}"></div>
 </main>
 </body>

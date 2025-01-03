@@ -12,4 +12,9 @@ public class ProjectController {
         return "projectshowcase/projectshowcase";
     }
 
+    @GetMapping("/create_project")
+    public String create_project(Model model){
+        return "projectshowcase/create_project";
+    }
+
 }

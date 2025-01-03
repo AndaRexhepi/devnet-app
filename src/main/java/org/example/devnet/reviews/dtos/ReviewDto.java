@@ -27,10 +27,10 @@ public class ReviewDto {
     @Size(min = 2, max = 100)
     private String role;
 
-    private int rating;
+    private double rating;
 
     @NotNull(message = "Review is required")
     @NotBlank(message = "Review is required")
-    @Size(min = 2, max = 500)
+    @Size(min = 2, max = 1000)
     private String review;
 }

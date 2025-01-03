@@ -1,0 +1,95 @@
+main{
+    font-family: "IBM Plex Sans", sans-serif;
+}
+.header-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #333333;
+}
+
+.header-content h1{
+    margin-top: 50px;
+}
+
+.header-content p{
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: normal;
+}
+
+form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+form input{
+    width: 400px;
+    height: 40px;
+    border-radius: 10px;
+    border-color: transparent;
+    margin-top: 20px;
+
+}
+form{
+    background-color: #F5F5F5;
+    box-shadow: 2px 3px 5px rgba(0,0,0,0.1);
+    padding: 20px;
+    border-radius: 10px;
+}
+form textarea{
+    width: 400px;
+    height: 100px;
+    border-radius: 10px;
+    border-color: transparent;
+    margin-top: 20px;
+    resize: none;
+}
+
+form button{
+    width: 200px;
+    height: 40px;
+    border-radius: 30px;
+    border-color: transparent;
+    margin-top: 20px;
+    background-color: #F2992A;
+    color: white;
+    font-weight: bold;
+}
+
+form button:hover{
+    background-color: #DE572A;
+}
+
+form button:active{
+    background-color: #DE572A;
+}
+
+form button a{
+    text-decoration: none;
+    color: white;
+    font-weight: lighter;
+    font-size: 18px;
+}
+
+form input[type="file"]{
+    display: none;
+}
+
+form label[for="image"]{
+    background-color: #F2992A;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+form label[for="image"]:hover{
+    background-color: #DE572A;
+}

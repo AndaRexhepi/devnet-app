@@ -1,9 +1,9 @@
-package org.example.devnet.reviews.models;
+package org.example.softwaredevelopmentproject.reviews;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.example.devnet.user.models.User;
 
+import java.time.LocalDate;
 @Getter
 @Setter
 @AllArgsConstructor
@@ -15,17 +15,16 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User username;
+    @Column(nullable = false, length = 100)
+    private long user;
 
     @Column(nullable = false, length = 100)
     private String role;
 
-    private double rating;
+    private int rating;
 
-    @Column(nullable = false, length = 1000)
+    @Column(nullable = false, length = 100)
     private String review;
-
+    
 
 }

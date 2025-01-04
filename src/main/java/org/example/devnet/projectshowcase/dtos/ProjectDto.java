@@ -30,6 +30,6 @@ public class ProjectDto {
 
     @NotNull(message = "Image URL is required")
     @NotBlank(message = "Image URL is required")
-    @Size(min = 2, max = 500)
+    @Size(min = 2, max = 1000)
     private String imageUrl;
 }

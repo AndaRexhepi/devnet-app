@@ -42,8 +42,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto modify(UserDto userDto) {
-        if (userRepository.findById(userDto.getId()).isPresent()) {
+    public UserDto modify(UserDto userDto, Long id) {
+        if (userRepository.findById(id).isPresent()) {
             var user = userMapper.toEntity(userDto);
             userRepository.save(user);
             return userMapper.toDto(user);

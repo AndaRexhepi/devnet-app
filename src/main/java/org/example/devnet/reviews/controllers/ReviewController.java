@@ -5,9 +5,7 @@ import org.example.devnet.reviews.dtos.ReviewDto;
 import org.example.devnet.reviews.services.ReviewService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -33,5 +31,26 @@ public class ReviewController {
         reviewService.add(reviewDto);
         return "redirect:/reviews";
     }
+
+    @GetMapping("edit_review/{id}")
+    public String editReview(Model model, @PathVariable Long id) {
+        var reviewDto = reviewService.findById(id);
+        model.addAttribute("review", reviewDto);
+        return "reviews/edit_review";
+    }
+
+    @PostMapping("edit_review/{id}")
+    public String modifyReview(@PathVariable Long id, @ModelAttribute ReviewDto reviewDto) {
+        reviewService.modify(reviewDto, id);
+        return "redirect:/reviews";
+    }
+
+    @GetMapping("/{id}")
+    public String deleteReview(@PathVariable Long id) {
+        reviewService.delete(id);
+        return "redirect:/reviews";
+    }
+
+
 
 }

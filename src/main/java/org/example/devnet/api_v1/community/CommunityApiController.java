@@ -37,10 +37,10 @@ public class CommunityApiController {
         return communityService.add(communityDto);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public CommunityDto modify(@Valid @RequestBody CommunityDto communityDto) {
-        return communityService.modify(communityDto);
+    public CommunityDto modify(@Valid @RequestBody CommunityDto communityDto, @PathVariable Long id) {
+        return communityService.modify(communityDto, id);
     }
 
     @DeleteMapping("/{id}")

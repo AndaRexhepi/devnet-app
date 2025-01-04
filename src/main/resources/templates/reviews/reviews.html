@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Reviews</title>
     <th:block th:replace="~{fragments/stylesheet_links :: my_links}"></th:block>
-    <link rel="stylesheet" href="/style/pages/reviews.css">
+    <link rel="stylesheet" href="/style/pages/reviews/reviews.css">
 </head>
 <body>
 <header>
@@ -24,32 +24,52 @@
 
         <div class="card-review" th:each="review : ${reviews}" th:object="${review}">
 
+<div class="review-options">
+    <div class="three-dots" onclick="toggleOptions(this)">
+        <span>&#x2022;&#x2022;&#x2022;</span>
+    </div>
+    <div class="options" style="display: none;">
+        <a href="#" th:href="@{/edit_review/{id}(id=*{id})}">Edit</a>
+        <a href="#" th:href="@{/{id}(id=*{id})}" onclick="confirmDelete(event)">Delete</a>
+    </div>
+
+<div id="deleteConfirmationModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <h2>Confirm Deletion</h2>
+        <p>Are you sure you want to delete this review?</p>
+        <button id="confirmDeleteBtn">Delete</button>
+        <button onclick="closeModal()">Cancel</button>
+    </div>
+</div>
+
+</div>
+
             <div class="five_stars" th:if="*{rating == 5.0}">
-                <img src="/assets/5Stars.png">
+                <img src="/assets/img/5Stars.png">
             </div>
             <div class="four_stars" th:if="*{rating == 4.0}">
-                <img src="/assets/4Stars.png">
+                <img src="/assets/img/4Stars.png">
             </div>
             <div class="three_stars" th:if="*{rating == 3.0}">
-                <img src="/assets/3Stars.png">
+                <img src="/assets/img/3Stars.png">
             </div>
             <div class="two_stars" th:if="*{rating == 2.0}">
-                <img src="/assets/2Stars.png">
+                <img src="/assets/img/2Stars.png">
             </div>
             <div class="one_star" th:if="*{rating == 1.0}">
-                <img src="/assets/1Star.png">
+                <img src="/assets/img/1Star.png">
             </div>
             <div class="one5_star" th:if="*{rating == 1.5}">
-                <img src="/assets/1.5Star.png">
+                <img src="/assets/img/1.5Star.png">
             </div>
             <div class="two5_stars" th:if="*{rating == 2.5}">
-                <img src="/assets/2.5Stars.png">
+                <img src="/assets/img/2.5Stars.png">
             </div>
             <div class="three5_stars" th:if="*{rating == 3.5}">
-                <img src="/assets/3.5Stars.png">
+                <img src="/assets/img/3.5Stars.png">
             </div>
             <div class="four5_stars" th:if="*{rating == 4.5}">
-                <img src="/assets/4.5Stars.png">
+                <img src="/assets/img/4.5Stars.png">
             </div>
 
             <div class="review" th:text="*{review}">
@@ -68,5 +88,6 @@
 
     <div th:replace="~{fragments/footer.html :: footer}"></div>
 </main>
+<script src="/scripts/review.js"></script>
 </body>
 </html>

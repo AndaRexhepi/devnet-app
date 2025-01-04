@@ -37,10 +37,10 @@ public class AccApiController {
         return userService.add(userDto);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public UserDto modify(@Valid @RequestBody UserDto userDto) {
-        return userService.modify(userDto);
+    public UserDto modify(@Valid @RequestBody UserDto userDto, @PathVariable Long id) {
+        return userService.modify(userDto, id);
     }
 
     @DeleteMapping("/{id}")

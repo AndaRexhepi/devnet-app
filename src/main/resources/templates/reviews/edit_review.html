@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{fragments/stylesheet_links :: my_links}"></th:block>
+    <link rel="stylesheet" href="/style/pages/reviews/reviews.css">
+</head>
+<body>
+<header>
+    <div th:replace="~{fragments/navigation.html :: navigation}"></div>
+</header>
+<main>
+  <section class="form-section">
+    <form class="form" method="post" th:action="@{/edit_review/{id}(id=${review.id})}" th:object="${review}">
+      <div class="input-data flex">
+        <label for="role" >Role</label>
+        <input type="text" name="role" th:text="*{role}" th:field="*{role}" id="role" required>
+      </div>
+      <div class="input-data flex">
+        <label for="rating" >Rating</label>
+        <input type="text" name="rating" th:field="*{rating}" id="rating" required>
+      </div>
+      <div class="review-input flex">
+        <label for="review">Review</label>
+        <textarea id="review" placeholder="Body" name="review" th:text="*{review}" required> </textarea>
+        <button class="submit-review" type="submit">Submit</button>
+      </div>
+
+    </form>
+  </section>
+</main>
+</body>
+</html>

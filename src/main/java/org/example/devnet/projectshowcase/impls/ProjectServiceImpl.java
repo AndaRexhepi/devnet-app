@@ -41,8 +41,8 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public ProjectDto modify(ProjectDto projectDto) {
-        if (projectRepository.findById(projectDto.getId()).isPresent()){
+    public ProjectDto modify(ProjectDto projectDto, Long id) {
+        if (projectRepository.findById(id).isPresent()){
             var entity = projectMapper.toEntity(projectDto);
             projectRepository.save(entity);
             return projectMapper.toDto(entity);

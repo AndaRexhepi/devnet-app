@@ -13,15 +13,15 @@
 </header>
     <section>
 <div class="header-content">
-    <h1>Create a Project</h1>
-    <p>Submit your project and share it with the community</p>
+    <p>Submit your project and share it with the community!</p>
 <div class="form-container">
-    <form th:action="@{/create_project}">
-        <label for="image">Add Project Image:</label>
-        <input type="file" id="image" required accept="image/*">
-        <label for="description">Description:</label>
-        <textarea id="description" required></textarea>
-        <button type="submit"><a th:href="@{/projectshowcase}">Submit</a></button>
+    <form th:action="@{/projectshowcase}" enctype="multipart/form-data" method="post" th:object="${project}">
+        <label for="image">Add Project Image</label>
+        <input type="file" id="image" required name="image">
+        <input type="hidden" th:field="*{imageUrl}">
+        <label for="description">Description</label>
+        <textarea id="description" required th:field="*{description}" th:text="*{description}" name="description"></textarea>
+        <button type="submit">Submit</button>
     </form>
 </div>
 </div>

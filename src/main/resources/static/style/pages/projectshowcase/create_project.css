@@ -14,16 +14,17 @@ main{
 }
 
 .header-content p{
-    margin-top: 20px;
-    margin-bottom: 30px;
-    font-family: "IBM Plex Mono", monospace;
+    font-size: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
     font-weight: normal;
 }
 
 form{
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
 }
 
@@ -36,42 +37,46 @@ form input{
 
 }
 form{
-    background-color: #F5F5F5;
+    background-color: #DE572A;
     box-shadow: 2px 3px 5px rgba(0,0,0,0.1);
-    padding: 20px;
-    border-radius: 10px;
+    padding: 30px;
+    border-radius: 30px;
+
 }
 form textarea{
-    width: 400px;
-    height: 100px;
-    border-radius: 10px;
+    width: 600px;
+    height: 150px;
+    border-radius: 20px;
     border-color: transparent;
     margin-top: 20px;
     resize: none;
+    padding: 10px;
+    font-size: 15px;
+    font-family: "IBM Plex Sans", sans-serif;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
+form textarea:focus{
+    outline: none;
+}
+.form-container{
+    width: 800px;
 
+}
 form button{
     width: 200px;
     height: 40px;
     border-radius: 30px;
     border-color: transparent;
     margin-top: 20px;
-    background-color: #F2992A;
-    color: white;
-    font-weight: bold;
+    background-color: white;
+    color: #DE572A;
+
 }
 
-form button:hover{
-    background-color: #DE572A;
-}
-
-form button:active{
-    background-color: #DE572A;
-}
 
 form button a{
     text-decoration: none;
-    color: white;
+    color: #DE572A;
     font-weight: lighter;
     font-size: 18px;
 }
@@ -81,8 +86,8 @@ form input[type="file"]{
 }
 
 form label[for="image"]{
-    background-color: #F2992A;
-    color: white;
+    background-color: white;
+    color: #DE572A;
     padding: 10px 20px;
     border-radius: 10px;
     cursor: pointer;
@@ -90,6 +95,10 @@ form label[for="image"]{
     margin-bottom: 30px;
 }
 
-form label[for="image"]:hover{
-    background-color: #DE572A;
+form label[for="description"]{
+    color: white;
 }
+
+/*form label[for="image"]:hover{*/
+/*    background-color: #DE572A;*/
+/*}*/

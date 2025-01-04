@@ -41,8 +41,8 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public PostDto modify(PostDto postDto) {
-        if (postRepository.findById(postDto.getId()).isPresent()) {
+    public PostDto modify(PostDto postDto, Long id) {
+        if (postRepository.findById(id).isPresent()) {
             var entity = postMapper.toEntity(postDto);
             return postMapper.toDto(entity);
         } else {

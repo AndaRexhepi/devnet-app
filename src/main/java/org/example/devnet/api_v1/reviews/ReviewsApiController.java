@@ -39,10 +39,10 @@ public class ReviewsApiController {
         return reviewService.add(ReviewDto);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public ReviewDto modify(@Valid @RequestBody ReviewDto ReviewDto) {
-        return reviewService.modify(ReviewDto);
+    public ReviewDto modify(@Valid @RequestBody ReviewDto ReviewDto, @PathVariable Long id) {
+        return reviewService.modify(ReviewDto, id);
     }
 
     @DeleteMapping("/{id}")

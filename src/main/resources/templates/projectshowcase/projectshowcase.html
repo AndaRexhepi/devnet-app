@@ -19,55 +19,61 @@
             developed through our guided learning paths</p>
     </section>
     <section class="project-section">
-        <div class="project">
-            <img src="../assets/orig.png" alt="img" class="project-img"/>
-            <div class="text-div">
-                <p>"A 2D platformer game where players navigate challenging levels, collect items, and unlock
-                    achievements, developed using Unity and C#."</p>
+<!--        <div class="project">-->
+<!--            <img src="../assets/orig.png" alt="img" class="project-img"/>-->
+<!--            <div class="text-div">-->
+<!--                <p>"A 2D platformer game where players navigate challenging levels, collect items, and unlock-->
+<!--                    achievements, developed using Unity and C#."</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="project">-->
+<!--            <img src="../assets/task.png" alt="img" class="project-img"/>-->
+<!--            <div class="text-div">-->
+<!--                <p>"A productivity-focused mobile app that helps users create, organize, and prioritize tasks with-->
+<!--                    deadline reminders and progress tracking."</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="project">-->
+<!--            <img src="../assets/style.png" alt="img" class="project-img"/>-->
+<!--            <div class="text-div">-->
+<!--                <p>"A front-end project featuring an interactive fashion website where users can explore collections,-->
+<!--                    filter items, and customize their preferences."</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="project">-->
+<!--            <img src="../assets/fitness.png" alt="img" class="project-img"/>-->
+<!--            <div class="text-div">-->
+<!--                <p>"A user-friendly mobile app designed to monitor daily fitness activities such as steps, workouts, and-->
+<!--                    calories burned.”</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="project">-->
+<!--            <img src="../assets/travel.png" alt="img" class="project-img"/>-->
+<!--            <div class="text-div">-->
+<!--                <p>"An Android app that helps travelers plan their trips, discover destinations, and manage itineraries-->
+<!--                    with real-time updates and recommendations."</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="project">-->
+<!--            <img src="../assets/gametrackpng.png" alt="img" class="project-img"/>-->
+<!--            <div class="text-div">-->
+<!--                <p>"A game tracking app that lets players monitor their progress, view leaderboards, and analyze-->
+<!--                    gameplay statistics for popular games."</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="project">-->
+<!--            <img src="../assets/blog.png" alt="img" class="project-img"/>-->
+<!--            <div class="text-div">-->
+<!--                <p>"A sleek blog platform where users can create and publish articles, categorize content, and manage-->
+<!--                    comments with a user-friendly interface."</p>-->
+<!--            </div>-->
+<!--        </div>-->
+        <form class="project" th:each="project : ${projects}" th:object="${project}" method="post">
+            <img th:src="*{imageUrl}" alt="img" class="project-img"/>
+            <div class="text-div" >
+                <p th:text="*{description}"> </p>
             </div>
-        </div>
-        <div class="project">
-            <img src="../assets/task.png" alt="img" class="project-img"/>
-            <div class="text-div">
-                <p>"A productivity-focused mobile app that helps users create, organize, and prioritize tasks with
-                    deadline reminders and progress tracking."</p>
-            </div>
-        </div>
-        <div class="project">
-            <img src="../assets/style.png" alt="img" class="project-img"/>
-            <div class="text-div">
-                <p>"A front-end project featuring an interactive fashion website where users can explore collections,
-                    filter items, and customize their preferences."</p>
-            </div>
-        </div>
-        <div class="project">
-            <img src="../assets/fitness.png" alt="img" class="project-img"/>
-            <div class="text-div">
-                <p>"A user-friendly mobile app designed to monitor daily fitness activities such as steps, workouts, and
-                    calories burned.”</p>
-            </div>
-        </div>
-        <div class="project">
-            <img src="../assets/travel.png" alt="img" class="project-img"/>
-            <div class="text-div">
-                <p>"An Android app that helps travelers plan their trips, discover destinations, and manage itineraries
-                    with real-time updates and recommendations."</p>
-            </div>
-        </div>
-        <div class="project">
-            <img src="../assets/gametrackpng.png" alt="img" class="project-img"/>
-            <div class="text-div">
-                <p>"A game tracking app that lets players monitor their progress, view leaderboards, and analyze
-                    gameplay statistics for popular games."</p>
-            </div>
-        </div>
-        <div class="project">
-            <img src="../assets/blog.png" alt="img" class="project-img"/>
-            <div class="text-div">
-                <p>"A sleek blog platform where users can create and publish articles, categorize content, and manage
-                    comments with a user-friendly interface."</p>
-            </div>
-        </div>
+        </form>
 
     </section>
     <button class="project-button"><a th:href="@{/create_project}">Showcase Your Project</a></button>

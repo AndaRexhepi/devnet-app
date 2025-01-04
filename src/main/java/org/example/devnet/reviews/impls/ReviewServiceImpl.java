@@ -41,15 +41,14 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public ReviewDto modify(ReviewDto reviewDto) {
-        if (reviewRepository.findById(reviewDto.getId()).isPresent()){
+    public ReviewDto modify(ReviewDto reviewDto, Long id) {
+        if (reviewRepository.findById(id).isPresent()){
             var entity = reviewMapper.toEntity(reviewDto);
-            reviewRepository.save(entity);
-            return reviewMapper.toDto(entity);
+            var savedEntity = reviewRepository.save(entity);
+            return reviewMapper.toDto(savedEntity);
         }else {
             throw new EntityNotFoundException();
         }
-
     }
 
     @Override

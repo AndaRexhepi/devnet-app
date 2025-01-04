@@ -37,10 +37,10 @@ public class ProjectApiController {
         return projectService.add(projectDto);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public ProjectDto modify(@Valid @RequestBody ProjectDto projectDto) {
-        return projectService.modify(projectDto);
+    public ProjectDto modify(@Valid @RequestBody ProjectDto projectDto, @PathVariable Long id) {
+        return projectService.modify(projectDto, id);
     }
 
     @DeleteMapping("/{id}")

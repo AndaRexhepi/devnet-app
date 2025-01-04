@@ -13,7 +13,7 @@ public interface BaseService<T, TId>{
 
     T add(T entity);
 
-    T modify(T t);
+    T modify(T t, TId id);
 
     void delete(TId id);
 }

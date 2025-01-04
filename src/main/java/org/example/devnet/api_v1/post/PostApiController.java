@@ -37,10 +37,10 @@ public class PostApiController {
         return postService.add(postDto);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public PostDto modify(@Valid @RequestBody PostDto postDto) {
-        return postService.modify(postDto);
+    public PostDto modify(@Valid @RequestBody PostDto postDto, @PositiveOrZero(message = "Id cannot be negative") @PathVariable Long id) {
+        return postService.modify(postDto, id);
     }
 
     @DeleteMapping("/{id}")

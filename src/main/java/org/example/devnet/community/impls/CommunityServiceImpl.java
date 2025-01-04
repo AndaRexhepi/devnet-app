@@ -42,8 +42,8 @@ public class CommunityServiceImpl implements CommunityService {
     }
 
     @Override
-    public CommunityDto modify(CommunityDto communityDto) {
-        if (communityRepository.findById(communityDto.getId()).isPresent()){
+    public CommunityDto modify(CommunityDto communityDto, Long id) {
+        if (communityRepository.findById(id).isPresent()){
             var entity = communityMapper.toEntity(communityDto);
             communityRepository.save(entity);
             return communityMapper.toDto(entity);

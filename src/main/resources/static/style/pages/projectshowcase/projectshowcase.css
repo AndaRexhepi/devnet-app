@@ -1,7 +1,8 @@
-header{
+header {
     height: 100px;
 }
-.section-content{
+
+.section-content {
     color: #333333;
     display: flex;
     flex-direction: column;
@@ -9,16 +10,20 @@ header{
     text-align: center;
     margin-top: 70px;
 }
-.section-content h1{
+
+.section-content h1 {
     font-weight: normal;
 }
-.section-content p{
+
+.section-content p {
     font-family: "IBM Plex Sans", sans-serif;
     font-size: 18px;
 }
-.project-section{
+
+.project-section {
     margin-top: 50px;
 }
+
 .project {
     position: relative;
     width: 400px;
@@ -34,7 +39,75 @@ header{
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.project-img{
+.project-options {
+    display: none;
+    z-index: 2;
+}
+.three-dots span{
+    color: white;
+    cursor: pointer;
+}
+
+.project:hover .project-options {
+    display: block;
+    position: absolute;
+    top: 10px;
+    transition: all 800ms ease-in-out;
+    right: 10px;
+}
+
+.text-div:hover .project-options {
+    display: block;
+    position: absolute;
+    top: 10px;
+    transition: all 800ms ease-in-out;
+    right: 10px;
+}
+.options {
+    position: absolute;
+    margin-left: 300px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.options a {
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    color: black;
+}
+
+.options a:hover {
+    background-color: #f0f0f0;
+}
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    border-radius: 20px;
+}
+
+.modal-content {
+    text-align: center;
+}
+
+.modal button {
+    padding: 5px 10px;
+    background-color: #F2992A;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.project-img {
     width: 100%;
     height: 100%;
     border-radius: 20px;
@@ -57,7 +130,8 @@ header{
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
 }
-.text-div p{
+
+.text-div p {
     width: 450px;
     text-align: center;
     font-family: "IBM Plex Sans", sans-serif;
@@ -71,7 +145,7 @@ header{
     opacity: 1;
 }
 
-.project-button{
+.project-button {
     display: flex;
     justify-content: center;
     margin-top: 100px;
@@ -84,14 +158,13 @@ header{
     color: white;
     font-weight: bold;
     text-decoration: none;
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
     margin-left: 40%;
 }
 
-.project-button a{
+.project-button a {
     text-decoration: none;
     color: white;
     font-weight: bold;
-    font-size:18px;
+    font-size: 18px;
 }
 

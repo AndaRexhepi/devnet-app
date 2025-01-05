@@ -13,7 +13,7 @@ header {
 }
 
 .content-section {
-    background-image: url(../../../assets/img/reviewImg.png);
+    background-image: url(../../../assets/reviewImg.png);
     background-size: cover;
     background-repeat: no-repeat;
     height: 548px;

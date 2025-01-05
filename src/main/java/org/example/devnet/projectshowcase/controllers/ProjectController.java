@@ -7,10 +7,7 @@ import org.example.devnet.projectshowcase.models.Project;
 import org.example.devnet.projectshowcase.services.ProjectService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -46,6 +43,24 @@ public class ProjectController {
             throw new RuntimeException(e);
         }
         projectService.add(project);
+        return "redirect:/projectshowcase";
+    }
+
+    @GetMapping("/edit_project/{id}")
+    public String edit_project(@PathVariable Long id, Model model){
+        model.addAttribute("project", projectService.findById(id));
+        return "projectshowcase/edit_project";
+    }
+
+    @PostMapping("/edit_project/{id}")
+    public String edit_project(@PathVariable Long id, @ModelAttribute ProjectDto project){
+        projectService.modify(project, id);
+        return "redirect:/projectshowcase";
+    }
+
+    @GetMapping("delete_project/{id}")
+    public String delete_project(@PathVariable Long id){
+        projectService.delete(id);
         return "redirect:/projectshowcase";
     }
 

@@ -65,12 +65,14 @@ header {
 }
 .options {
     position: absolute;
-    margin-left: 300px;
+    margin-left: 670px;
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 10px;
     padding: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+
 }
 .options a {
     display: block;

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/style/pages/projectshowcase/create_project.css">
+    <th:block th:replace="~{fragments/stylesheet_links :: my_links}"></th:block>
+</head>
+<body>
+<header>
+    <div th:replace="~{fragments/navigation :: navigation}"></div>
+</header>
+<section>
+    <div class="header-content">
+        <p>Submit your project and share it with the community!</p>
+        <div class="form-container">
+            <form th:action="@{/projectshowcase}" enctype="multipart/form-data" method="post" th:object="${project}">
+                <label for="image">Add Project Image</label>
+                <input type="file" id="image" required name="image">
+                <input type="hidden" th:field="*{imageUrl}">
+                <label for="description">Description</label>
+                <textarea id="description" required th:field="*{description}" th:text="*{description}" name="description"></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</section>
+</main>
+</body>
+</html>

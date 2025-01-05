@@ -78,7 +78,7 @@
             </div>
             <div class="options" style="display: none;">
                 <a href="#" th:href="@{/edit_project/{id}(id=*{id})}">Edit</a>
-                <a href="#" th:href="@{/{id}(id=*{id})}" onclick="confirmDelete(event)">Delete</a>
+                <a href="#" th:href="@{delete_project/{id}(id=*{id})}" onclick="confirmDelete(event)">Delete</a>
             </div>
             <div id="deleteConfirmationModal" class="modal" style="display: none;">
                 <div class="modal-content">

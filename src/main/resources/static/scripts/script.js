@@ -21,7 +21,7 @@ document.getElementById('confirmDeleteBtn').addEventListener('click', function()
 
 
 function toggleOptions(element) {
-    var options = element.nextElementSibling;
+    var options = document.querySelector(".options")
     if (options.style.display === "none") {
         options.style.display = "block";
     } else {

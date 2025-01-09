@@ -186,6 +186,10 @@ main{
     margin: 0; /* Remove margin */
     font-size: 1em; /* Font size for community name */
 }
+.community-info h3 a{
+    text-decoration: none;
+    color: #333333;
+}
 
 .members-count {
     font-size: 0.9em; /* Smaller font for members count */

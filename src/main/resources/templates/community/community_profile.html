@@ -11,52 +11,63 @@
     <div th:replace="~{fragments/navigation :: navigation}"></div>
 </header>
 <main>
-    <div class="community-profile">
+    <div class="community-profile" th:object="${community}">
+
         <div class="profile-header">
             <img
-                    src="../assets/header.png"
+                    th:src="*{imageUrl}"
                     alt="Community Profile Picture"
                     class="profile-picture"
             />
             <div class="profile-info">
-                <h1 class="community-name">Community Name</h1>
-                <p class="community-description">
-                    This is a description of the community. It gives an overview of what
-                    the community is about and its goals.
+                <h1 class="community-name" th:text="*{name}"></h1>
+                <p class="community-description" th:text="*{description}">
                 </p>
                 <p class="members-count">150 members</p>
                 <button class="join-button">Join Community</button>
             </div>
+            <a th:href="@{/edit_community/{id}(id=*{id})}" class="edit-button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="white">
+                    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                </svg>
+
+            </a>
         </div>
         <div class="posts-section">
             <div class="create-post">
                 <button> <a th:href="@{/create_post}">+ Create Post</a></button>
             </div>
-            <div class="posts" th:each="post : ${posts}" th:object="${post}" th:if="${post.community.equals('CodeCrafters')}">
-                <div class="post">
-                    <h2 th:text="*{title}"></h2>
-                    <div class="dropdown">
-                        <button class="dropdown-button">⋮</button>
-                        <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item">Edit</a>
-                            <a href="#" class="dropdown-item">Delete</a>
-                        </div>
-                        <p th:text="*{body}"></p>
-                        <span class="post-meta">Posted by
-                            <span>Anda Rexhepi </span>|
-                            <span>  2 hours ago </span>|
-                            <span th:text="*{community}"> </span>
-                        </span>
-                        <div class="post-actions">
-                            <button class="like-button button">Like</button>
-                            <button class="comment-button button">Comment</button>
-                            <button class="favorite-button button">Favorite</button>
+<!--            <div class="posts" th:each="post : ${posts}" th:object="${post}" th:if="${post.community.equals('CodeCrafters')}">-->
+<!--                <div class="post">-->
+<!--                    <h2 th:text="*{title}"></h2>-->
+<!--                    <div class="dropdown">-->
+<!--                        <button class="dropdown-button">⋮</button>-->
+<!--                        <div class="dropdown-menu">-->
+<!--                            <a href="#" class="dropdown-item">Edit</a>-->
+<!--                            <a href="#" class="dropdown-item">Delete</a>-->
+<!--                        </div>-->
+<!--                        <p th:text="*{body}"></p>-->
+<!--                        <span class="post-meta">Posted by-->
+<!--                            <span>Anda Rexhepi </span>|-->
+<!--                            <span>  2 hours ago </span>|-->
+<!--                            <span th:text="*{community}"> </span>-->
+<!--                        </span>-->
+<!--                        <div class="post-actions">-->
+<!--                            <button class="like-button button">Like</button>-->
+<!--                            <button class="comment-button button">Comment</button>-->
+<!--                            <button class="favorite-button button">Favorite</button>-->
 
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
 
+            <a th:href="@{/delete_community/{id}(id=*{id})}" id="deleteBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+                    <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                </svg>
+
+            </a>
 
         </div>
     </div>

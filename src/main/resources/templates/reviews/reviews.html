@@ -30,7 +30,7 @@
     </div>
     <div class="options" style="display: none;">
         <a href="#" th:href="@{/edit_review/{id}(id=*{id})}">Edit</a>
-        <a href="#" th:href="@{/{id}(id=*{id})}" onclick="confirmDelete(event)">Delete</a>
+        <a href="#" th:href="@{/{id}(id=*{id})}">Delete</a>
     </div>
 
 <div id="deleteConfirmationModal" class="modal" style="display: none;">
@@ -88,6 +88,6 @@
 
     <div th:replace="~{fragments/footer.html :: footer}"></div>
 </main>
-<script src="/scripts/script.js"></script>
+<script src="/scripts/modal.js"></script>
 </body>
 </html>

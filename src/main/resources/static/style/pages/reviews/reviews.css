@@ -53,7 +53,7 @@ header {
     width: 600px;
 }
 
-.add-review  {
+.add-review {
     padding: 10px 40px;
     background-color: #F2992A;
     color: white;
@@ -66,6 +66,7 @@ header {
     text-align: center;
     margin-left: 40%;
 }
+
 .add-review a {
     text-decoration: none;
     color: white;
@@ -99,13 +100,13 @@ header {
 }
 
 .form-section {
-    border: 1px solid #F2992A;
-    background-color: #F2992A;
-    width: 800px;
+    border: 1px solid #333333;
+    background-color: #333333;
+    width: 600px;
     padding: 30px 80px;
-    margin-left: 20%;
+    margin-left: 25%;
     margin-top: 100px;
-    border-radius: 15px;
+    border-radius: 30px;
     color: white;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
 }
@@ -158,10 +159,10 @@ header {
     border-color: transparent;
 }
 
- .three-dots {
-     cursor: pointer;
-     float: right;
- }
+.three-dots {
+    cursor: pointer;
+    float: right;
+}
 
 .options {
     position: absolute;
@@ -211,40 +212,48 @@ header {
 }
 
 
-.five_stars img{
+.five_stars img {
     width: 155px;
     height: 30px;
 }
-.four_stars img{
+
+.four_stars img {
     width: 130px;
     height: 30px;
 
 }
-.three_stars img{
+
+.three_stars img {
     width: 90px;
     height: 30px;
 }
-.two_stars img{
+
+.two_stars img {
     width: 65px;
     height: 30px;
 }
-.one_star img{
+
+.one_star img {
     width: 30px;
     height: 30px;
 }
-.one5_star img{
+
+.one5_star img {
     width: 45px;
     height: 30px;
 }
-.two5_stars img{
+
+.two5_stars img {
     width: 75px;
     height: 30px;
 }
-.three5_stars img{
+
+.three5_stars img {
     width: 110px;
     height: 30px;
 }
-.four5_stars img{
+
+.four5_stars img {
     width: 135px;
     height: 30px;
 }

@@ -7,6 +7,7 @@
     <th:block th:replace="~{fragments/stylesheet_links :: my_links}"></th:block>
 </head>
 <body>
+<main>
 <header>
     <div th:replace="~{fragments/navigation :: navigation}"></div>
 </header>
@@ -14,12 +15,17 @@
     <div class="header-content">
         <p>Submit your project and share it with the community!</p>
         <div class="form-container">
-            <form th:action="@{/projectshowcase}" enctype="multipart/form-data" method="post" th:object="${project}">
-                <label for="image">Add Project Image</label>
-                <input type="file" id="image" required name="image">
-                <input type="hidden" th:field="*{imageUrl}">
+            <form th:action="@{/edit_project/{id}(id=${project.id})}" enctype="multipart/form-data" method="get" th:object="${project}">
+                <img th:src="${project.imageUrl != null ? project.imageUrl : project.imageUrl}" alt="Project Image" class="project-img"/>
+
+                <label for="image">Change Project Image</label>
+                <input type="file" id="image" name="image">
+
+                <input type="hidden" th:field="*{imageUrl}" name="imageUrl">
                 <label for="description">Description</label>
-                <textarea id="description" required th:field="*{description}" th:text="*{description}" name="description"></textarea>
+
+                <textarea id="description" th:field="*{description}" th:text="*{description}"
+                          name="description"></textarea>
                 <button type="submit">Submit</button>
             </form>
         </div>

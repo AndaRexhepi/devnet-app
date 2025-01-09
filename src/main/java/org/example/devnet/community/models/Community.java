@@ -31,7 +31,6 @@ public class Community {
     @Column()
     private String imageUrl;
 
-    @Column(nullable = false)
     private LocalDate createdDate;
 
     @ManyToMany

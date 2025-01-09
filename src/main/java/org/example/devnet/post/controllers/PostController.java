@@ -1,6 +1,11 @@
 package org.example.devnet.post.controllers;
 
+import lombok.RequiredArgsConstructor;
+import org.example.devnet.community.services.CommunityService;
+import org.example.devnet.post.dtos.PostDto;
+import org.example.devnet.post.mappers.PostMapper;
 import org.example.devnet.post.models.Post;
+import org.example.devnet.post.services.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,31 +17,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class PostController {
 
-    private final List<Post> posts = new ArrayList<>();
+    public final PostService postService;
+    public final CommunityService communityService;
 
 
 
-
+//    @GetMapping("/community")
+//    public String findAll(Model model) {
+//        model.addAttribute("posts", postService.findAll());
+//        return "community/community";
+//    }
 
     @GetMapping("/create_post")
     public String createPost(Model model) {
         model.addAttribute("post", new Post());
-        return "community/create_post";
+        model.addAttribute("communities", communityService.findAll());
+        return "post/create_post";
     }
 
     @PostMapping("/create_post")
-    public String createPost(@ModelAttribute Post post) {
-        posts.add(post);
+    public String createPost(@ModelAttribute PostDto post) {
+        postService.add(post);
         return "redirect:/community";
     }
 
-    @PostMapping("/community/{id}/delete")
-    public String deletePost(@PathVariable int id) {
-        posts.removeIf(post -> post.getId() == id);
-        return "redirect:/community";
-    }
+
 
 }
 

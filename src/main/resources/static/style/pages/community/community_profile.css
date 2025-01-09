@@ -33,6 +33,7 @@ main{
     flex: 1;
 }
 
+
 .community-name {
     font-size: 24px;
     margin-bottom: 8px;
@@ -87,20 +88,21 @@ main{
 
 }
 .dropdown {
-    position: relative; /* This is needed for the dropdown menu positioning */
-    float: right; /* Aligns the dropdown button to the right */
+    position: relative;
+    float: right;
+    margin-right: 30px;
 }
 
 .dropdown-button {
     margin-left: 95%;
     background: none;
     border: none;
-    font-size: 1.5em; /* Adjust size as needed */
+    font-size: 2em;
     cursor: pointer;
-    color: #666; /* Color for the three dots */
+    color: #ffffff;
 }
 
-/* Dropdown menu styles */
+
 .dropdown-menu {
     display: none; /* Hidden by default */
     position: absolute; /* Position it absolutely to the dropdown */
@@ -110,21 +112,24 @@ main{
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 10; /* Ensures it appears above other elements */
+    z-index: 10;
+    pointer-events: auto; /* Ensures it appears above other elements */
 }
 
 .dropdown-menu a {
-    display: block; /* Make links block elements */
-    padding: 10px; /* Padding for clickable area */
-    color: #333; /* Text color */
-    text-decoration: none; /* Remove underline */
+    display: block;
+    padding: 10px;
+    color: #333;
+    text-decoration: none;
 }
 
 .dropdown-menu a:hover {
-    background: #f0f0f0; /* Change background color on hover */
+    background: #f0f0f0;
 }
-
-/* Show the dropdown when the button is clicked */
+#deleteBtn{
+    color: lightcoral;
+    font-weight: bold;
+}
 .dropdown-button:focus + .dropdown-menu,
 .dropdown-button:hover + .dropdown-menu {
     display: block; /* Show the menu */

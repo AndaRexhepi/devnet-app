@@ -16,17 +16,10 @@
         <form class="create-post-form" method="post" th:if="${post != null}"  th:object="${post}">
             <div class="form-group">
                 <label for="community-select">Select Community:</label>
-                <select id="community-select" required th:field="*{community}">
+                <select id="community-select" required>
                     <option value="" disabled selected>Select a community</option>
-                    <option value="CodeCrafters">CodeCrafters</option>
-                    <option value="DevNet Nexus">DevNet Nexus</option>
-                    <option value="Innovate & Integrate">Innovate & Integrate</option>
-                    <option value="ByteBuilders">ByteBuilders</option>
-                    <option value="TechTribe">TechTribe</option>
-                    <option value="CodeConnect">CodeConnect</option>
-                    <option value="DevSphere">DevSphere</option>
-                    <option value="FutureStack">FutureStack</option>
-                    <option value="BitBuilders">BitBuilders</option>
+                    <option value="community" th:each="community : ${communities}" th:text="${community.name}"></option>
+
                 </select>
             </div>
             <div class="form-group">

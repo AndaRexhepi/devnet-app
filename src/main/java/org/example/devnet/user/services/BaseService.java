@@ -7,7 +7,9 @@ import java.util.List;
 
 public interface BaseService<T, TId>{
 
+
     List<T> findAll();
+
 
     T findById(TId id);
 

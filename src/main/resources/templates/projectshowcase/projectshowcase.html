@@ -70,34 +70,38 @@
         <!--        </div>-->
 
 
-        <form class="project" th:each="project : ${projects}" th:object="${project}" method="post">
-            <div class="project-options">
-                <div class="three-dots" onclick="toggleOptions(this)">
-                    <span>&#x2022;&#x2022;&#x2022;</span>
-                </div>
-            </div>
-            <div class="options" style="display: none;">
-                <a href="#" th:href="@{/edit_project/{id}(id=*{id})}">Edit</a>
-                <a href="#" th:href="@{delete_project/{id}(id=*{id})}" onclick="confirmDelete(event)">Delete</a>
-            </div>
-            <div id="deleteConfirmationModal" class="modal" style="display: none;">
-                <div class="modal-content">
-                    <h2>Confirm Deletion</h2>
-                    <p>Are you sure you want to delete this review?</p>
-                    <button id="confirmDeleteBtn">Delete</button>
-                    <button onclick="closeModal()">Cancel</button>
-                </div>
-            </div>
-            <img th:src="*{imageUrl}" alt="img" class="project-img"/>
-            <div class="text-div">
-                <p th:text="*{description}"></p>
-            </div>
-        </form>
+<!--        <form class="project" th:each="project : ${projects}" th:object="${project}" method="post" enctype="multipart/form-data">-->
+
+<!--            <div class="project-options">-->
+<!--                <div class="three-dots" onclick="toggleOptions(this)">-->
+<!--                    <span>&#x2022;&#x2022;&#x2022;</span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="options project-[[*{id}]]" style="display: none;">-->
+<!--                <a href="#" th:href="@{/edit_project/{id}(id=*{id})}">Edit</a>-->
+<!--                <a href="#" th:href="@{/{id}(id=*{id})}" onclick="openModal()" data-id="*{id}" id="deleteBtn">Delete</a>-->
+<!--            </div>-->
+<!--            <div id="deleteConfirmationModal" class="modal" style="display: none;">-->
+<!--                <div class="modal-content">-->
+<!--                    <h2>Confirm Deletion</h2>-->
+<!--                    <p>Are you sure you want to delete this review?</p>-->
+<!--                    <button id="confirmDeleteBtn">Delete</button>-->
+<!--                    <button onclick="closeModal()">Cancel</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <img th:src="*{imageUrl}" alt="img" class="project-img" name="image"/>-->
+<!--            <div class="text-div">-->
+<!--                <p th:text="*{description}"></p>-->
+<!--            </div>-->
+
+<!--        </form>-->
 
     </section>
     <button class="project-button"><a th:href="@{/create_project}">Showcase Your Project</a></button>
     <div th:replace="~{fragments/footer.html}"></div>
 </main>
-<script src="/scripts/script.js"></script>
+<script src="/scripts/modal.js"></script>
+<script src="/scripts/projectshowcase/api.js"></script>
+<script src="/scripts/projectshowcase/app.js"></script>
 </body>
 </html>

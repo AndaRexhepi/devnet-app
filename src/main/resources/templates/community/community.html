@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Community Q&A</title>
-    <link rel="stylesheet" href="/style/pages/community.css">
+    <link rel="stylesheet" href="/style/pages/community/community.css">
     <th:block th:replace="~{fragments/stylesheet_links :: my_links}"></th:block>
 </head>
 <body>
@@ -13,118 +13,53 @@
 
 <main>
     <div class="main">
-    <div class="container">
+        <div class="container">
+            <div class="content">
+                <aside class="sidebar">
+                    <h2>Communities</h2>
+                    <button class="join-button"><a th:href="@{/join_community}">Join a Community</a></button>
+                    <button class="join-button"><a th:href="@{/create_community}">Create a Community</a></button>
 
-        <div class="content">
-            <aside class="sidebar">
-                <h2>Communities</h2>
-                <button class="join-button"><a th:href="@{/join_community}">Join a Community</a></button>
-                <div class="community">
-                    <img src="../assets/header.png" alt="Community 1" class="community-pic">
-                    <div class="community-info">
-                        <h3>CodeCrafters</h3>
 
-                        <span class="members-count">1200 members</span>
-                    </div>
+            <form class="community" method="get" th:each="community : ${communities}" th:object="${community}">
+                <img th:src="*{imageUrl}" alt="Community 2" class="community-pic">
+                <div class="community-info">
+                    <h3><a th:href="@{/community_profile/{id}(id=${community.id})}" th:text="*{name}"></a></h3>
+                    <span class="members-count">900 members</span>
+                </div>
+            </form>
 
-                </div>
-                <div class="community">
-                    <img src="../assets/header.png" alt="Community 2" class="community-pic">
-                    <div class="community-info">
-                        <h3>DevNet Nexus</h3>
-
-                        <span class="members-count">900 members</span>
-                    </div>
-
-                </div>
-                <div class="community">
-                    <img src="../assets/header.png" alt="Community 3" class="community-pic">
-                    <div class="community-info">
-                        <h3>Innovate & Integrate</h3>
-
-                        <span class="members-count">1500 members</span>
-                    </div>
-                </div>
-                <div class="community">
-                    <img src="../assets/header.png" alt="Community 4" class="community-pic">
-                    <div class="community-info">
-                        <h3>Syntax Squad</h3>
-
-                        <span class="members-count">800 members</span>
-                    </div>
-                </div>
-                <div class="community">
-                    <img src="../assets/header.png" alt="Community 5" class="community-pic">
-                    <div class="community-info">
-                        <h3>ByteBuilders</h3>
-                        <span class="members-count">600 members</span>
-                    </div>
-                </div>
-                <div class="community">
-                    <img src="../assets/header.png" alt="Community 5" class="community-pic">
-                    <div class="community-info">
-                        <h3>CodeConnect</h3>
-                        <span class="members-count">1030 members</span>
-                    </div>
-                </div>
-                <div class="community">
-                    <img src="../assets/header.png" alt="Community 5" class="community-pic">
-                    <div class="community-info">
-                        <h3>DevSphere</h3>
-                        <span class="members-count">400 members</span>
-                    </div>
-                </div>
-                <div class="community">
-                    <img src="../assets/header.png" alt="Community 5" class="community-pic">
-                    <div class="community-info">
-                        <h3>TechTribe</h3>
-                        <span class="members-count">1800 members</span>
-                    </div>
-                </div>
-                <div class="community">
-                    <img src="../assets/header.png" alt="Community 5" class="community-pic">
-                    <div class="community-info">
-                        <h3>FutureStack</h3>
-                        <span class="members-count">340 members</span>
-                    </div>
-                </div>
-                <div class="community">
-                    <img src="../assets/header.png" alt="Community 5" class="community-pic">
-                    <div class="community-info">
-                        <h3>BitBuilders</h3>
-                        <span class="members-count">650 members</span>
-                    </div>
-                </div>
             </aside>
-            <main class="posts-section">
-                <div class="create-post">
-                    <button> <a th:href="@{/create_post}">+ Create Post</a></button>
-                </div>
-                <div class="posts" th:each="post : ${posts}" th:object="${post}" >
-                    <div class="post">
-                        <h2 th:text="*{title}"></h2>
-                        <div class="dropdown">
-                            <button class="dropdown-button">⋮</button>
-                            <div class="dropdown-menu">
-                                <a href="#" class="dropdown-item">Edit</a>
-                                <a href="#" class="dropdown-item" th:href="@{/community/{id}/delete(id=${post.id})}">Delete</a>
-                            </div>
-                        <p th:text="*{body}"></p>
-                        <span class="post-meta">Posted by
-                            <span th:text="*{username}"> </span>|
-                            <span th:text="*{postedAt}"></span>|
-                            <span th:text="*{community}"></span>
-                        </span>
-                        <div class="post-actions">
-                            <button class="like-button button">Like</button>
-                            <button class="comment-button button">Comment</button>
-                            <button class="favorite-button button">Favorite</button>
+            </div>
+<!--            <main class="posts-section">-->
+<!--                <div class="create-post">-->
+<!--                    <button><a th:href="@{/create_post}">+ Create Post</a></button>-->
+<!--                </div>-->
+<!--                <div class="posts" th:each="post : ${posts}" th:object="${post}">-->
+<!--                    <div class="post">-->
+<!--                        <h2 th:text="*{title}"></h2>-->
+<!--                        <div class="dropdown">-->
+<!--                            <button class="dropdown-button">⋮</button>-->
+<!--                            <div class="dropdown-menu">-->
+<!--                                <a href="#" class="dropdown-item">Edit</a>-->
+<!--                                <a href="#" class="dropdown-item" th:href="@{/community/{id}/delete(id=${post.id})}">Delete</a>-->
+<!--                            </div>-->
+<!--                            <p th:text="*{body}"></p>-->
+<!--                            <span class="post-meta">Posted by-->
+<!--                            <span th:text="*{username}"> </span>|-->
+<!--                            <span th:text="*{postedAt}"></span>|-->
+<!--                            <span th:text="*{community}"></span>-->
+<!--                        </span>-->
+<!--                            <div class="post-actions">-->
+<!--                                <button class="like-button button">Like</button>-->
+<!--                                <button class="comment-button button">Comment</button>-->
+<!--                                <button class="favorite-button button">Favorite</button>-->
 
-                        </div>
-                    </div>
-                    </div>
-                </div>
-            </main>
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </main>-->
 
         </div>
     </div>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{fragments/stylesheet_links :: my_links}"></th:block>
+    <link rel="stylesheet" href="/style/pages/community/create_community.css">
+</head>
+<body>
+<header>
+    <div th:replace="~{fragments/navigation :: navigation}"></div>
+</header>
+<main>
+
+        <div class="form-container">
+            <form th:action="@{/community}" enctype="multipart/form-data" method="post" th:object="${community}">
+                <label for="image">Add Community Profile Image</label>
+                <input type="file" id="image" required name="image">
+                <input type="hidden" th:field="*{imageUrl}">
+                <label for="name">Name</label>
+                <input id="name" required th:field="*{name}" name="name">
+                <label for="description">Description</label>
+                <textarea id="description" required th:field="*{description}" th:text="*{description}" name="description"></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+</main>
+<footer>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</footer>
+</body>
+</html>

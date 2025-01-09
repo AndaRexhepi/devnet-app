@@ -17,6 +17,7 @@ public class ProjectServiceImpl implements ProjectService {
     public final ProjectRepository projectRepository;
     public final ProjectMapper projectMapper;
 
+
     @Override
     public List<ProjectDto> findAll() {
         var projects = projectRepository.findAll();
@@ -59,4 +60,6 @@ public class ProjectServiceImpl implements ProjectService {
         }
 
     }
+
+
 }

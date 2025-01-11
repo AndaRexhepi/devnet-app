@@ -34,6 +34,9 @@ public class Post {
     @Column(nullable = false, length = 500)
     private String body;
 
+    @Column(length = 1000)
+    private String imageUrl;
+
     @Column(nullable = false)
     private int likes;
 
@@ -41,6 +44,6 @@ public class Post {
     private String comment;
 
     @Column(nullable = false)
-    private LocalTime postedAt;
+    private LocalTime postedAt = LocalTime.of(0, 0);
 
 }

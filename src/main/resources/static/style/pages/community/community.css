@@ -14,7 +14,10 @@ main{
 .container {
     max-width: 1300px; /* Increased for sidebar space */
     margin: 20px auto; /* Center the container */
-    padding: 20px; /* Padding around the container */
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    /* Padding around the container */
 }
 
 /* Header styles */
@@ -51,6 +54,11 @@ main{
 .profile-pic{
     margin-top: 4px;
     margin-right: 10px;
+}
+.dropstart{
+    width: fit-content;
+    height: fit-content;
+    margin-left: 920px;
 }
 .comment-user{
     font-weight: bold;
@@ -127,49 +135,46 @@ main{
     /*height: 100px;*/
 }
 /* Dropdown button styles */
-.dropdown {
-    position: relative; /* This is needed for the dropdown menu positioning */
-    float: right; /* Aligns the dropdown button to the right */
-}
 
-.dropdown-button {
-    margin-left: 95%;
-    background: none;
-    border: none;
-    font-size: 1.5em; /* Adjust size as needed */
-    cursor: pointer;
-    color: #666; /* Color for the three dots */
-}
 
-/* Dropdown menu styles */
-.dropdown-menu {
-    display: none; /* Hidden by default */
-    position: absolute; /* Position it absolutely to the dropdown */
-    right: 0; /* Aligns to the right of the button */
-    top: 30px; /* Adjust based on your layout */
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 10; /* Ensures it appears above other elements */
-}
+/*.dropdown-button {*/
+/*    margin-left: 95%;*/
+/*    background: none;*/
+/*    border: none;*/
+/*    font-size: 1.5em; !* Adjust size as needed *!*/
+/*    cursor: pointer;*/
+/*    color: #666; !* Color for the three dots *!*/
+/*}*/
 
-.dropdown-menu a {
-    display: block; /* Make links block elements */
-    padding: 10px; /* Padding for clickable area */
-    color: #333; /* Text color */
-    text-decoration: none; /* Remove underline */
-}
+/*!* Dropdown menu styles *!*/
+/*.dropdown-menu {*/
+/*    display: none; !* Hidden by default *!*/
+/*    position: absolute; !* Position it absolutely to the dropdown *!*/
+/*    right: 0; !* Aligns to the right of the button *!*/
+/*    top: 30px; !* Adjust based on your layout *!*/
+/*    background: #fff;*/
+/*    border: 1px solid #ddd;*/
+/*    border-radius: 5px;*/
+/*    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);*/
+/*    z-index: 10; !* Ensures it appears above other elements *!*/
+/*}*/
 
-.dropdown-menu a:hover {
-    background: #f0f0f0; /* Change background color on hover */
-}
+/*.dropdown-menu a {*/
+/*    display: block; !* Make links block elements *!*/
+/*    padding: 10px; !* Padding for clickable area *!*/
+/*    color: #333; !* Text color *!*/
+/*    text-decoration: none; !* Remove underline *!*/
+/*}*/
 
-/* Show the dropdown when the button is clicked */
-.dropdown-button:focus + .dropdown-menu,
-.dropdown-button:hover + .dropdown-menu {
-    display: block; /* Show the menu */
-}
+/*.dropdown-menu a:hover {*/
+/*    background: #f0f0f0; !* Change background color on hover *!*/
+/*}*/
+
+/*!* Show the dropdown when the button is clicked *!*/
+/*.dropdown-button:focus + .dropdown-menu,*/
+/*.dropdown-button:hover + .dropdown-menu {*/
+/*    display: block; !* Show the menu *!*/
+/*}*/
 .community-pic {
     width: 50px; /* Fixed width for profile picture */
     height: 50px; /* Fixed height for profile picture */

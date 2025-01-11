@@ -44,6 +44,7 @@ public class PostServiceImpl implements PostService {
     public PostDto modify(PostDto postDto, Long id) {
         if (postRepository.findById(id).isPresent()) {
             var entity = postMapper.toEntity(postDto);
+            postRepository.save(entity);
             return postMapper.toDto(entity);
         } else {
             throw new EntityNotFoundException();

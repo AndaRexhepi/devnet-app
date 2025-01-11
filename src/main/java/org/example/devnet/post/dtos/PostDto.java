@@ -42,6 +42,9 @@ public class PostDto {
     @Size(min = 2, max = 500)
     private String body;
 
+    @Size(min = 2, max = 1000)
+    private String imageUrl;
+
     @PositiveOrZero(message = "Likes cannot be negative")
     private int likes;
 
@@ -49,6 +52,6 @@ public class PostDto {
     private String comment;
 
     @PastOrPresent(message = "Posted time cannot be in the future")
-    private LocalTime postedAt;
+    private LocalTime postedAt = LocalTime.of(0, 0);
 
 }

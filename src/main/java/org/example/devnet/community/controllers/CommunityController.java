@@ -4,6 +4,7 @@ package org.example.devnet.community.controllers;
 import lombok.RequiredArgsConstructor;
 import org.example.devnet.community.dtos.CommunityDto;
 import org.example.devnet.community.services.CommunityService;
+import org.example.devnet.post.services.PostService;
 import org.example.devnet.projectshowcase.helpers.FileHelperImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,11 +18,13 @@ import java.io.IOException;
 public class CommunityController {
 
     public final CommunityService communityService;
+    public final PostService postService;
     private final FileHelperImpl fileHelper;
 
     @GetMapping("/community")
     public String findAll(Model model) {
         model.addAttribute("communities", communityService.findAll());
+        model.addAttribute("posts", postService.findAll());
         return "community/community";
     }
     @GetMapping("/join_community")
@@ -81,11 +84,12 @@ public class CommunityController {
         return "community/community_profile";
     }
 
-    @PostMapping("/community/{id}/delete")
+   @GetMapping("/community/{id}")
     public String deleteCommunity(@PathVariable Long id) {
         communityService.delete(id);
         return "redirect:/community";
     }
+
 
 
     

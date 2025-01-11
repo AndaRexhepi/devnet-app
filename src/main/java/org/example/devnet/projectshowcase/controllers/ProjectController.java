@@ -21,7 +21,7 @@ public class ProjectController {
 
     @GetMapping("/projectshowcase")
     public String project_showcase(Model model){
-//        model.addAttribute("projects", projectService.findAll());
+        model.addAttribute("projects", projectService.findAll());
         return "projectshowcase/projectshowcase";
     }
 
@@ -46,32 +46,38 @@ public class ProjectController {
         return "redirect:/projectshowcase";
     }
 
-//    @GetMapping("/edit_project/{id}")
-//    public String edit_project(Model model, @PathVariable Long id){
-//        model.addAttribute("project", projectService.findById(id));
-//        return "projectshowcase/edit_project";
-//    }
-//
-//    @PostMapping("/edit_project/{id}")
-//    public String edit_project(@PathVariable Long id, @ModelAttribute ProjectDto project,  @RequestParam("image") MultipartFile file){
-//        try {
-//            if (file != null && !file.isEmpty()) {
-//                String fileName = fileHelper.uploadFile("target/classes/static/assets/img/projects/",
-//                        file.getOriginalFilename(),
-//                        file.getBytes());
-//                project.setImageUrl("/assets/img/projects/" + fileName);
-//            } else {
-//                ProjectDto existingProject = projectService.findById(id);
-//                project.setImageUrl(existingProject.getImageUrl());
-//            }
-//            projectService.modify(project, id);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        return "redirect:/projectshowcase";
-//    }
-//
-//
+    @GetMapping("/edit_project/{id}")
+    public String edit_project(Model model, @PathVariable Long id){
+        model.addAttribute("project", projectService.findById(id));
+        return "projectshowcase/edit_project";
+    }
+
+    @PostMapping("/edit_project/{id}")
+    public String edit_project(@PathVariable Long id, @ModelAttribute ProjectDto project,  @RequestParam("image") MultipartFile file){
+        try {
+            if (file != null && !file.isEmpty()) {
+                String fileName = fileHelper.uploadFile("target/classes/static/assets/img/projects/",
+                        file.getOriginalFilename(),
+                        file.getBytes());
+                project.setImageUrl("/assets/img/projects/" + fileName);
+            } else {
+                ProjectDto existingProject = projectService.findById(id);
+                project.setImageUrl(existingProject.getImageUrl());
+            }
+            projectService.modify(project, id);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return "redirect:/projectshowcase";
+    }
+
+    @GetMapping("/delete_project/{id}")
+    public String delete_project(@PathVariable Long id){
+        projectService.delete(id);
+        return "redirect:/projectshowcase";
+    }
+
+
 
 
 

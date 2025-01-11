@@ -15,7 +15,7 @@
     <div class="header-content">
         <p>Submit your project and share it with the community!</p>
         <div class="form-container">
-            <form th:action="@{/edit_project/{id}(id=${project.id})}" enctype="multipart/form-data" method="get" th:object="${project}">
+            <form th:action="@{/edit_project/{id}(id=${project.id})}" enctype="multipart/form-data" method="post" th:object="${project}">
                 <img th:src="${project.imageUrl != null ? project.imageUrl : project.imageUrl}" alt="Project Image" class="project-img"/>
 
                 <label for="image">Change Project Image</label>

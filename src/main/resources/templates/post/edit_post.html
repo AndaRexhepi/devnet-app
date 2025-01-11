@@ -13,43 +13,49 @@
 <main>
     <div class="create-post-container">
         <h1>Create a New Post</h1>
-        <form class="create-post-form" method="post" th:if="${post != null}"  th:object="${post}" enctype="multipart/form-data">
+        <form class="create-post-form" th:action="@{/edit_post/{id}(id=${post.id})}" method="post"
+              th:if="${post != null}" th:object="${post}" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="community-select">Select Community:</label>
-                <select id="community-select" required>
+                <select id="community-select">
                     <option value="" disabled selected>Select a community</option>
-                    <option th:value="${community.id}" th:each="community : ${communities}" th:text="${community.name}" th:object="${community}">
-
+                    <option th:value="${community.id}" th:each="community : ${communities}" th:text="${community.name}"
+                            th:object="${community}">
                     </option>
-
                 </select>
+
             </div>
             <div class="form-group">
                 <label for="post-title">Title:</label>
                 <input
                         type="text"
                         id="post-title"
-                        required
                         placeholder="Enter the title of your post"
                         name="title"
-                        th:text="*{title}"
+                        th:field="*{title}"
                 />
             </div>
+
             <div class="form-group">
                 <label for="post-body">Body:</label>
                 <textarea
                         id="post-body"
                         rows="5"
-                        required
                         placeholder="Write your post here..."
                         name="body"
-                        th:text="*{body}"
+                        th:field="*{body}"
                 ></textarea>
             </div>
+
             <div class="form-group">
-                <label for="image" class="custom-file-upload">Upload Image (optional)</label>
-                <input type="file" id="image" style="display: none;" name="image" th:text="*{imageUrl}"/>
+                <img th:src="${post.imageUrl != null ? post.imageUrl : post.imageUrl}" alt="Project Image"
+                     class="project-img" height="100" width="200"/>
+                <label for="image">Change Project Image</label>
+                <input type="file" id="image" name="image">
+
+                <input type="hidden" th:field="*{imageUrl}" name="imageUrl">
             </div>
+
             <button type="submit" class="submit-button" value="Submit Post">Submit Post</button>
         </form>
     </div>

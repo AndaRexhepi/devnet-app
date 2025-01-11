@@ -40,6 +40,7 @@ header {
 }
 
 .project-options {
+    position: absolute;
     display: none;
     z-index: 2;
 }
@@ -48,12 +49,13 @@ header {
     cursor: pointer;
 }
 
-.project:hover .project-options {
+.project:hover #project-options {
     display: block;
     position: absolute;
     top: 10px;
     transition: all 800ms ease-in-out;
     right: 10px;
+    z-index: 2;
 }
 
 .text-div:hover .project-options {
@@ -65,7 +67,7 @@ header {
 }
 .options {
     position: absolute;
-    margin-left: 670px;
+    margin-left: 765px;
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -84,36 +86,13 @@ header {
 .options a:hover {
     background-color: #f0f0f0;
 }
-.modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-    border-radius: 20px;
-}
 
-.modal-content {
-    text-align: center;
-}
-
-.modal button {
-    padding: 5px 10px;
-    background-color: #F2992A;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-}
 .project-img {
     width: 100%;
     height: 100%;
     border-radius: 20px;
     object-fit: cover;
+    z-index: -10;
 }
 
 .text-div {

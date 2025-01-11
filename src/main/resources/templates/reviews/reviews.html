@@ -5,6 +5,8 @@
     <title>Reviews</title>
     <th:block th:replace="~{fragments/stylesheet_links :: my_links}"></th:block>
     <link rel="stylesheet" href="/style/pages/reviews/reviews.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
 <header>
@@ -23,63 +25,78 @@
     <section class="reviews-section" id="reviews">
 
         <div class="card-review" th:each="review : ${reviews}" th:object="${review}">
+            <div class="horizontal">
+                <div class="rating">
+                    <div class="five_stars" th:if="*{rating == 5.0}">
+                        <img src="/assets/5Stars.png" alt="5 stars">
+                    </div>
+                    <div class="four_stars" th:if="*{rating == 4.0}">
+                        <img src="/assets/4Stars.png" alt="4 stars">
+                    </div>
+                    <div class="three_stars" th:if="*{rating == 3.0}">
+                        <img src="/assets/3Stars.png" alt="3 stars">
+                    </div>
+                    <div class="two_stars" th:if="*{rating == 2.0}">
+                        <img src="/assets/2Stars.png" alt="2 stars">
+                    </div>
+                    <div class="one_star" th:if="*{rating == 1.0}">
+                        <img src="/assets/1Star.png" alt="1 star">
+                    </div>
+                    <div class="one5_star" th:if="*{rating == 1.5}">
+                        <img src="/assets/1.5Star.png" alt="1.5 stars">
+                    </div>
+                    <div class="two5_stars" th:if="*{rating == 2.5}">
+                        <img src="/assets/2.5Stars.png" alt="2.5 stars">
+                    </div>
+                    <div class="three5_stars" th:if="*{rating == 3.5}">
+                        <img src="/assets/3.5Stars.png" alt="3.5 stars">
+                    </div>
+                    <div class="four5_stars" th:if="*{rating == 4.5}">
+                        <img src="/assets/4.5Stars.png" alt="4.5 stars">
+                    </div>
+                </div>
+                <div class="btn-group dropstart">
+                    <button type="button" class="btn btn-secondary " data-bs-toggle="dropdown" aria-expanded="false"
+                            style="color: #333333; background-color: transparent; border: none; font-size: 25px;  width: fit-content; height: fit-content">
+                        <span>&#x22EE;</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" th:href="@{/edit_review/{id}(id=*{id})}">Edit</a></li>
+                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                style="padding: 0">
+                            <a class="dropdown-item">Delete</a>
+                        </button>
 
-<div class="review-options">
-    <div class="three-dots" onclick="toggleOptions(this)">
-        <span>&#x2022;&#x2022;&#x2022;</span>
-    </div>
-    <div class="options" style="display: none;">
-        <a href="#" th:href="@{/edit_review/{id}(id=*{id})}">Edit</a>
-        <a href="#" th:href="@{/{id}(id=*{id})}">Delete</a>
-    </div>
+                    </ul>
+                </div>
 
-<div id="deleteConfirmationModal" class="modal" style="display: none;">
-    <div class="modal-content">
-        <h2>Confirm Deletion</h2>
-        <p>Are you sure you want to delete this review?</p>
-        <button id="confirmDeleteBtn">Delete</button>
-        <button onclick="closeModal()">Cancel</button>
-    </div>
-</div>
-
-</div>
-
-            <div class="five_stars" th:if="*{rating == 5.0}">
-                <img src="/assets/5Stars.png">
-            </div>
-            <div class="four_stars" th:if="*{rating == 4.0}">
-                <img src="/assets/4Stars.png">
-            </div>
-            <div class="three_stars" th:if="*{rating == 3.0}">
-                <img src="/assets/3Stars.png">
-            </div>
-            <div class="two_stars" th:if="*{rating == 2.0}">
-                <img src="/assets/2Stars.png">
-            </div>
-            <div class="one_star" th:if="*{rating == 1.0}">
-                <img src="/assets/1Star.png">
-            </div>
-            <div class="one5_star" th:if="*{rating == 1.5}">
-                <img src="/assets/1.5Star.png">
-            </div>
-            <div class="two5_stars" th:if="*{rating == 2.5}">
-                <img src="/assets/2.5Stars.png">
-            </div>
-            <div class="three5_stars" th:if="*{rating == 3.5}">
-                <img src="/assets/3.5Stars.png">
-            </div>
-            <div class="four5_stars" th:if="*{rating == 4.5}">
-                <img src="/assets/4.5Stars.png">
             </div>
 
-            <div class="review" th:text="*{review}">
+            <div class="review">
+                <p th:text="*{review}"></p>
             </div>
             <div class="review-person">
                 <b>James Carter</b> <br>
                 <i th:text="*{role}"></i>
             </div>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                           Are you sure you want to delete this review?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-close-white" data-bs-dismiss="modal">Back</button>
+                            <button type="button" class="btn btn-danger"><a th:href="@{/{id}(id=*{id})}" style="text-decoration: none; color: white">Delete</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <br>
     </section>
     <section>
         <h1 class="my_h1"> We would love to hear about your experience with our roadmaps!</h1>
@@ -87,7 +104,13 @@
     </section>
 
     <div th:replace="~{fragments/footer.html :: footer}"></div>
+
+
+    <!-- Modal -->
+    >
 </main>
-<script src="/scripts/modal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
 </html>

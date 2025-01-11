@@ -81,8 +81,11 @@ header {
     box-shadow: 5px -5px 3px rgba(0, 0, 0, 0.2);
     background-color: white;
     flex-direction: row;
+    overflow-wrap: break-word;
 }
-
+.review{
+    width: 300px;
+}
 .reviews-section {
     margin-top: 100px;
     display: flex;
@@ -185,32 +188,15 @@ header {
     background-color: #f0f0f0;
 }
 
-.modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-    border-radius: 20px;
+.horizontal{
+    display: flex;
+    flex-direction: row;
 }
 
-.modal-content {
-    text-align: center;
-}
+.horizontal .dropstart{
+    margin-left: 290px;
 
-.modal button {
-    padding: 5px 10px;
-    background-color: #F2992A;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
 }
-
 
 .five_stars img {
     width: 155px;

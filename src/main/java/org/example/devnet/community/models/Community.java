@@ -41,6 +41,7 @@ public class Community {
     )
     private List<User> members;
 
+    @Column
     @OneToMany(mappedBy = "community")
     private List<Post> posts;
 

@@ -1,6 +1,8 @@
 package org.example.devnet.post.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.example.devnet.community.dtos.CommunityDto;
+import org.example.devnet.community.models.Community;
 import org.example.devnet.community.services.CommunityService;
 import org.example.devnet.post.dtos.PostDto;
 import org.example.devnet.post.mappers.PostMapper;
@@ -34,7 +36,8 @@ public class PostController {
     }
 
     @PostMapping("/create_post")
-    public String createPost(@ModelAttribute PostDto post, @RequestParam("image")MultipartFile file, Model model) {
+    public String createPost(@ModelAttribute PostDto post, @RequestParam("image") MultipartFile file, Model model,
+                             @RequestParam("communityName") String communityName) {
         model.addAttribute("post", post);
         try {
             String fileName = fileHelper.uploadFile("target/classes/static/assets/img/projects/"
@@ -44,6 +47,8 @@ public class PostController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        CommunityDto community = communityService.findByName(communityName);
+        post.setCommunity(community);
         postService.add(post);
         return "redirect:/community";
     }
@@ -56,7 +61,7 @@ public class PostController {
     }
 
     @PostMapping("/edit_post/{id}")
-    public String editPost(@ModelAttribute PostDto post, @PathVariable Long id, @RequestParam("image")MultipartFile file, Model model) {
+    public String editPost(@ModelAttribute PostDto post, @PathVariable Long id, @RequestParam("image") MultipartFile file, Model model) {
         model.addAttribute("post", post);
         try {
             if (file != null && !file.isEmpty()) {

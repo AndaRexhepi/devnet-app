@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.example.devnet.comment.models.Comment;
 import org.example.devnet.community.models.Community;
 import org.example.devnet.post.models.Post;
 import org.example.devnet.projectshowcase.models.Project;
@@ -49,6 +50,9 @@ public class User {
 
     @OneToMany(mappedBy = "username")
     private List<Post> posts;
+
+    @OneToMany(mappedBy = "username")
+    private List<Comment> comments;
 
     @OneToMany(mappedBy = "username")
     private List<Review> reviews;

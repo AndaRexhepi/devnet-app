@@ -4,6 +4,7 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.example.devnet.community.dtos.CommunityDto;
 import org.example.devnet.community.mappers.CommunityMapper;
+import org.example.devnet.community.models.Community;
 import org.example.devnet.community.repositories.CommunityRepository;
 import org.example.devnet.community.services.CommunityService;
 import org.springframework.stereotype.Service;
@@ -61,5 +62,14 @@ public class CommunityServiceImpl implements CommunityService {
             throw new EntityNotFoundException();
         }
 
+    }
+
+    @Override
+    public CommunityDto findByName(String communityName) {
+        if(communityRepository.findByName(communityName).isPresent()){
+            return communityMapper.toDto(communityRepository.findByName(communityName).get());
+        }else {
+            throw new EntityNotFoundException();
+        }
     }
 }

@@ -50,8 +50,8 @@
             <div class="form-group">
                 <img th:src="${post.imageUrl != null ? post.imageUrl : post.imageUrl}" alt="Project Image"
                      class="project-img" height="100" width="200"/>
-                <label for="image">Change Project Image</label>
-                <input type="file" id="image" name="image">
+                <label for="image" class="custom-file-upload">Upload Image (optional)</label>
+                <input type="file" id="image" style="display: none;" name="image" th:text="*{imageUrl}"/>
 
                 <input type="hidden" th:field="*{imageUrl}" name="imageUrl">
             </div>

@@ -4,10 +4,13 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.devnet.comment.models.Comment;
+import org.example.devnet.community.dtos.CommunityDto;
 import org.example.devnet.user.models.User;
 import org.example.devnet.community.models.Community;
 
 import java.time.LocalTime;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -24,7 +27,7 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User username;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "community_id")
     private Community community;
 
@@ -40,8 +43,8 @@ public class Post {
     @Column(nullable = false)
     private int likes;
 
-    @Column(length = 500)
-    private String comment;
+    @OneToMany(mappedBy = "post")
+    private List<Comment> comments;
 
     @Column(nullable = false)
     private LocalTime postedAt = LocalTime.of(0, 0);

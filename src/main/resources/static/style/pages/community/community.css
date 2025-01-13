@@ -2,9 +2,6 @@ header{
     height: 100px;
 
 }
-/* Reset some default styles */
-
-/* Reset some default styles */
 
 main{
     font-family: "IBM Plex Sans", sans-serif;
@@ -66,8 +63,8 @@ main{
 .comment-actions button{
     width: 80px;
     height: 30px;
-    background-color: #333333;
-    color: white;
+    /*background-color: #333333;*/
+    color: #333333;
     border-radius: 20px;
     border-color: transparent;
 }
@@ -82,7 +79,6 @@ main{
 .create-post button a{
     text-decoration: none;
     color: white;
-    font-weight: bold;
 }
 .profile-pic .comment-user{
     display: flex;
@@ -108,7 +104,7 @@ main{
     color: white;
 }
 .join-button{
-    padding: 5px 15px;
+    padding: 2px 12px;
     background-color: #333333;
     border-radius: 20px;
     margin-bottom: 20px;
@@ -116,7 +112,7 @@ main{
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 .join-button a{
-    font-weight: bold;
+    font-size:smaller;
     color: white;
     text-decoration: none;
 }
@@ -134,47 +130,7 @@ main{
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Light shadow */
     /*height: 100px;*/
 }
-/* Dropdown button styles */
 
-
-/*.dropdown-button {*/
-/*    margin-left: 95%;*/
-/*    background: none;*/
-/*    border: none;*/
-/*    font-size: 1.5em; !* Adjust size as needed *!*/
-/*    cursor: pointer;*/
-/*    color: #666; !* Color for the three dots *!*/
-/*}*/
-
-/*!* Dropdown menu styles *!*/
-/*.dropdown-menu {*/
-/*    display: none; !* Hidden by default *!*/
-/*    position: absolute; !* Position it absolutely to the dropdown *!*/
-/*    right: 0; !* Aligns to the right of the button *!*/
-/*    top: 30px; !* Adjust based on your layout *!*/
-/*    background: #fff;*/
-/*    border: 1px solid #ddd;*/
-/*    border-radius: 5px;*/
-/*    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);*/
-/*    z-index: 10; !* Ensures it appears above other elements *!*/
-/*}*/
-
-/*.dropdown-menu a {*/
-/*    display: block; !* Make links block elements *!*/
-/*    padding: 10px; !* Padding for clickable area *!*/
-/*    color: #333; !* Text color *!*/
-/*    text-decoration: none; !* Remove underline *!*/
-/*}*/
-
-/*.dropdown-menu a:hover {*/
-/*    background: #f0f0f0; !* Change background color on hover *!*/
-/*}*/
-
-/*!* Show the dropdown when the button is clicked *!*/
-/*.dropdown-button:focus + .dropdown-menu,*/
-/*.dropdown-button:hover + .dropdown-menu {*/
-/*    display: block; !* Show the menu *!*/
-/*}*/
 .community-pic {
     width: 50px; /* Fixed width for profile picture */
     height: 50px; /* Fixed height for profile picture */
@@ -240,13 +196,24 @@ main{
 .post-actions{
     margin-top: 20px;
 }
+
+
+.like-button {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+}
+.like-button.liked {
+    background-color: #ff7b00;
+    color: white;
+    border-color: #ff7b00;
+}
 .button{
-    font-weight: bold;
+
     padding: 5px;
     width: 100px;
     border-radius: 20px;
-    background-color: #333333;
-    color: white;
+    /*background-color: #333333;*/
+    color: #333333;
     margin-right: 10px;
     border-color: transparent;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);

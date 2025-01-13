@@ -5,6 +5,7 @@ import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.devnet.community.dtos.CommunityDto;
 import org.example.devnet.user.models.User;
 import org.example.devnet.community.models.Community;
 
@@ -30,7 +31,7 @@ public class PostDto {
     @NotBlank(message = "Community is required")
     @NotNull(message = "Community is required")
     @Size(min = 2, max = 100)
-    private Community community;
+    private CommunityDto community;
 
     @NotNull(message = "Title is required")
     @NotBlank(message = "Title is required")
@@ -52,6 +53,6 @@ public class PostDto {
     private String comment;
 
     @PastOrPresent(message = "Posted time cannot be in the future")
-    private LocalTime postedAt = LocalTime.of(0, 0);
+    private LocalTime postedAt = LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute());
 
 }

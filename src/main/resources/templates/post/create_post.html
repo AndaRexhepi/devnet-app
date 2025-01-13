@@ -16,9 +16,9 @@
         <form class="create-post-form" method="post" th:if="${post != null}"  th:object="${post}" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="community-select">Select Community:</label>
-                <select id="community-select" required>
+                <select id="community-select" required name="communityName">
                     <option value="" disabled selected>Select a community</option>
-                    <option th:value="${community.id}" th:each="community : ${communities}" th:text="${community.name}" th:object="${community}">
+                    <option th:each="community : ${communities}" th:text="${community.name}">
 
                     </option>
 

@@ -2,6 +2,8 @@ package org.example.devnet.community.controllers;
 
 
 import lombok.RequiredArgsConstructor;
+import org.example.devnet.comment.dtos.CommentDto;
+import org.example.devnet.comment.services.CommentService;
 import org.example.devnet.community.dtos.CommunityDto;
 import org.example.devnet.community.services.CommunityService;
 import org.example.devnet.post.services.PostService;
@@ -19,14 +21,18 @@ public class CommunityController {
 
     public final CommunityService communityService;
     public final PostService postService;
+    public final CommentService commentService;
     private final FileHelperImpl fileHelper;
 
     @GetMapping("/community")
     public String findAll(Model model) {
         model.addAttribute("communities", communityService.findAll());
         model.addAttribute("posts", postService.findAll());
+        model.addAttribute("comments", commentService.findAll());
+        model.addAttribute("comment", new CommentDto());
         return "community/community";
     }
+
     @GetMapping("/join_community")
     public String joinCommunity(Model model) {
         model.addAttribute("communities", communityService.findAll());
@@ -59,6 +65,7 @@ public class CommunityController {
         model.addAttribute("community", communityService.findById(id));
         return "community/edit_community";
     }
+
     @PostMapping("edit_community/{id}")
     public String editCommunity(@ModelAttribute CommunityDto communityDto, @PathVariable Long id, @RequestParam("image") MultipartFile file) {
         try {
@@ -80,19 +87,16 @@ public class CommunityController {
 
     @GetMapping("/community_profile/{id}")
     public String communityProfile(Model model, @PathVariable Long id) {
+        model.addAttribute("posts", postService.findByCommunityId(id));
         model.addAttribute("community", communityService.findById(id));
         return "community/community_profile";
     }
 
-   @GetMapping("/community/{id}")
+    @GetMapping("/community/{id}")
     public String deleteCommunity(@PathVariable Long id) {
         communityService.delete(id);
         return "redirect:/community";
     }
-
-
-
-    
 
 
 }

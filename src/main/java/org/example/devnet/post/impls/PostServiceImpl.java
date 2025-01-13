@@ -4,6 +4,7 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.example.devnet.post.dtos.PostDto;
 import org.example.devnet.post.mappers.PostMapper;
+import org.example.devnet.post.models.Post;
 import org.example.devnet.post.repositories.PostRepository;
 import org.example.devnet.post.services.PostService;
 import org.springframework.stereotype.Service;
@@ -60,5 +61,10 @@ public class PostServiceImpl implements PostService {
             throw new EntityNotFoundException();
         }
 
+    }
+
+    @Override
+    public List<Post> findByCommunityId(Long id) {
+        return postRepository.findByCommunityId(id);
     }
 }

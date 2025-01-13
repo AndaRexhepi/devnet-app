@@ -32,7 +32,7 @@ public class CommunityDto {
     private String imageUrl;
 
     @PastOrPresent(message = "Created date must be in the past or present")
-    private LocalDate createdDate;
+    private LocalDate createdDate = LocalDate.now();
 
 
 

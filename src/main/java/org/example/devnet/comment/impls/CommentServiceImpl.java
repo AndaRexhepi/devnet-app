@@ -23,6 +23,14 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    public void deleteByPostId(Long postId) {
+        if (commentRepository.findAllByPostId(postId).isEmpty()) {
+            throw new EntityNotFoundException();
+        }
+        commentRepository.deleteByPostId(postId);
+    }
+
+    @Override
     public List<CommentDto> findAll() {
         return commentMapper.toDtoList(commentRepository.findAll());
     }

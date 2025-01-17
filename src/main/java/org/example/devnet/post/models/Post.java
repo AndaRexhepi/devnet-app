@@ -8,6 +8,7 @@ import org.example.devnet.comment.models.Comment;
 import org.example.devnet.community.dtos.CommunityDto;
 import org.example.devnet.user.models.User;
 import org.example.devnet.community.models.Community;
+import org.hibernate.annotations.Cascade;
 
 import java.time.LocalTime;
 import java.util.List;
@@ -43,7 +44,7 @@ public class Post {
     @Column(nullable = false)
     private int likes;
 
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments;
 
     @Column(nullable = false)

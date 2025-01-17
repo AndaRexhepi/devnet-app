@@ -15,19 +15,22 @@
     <div class="container">
         <div class="form-container">
             <h1>Sign up</h1>
-            <form>
+            <form method="post" th:object="${userDto}">
                 <label for="name">Name</label>
-                <input type="text" id="name" placeholder="Enter name...">
+                <input type="text" id="name" placeholder="Enter name..." name="name" th:field="*{name}">
                 <label for="surname">Surname</label>
-                <input type="password" id="surname" placeholder="Enter surname...">
+                <input type="text" id="surname" placeholder="Enter surname..." name="surname" th:field="*{surname}">
                 <label for="email">Email</label>
-                <input type="password" id="email" placeholder="Enter email...">
+                <input type="text" id="email" placeholder="Enter email..." name="email" th:field="*{email}">
                 <label for="username">Username</label>
-                <input type="password" id="username" placeholder="Enter username...">
+                <input type="text" id="username" placeholder="Enter username..." name="username" th:field="*{username}">
                 <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Enter password...">
+                <input type="password" id="password" placeholder="Enter password..." name="password" th:field="*{password}">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" placeholder="Enter password..." name="confirmPassword" th:field="*{confirmPassword}">
+                <button class="submit-btn" type="submit">Sign up</button>
             </form>
-            <button class="submit-btn"><a>Sign up</a></button>
+
         </div>
     </div>
     <div th:replace="~{fragments/footer :: footer}"> </div>

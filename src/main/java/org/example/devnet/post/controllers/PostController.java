@@ -1,6 +1,8 @@
 package org.example.devnet.post.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.example.devnet.comment.dtos.CommentDto;
+import org.example.devnet.comment.services.CommentService;
 import org.example.devnet.community.dtos.CommunityDto;
 import org.example.devnet.community.models.Community;
 import org.example.devnet.community.services.CommunityService;
@@ -25,6 +27,8 @@ public class PostController {
 
     public final PostService postService;
     public final CommunityService communityService;
+    public final CommentService commentService;
+    public final PostMapper postMapper;
     public final FileHelperImpl fileHelper;
 
 
@@ -83,10 +87,52 @@ public class PostController {
 
     @GetMapping("/delete_post/{id}")
     public String deletePost(@PathVariable Long id) {
+        commentService.deleteByPostId(id);
         postService.delete(id);
         return "redirect:/community";
     }
 
+    @PostMapping("/post/{postId}/comment")
+    public String addComment(@PathVariable Long postId, @ModelAttribute CommentDto commentDto, Model model) {
+        model.addAttribute("post", postService.findById(postId));
+        model.addAttribute("comment", new CommentDto());
+        PostDto post = postService.findById(postId);
+        commentDto.setPost(postMapper.toEntity(post));
+        commentService.add(commentDto);
+        return "redirect:/community";
+    }
+
+
+    @GetMapping("/post/{postId}/comment/delete/{commentId}")
+    public String deleteComment(@PathVariable Long postId, @PathVariable Long commentId, Model model) {
+        commentService.delete(commentId);
+        model.addAttribute("post", postService.findById(postId));
+        model.addAttribute("posts", postService.findAll());
+        return "redirect:/community";
+    }
+
+//   @GetMapping("/post/{postId}/comment/edit/{commentId}")
+//    public String editComment(@PathVariable Long postId, @PathVariable Long commentId, Model model) {
+//        model.addAttribute("post", postService.findById(postId));
+//        model.addAttribute("comment", commentService.findById(commentId));
+//        return "redirect:community";
+//    }
+
+    @PostMapping("/post/{postId}/comment/edit/{commentId}")
+    public String editComment(@PathVariable Long postId, @PathVariable Long commentId, @ModelAttribute CommentDto commentDto) {
+        PostDto post = postService.findById(postId);
+        commentDto.setPost(postMapper.toEntity(post));
+        commentService.modify(commentDto, commentId);
+        return "redirect:/community";
+    }
+
+    @GetMapping("/post/{postId}/comment/edit/{commentId}")
+    public String showEditCommentPage(@PathVariable Long postId, @PathVariable Long commentId, Model model) {
+        model.addAttribute("post", postService.findById(postId));
+        model.addAttribute("comment", commentService.findById(commentId)); // Load the specific comment
+        return "redirect:/community";
+
+    }
 }
 
 

@@ -37,16 +37,22 @@ public class UserDto {
     @Size(min = 2, max = 100, message = "Email must be between 2 and 100 characters")
     private String email;
 
-
     @Size(min = 2, max = 100, message = "Profile image must be between 2 and 100 characters")
     private String profileImage;
 
     @Size(min = 2, max = 500, message = "Bio must be between 2 and 500 characters")
     private String bio;
 
-    @PastOrPresent(message = "Date joined must be in the past or present")
-    private LocalDate dateJoined;
+    @Size(min = 2, max = 100, message = "Password must be between 2 and 100 characters")
+    @NotBlank
+    @NotNull
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$", message = "Password must contain at least one uppercase letter, one lowercase letter and one number")
+    private String password;
 
+    @NotNull
+    @NotBlank
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$", message = "Password must contain at least one uppercase letter, one lowercase letter and one number")
+    private String confirmPassword;
 
 }
 

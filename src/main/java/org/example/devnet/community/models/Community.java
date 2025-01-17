@@ -28,6 +28,10 @@ public class Community {
     @Column(nullable = false, length = 500)
     private String description;
 
+    @ManyToOne()
+    @JoinColumn(name = "owner_id")
+    private User owner;
+
     @Column()
     private String imageUrl;
 

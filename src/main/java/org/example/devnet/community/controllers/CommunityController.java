@@ -46,15 +46,17 @@ public class CommunityController {
     }
 
     @PostMapping("/community")
-    public String createCommunity(@ModelAttribute CommunityDto communityDto, @RequestParam("image") MultipartFile file, Model model) {
+    public String createCommunity(@ModelAttribute CommunityDto communityDto, @RequestParam(value = "image", required = false) MultipartFile file, Model model) {
         model.addAttribute("community", communityDto);
-        try {
-            String fileName = fileHelper.uploadFile("target/classes/static/assets/img/projects/"
-                    , file.getOriginalFilename()
-                    , file.getBytes());
-            communityDto.setImageUrl("/assets/img/projects/" + fileName);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        if (file != null && !file.isEmpty()) {
+            try {
+                String fileName = fileHelper.uploadFile("target/classes/static/assets/img/projects/",
+                        file.getOriginalFilename(),
+                        file.getBytes());
+                communityDto.setImageUrl("/assets/img/projects/" + fileName);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
         communityService.add(communityDto);
         return "redirect:/community";

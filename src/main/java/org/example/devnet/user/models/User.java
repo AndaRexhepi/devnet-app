@@ -33,6 +33,9 @@ public class User {
     @Column(nullable = false, length = 100, unique = true)
     private String username;
 
+    @Column(length = 100)
+    private String role;
+
     @Column(nullable = false, length = 100, unique = true)
     private String email;
 
@@ -43,10 +46,13 @@ public class User {
     private String bio;
 
     @Column(nullable = false)
-    private LocalDate dateJoined;
+    private LocalDate dateJoined = LocalDate.now();
 
     @Column(nullable = false, length = 100)
     private String password;
+
+    @Column(nullable = false, length = 100)
+    private String confirmPassword;
 
     @OneToMany(mappedBy = "username")
     private List<Post> posts;
@@ -58,7 +64,10 @@ public class User {
     private List<Review> reviews;
 
     @ManyToMany(mappedBy = "members")
-    private List<Community> communities;
+    private List<Community> communitiesJoined;
+
+    @OneToMany(mappedBy = "owner")
+    private List<Community> communitiesCreated;
 
     @OneToMany(mappedBy = "username")
     private List<Project> projects;

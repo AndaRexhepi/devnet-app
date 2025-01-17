@@ -4,4 +4,6 @@ import org.example.devnet.user.dtos.UserDto;
 
 
 public interface UserService extends BaseService<UserDto, Long> {
+
+
 }

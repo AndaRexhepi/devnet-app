@@ -67,10 +67,13 @@
                         </span>
 
                         <div class="post-actions">
-                            <button class="like-button button" id="heart">❤️ Likes (<span id="like-count">0</span>)
-                            </button>
+                            <!--                            <button-->
+                            <!--                                    class="like-button button btn btn-outline-dark" id="like" type="button">-->
+                            <!--                                ❤️ Likes-->
+                            <!--                            </button>-->
+                            <!--                            <span id="like-count" th:text="${post.likes}">0</span>-->
                             <p class="d-inline-flex gap-1">
-                                <button class="btn button" style="border-radius: 20px" type="button"
+                                <button class="btn button btn-outline-dark" style="border-radius: 20px" type="button"
                                         data-bs-toggle="collapse" th:data-bs-target="'#collapsePost' + ${post.id}"
                                         aria-expanded="false" th:aria-controls="'collapsePost' + ${post.id}">
                                     Comment
@@ -78,15 +81,112 @@
                             </p>
                             <div class="collapse" th:id="'collapsePost' + ${post.id}">
                                 <div class="card card-body">
-                                    <form class="input-group mb-3" method="post">
-                                        <input type="text" class="form-control" placeholder="Comment here..." aria-label="Recipient's username" aria-describedby="button-addon2"
-                                        name="comment" th:value="*{comment}"
-                                        >
-                                        <button class="btn btn-success" type="submit" id="button-addon2" >Post</button>
+                                    <form class="input-group mb-3" method="post"
+                                          th:action="@{/post/{postId}/comment(postId=${post.id})}">
+                                        <input type="text" id="commentInput" class="form-control"
+                                               placeholder="Comment here..." aria-label="Recipient's username"
+                                               aria-describedby="button-addon2"
+                                               name="comment" required>
+
+                                        <button class="btn btn-outline-dark" type="submit" id="button-addon2 postBtn">
+                                            Post
+                                        </button>
                                     </form>
                                 </div>
-                                <div class="card card-body" th:each="comment : ${post.comment}">
-                                    <p th:text="*{comment}"></p>
+                                <div class="card card-body">
+                                    <div th:each="comment : ${post.comments}">
+                                        <div class="user-info">
+                                            <img alt="" src="./assets/header.png" height="30px" width="30px"
+                                                 style="border-radius: 50%; margin-top: 6px">
+                                            <p>Anda Rexhepi</p>
+                                            <p>|</p>
+                                            <p th:text="${comment.postedAt}"></p>
+                                            <div class="btn-group dropstart">
+                                                <button type="button" class="btn btn-secondary"
+                                                        data-bs-toggle="dropdown"
+                                                        aria-expanded="false"
+                                                        style="background-color: transparent; border: none; font-size: 25px;  width: fit-content; height: fit-content; color: #333333;
+                                                        margin:0;   ">
+                                                    <span>&#x22EE;</span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li class="btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModal3"
+                                                        style="background-color:transparent; border-color: transparent; color: #333333"
+                                                        th:attr="data-id=${post.id}">
+                                                        Edit
+                                                    </li>
+                                                    <li class="btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModal2"
+                                                        style="background-color:transparent; border-color: transparent; color: #333333"
+                                                        th:attr="data-id=${post.id}">
+                                                        Delete
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <p th:text="${comment.comment}" style="margin-left: 30px"></p>
+                                        <hr>
+                                        <div class="modal fade" id="exampleModal2" tabindex="-1"
+                                             aria-labelledby="exampleModalLabel"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel2">Post
+                                                            Deletion</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Are you sure you want to delete this comment?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-close-white"
+                                                                data-bs-dismiss="modal">Back
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger"><a
+                                                                th:href="@{'/post/' + ${post.id} + '/comment/delete/' + ${comment.id}}"
+                                                                style="text-decoration: none; color: white">Delete</a>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal fade" id="exampleModal3" tabindex="-1"
+                                             aria-labelledby="exampleModalLabel"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel3">Edit
+                                                            Comment</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                            <form class="input-group mb-3" method="get"
+                                                              th:action="@{'/post/' + ${post.id} + '/comment/edit/' + ${comment.id}}"
+                                                              th:object="${comment}">
+                                                            <input th:value="*{comment}" type="text"
+                                                                   id="commentInputEdit" class="form-control"
+                                                                   placeholder="Edit your comment" name="comment">
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-close-white"
+                                                                        data-bs-dismiss="modal">Back
+                                                                </button>
+                                                                <button type="submit" class="btn btn-success">Save
+                                                                    Changes
+                                                                </button>
+                                                            </div>
+                                                        </form>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -104,7 +204,7 @@
                                     Are you sure you want to delete this post?
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                    <button type="button" class="btn btn-close-white" data-bs-dismiss="modal">Black
                                     </button>
                                     <button type="button" class="btn btn-danger"><a
                                             th:href="@{delete_post/{id}(id=${post.id})}"
@@ -117,24 +217,28 @@
                 </div>
 
                 <script>
-                    // Initialize likes count
-                    let likes = 0;
+                    async function likePost(postId) {
+                        try {
+                            // Call the API to increment likes
+                            const response = await fetch(`/api/v1/posts/${postId}/like`, {
+                                method: 'POST',
+                                headers: {'Content-Type': 'application/json'}
+                            });
 
-                    // Get the elements
-                    const likeButton = document.querySelectorAll('heart');
-                    const likeCount = document.getElementById('like-count');
+                            if (!response.ok) {
+                                throw new Error("Failed to increment likes");
+                            }
 
-                    // Add an event listener to handle clicks
-                    for (let i = 0; i < likeButton.length; i++) {
-                        likeButton[i].addEventListener('click', () => {
-                            likes++; // Increment the likes
-                            likeCount.textContent = likes; // Update the displayed count
+                            // Parse the updated post data
+                            const updatedPost = await response.json();
 
-                            // Optionally, toggle the 'liked' style
-                            likeButton[i].classList.add('liked');
-                        });
+                            // Update the like count in the UI
+                            const likeCountElement = document.getElementById(`like-count-${postId}`);
+                            likeCountElement.textContent = updatedPost.likes;
+                        } catch (error) {
+                            console.error(error);
+                        }
                     }
-
                 </script>
             </div>
         </div>
@@ -142,6 +246,27 @@
     </div>
 </main>
 <div th:replace="~{fragments/footer.html :: footer}"></div>
+<script>
+    const likeButtons = document.querySelectorAll("#like");
+    const placeholders = document.querySelectorAll("#like-count");
+
+    likeButtons.forEach((likeButton) => {
+        // Initialize the like count for each button
+        let value = 0;
+
+        likeButton.addEventListener("click", () => {
+            // Increment the like count for the clicked button
+            value++;
+
+            // Find the associated like count placeholder
+            const placeholder = likeButton.nextElementSibling; // Assumes the placeholder is the next sibling
+            if (placeholder) {
+                placeholder.textContent = value.toString(); // Update only the associated placeholder
+            }
+        });
+    });
+
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>

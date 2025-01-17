@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface CommentService extends BaseService<CommentDto, Long> {
     List<CommentDto> findAllByPostId(long postId);
+    void deleteByPostId(Long postId);
+
 }

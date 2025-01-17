@@ -57,6 +57,9 @@ main{
     height: fit-content;
     margin-left: 920px;
 }
+.user-info .dropstart{
+    margin-left: 650px;
+}
 .comment-user{
     font-weight: bold;
 }
@@ -85,7 +88,15 @@ main{
     flex-direction: row;
     justify-content: center;
 }
-
+.user-info{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.user-info p{
+    font-size: 13px;
+    font-weight: bolder;
+}
 .comment-input{
     padding-left: 10px;
     margin-top: 20px;
@@ -197,22 +208,14 @@ main{
     margin-top: 20px;
 }
 
+.like{
+    border-radius: 20px;
+}
 
-.like-button {
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-}
-.like-button.liked {
-    background-color: #ff7b00;
-    color: white;
-    border-color: #ff7b00;
-}
 .button{
-
     padding: 5px;
     width: 100px;
     border-radius: 20px;
-    /*background-color: #333333;*/
     color: #333333;
     margin-right: 10px;
     border-color: transparent;

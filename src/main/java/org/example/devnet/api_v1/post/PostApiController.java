@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.devnet.post.dtos.PostDto;
 import org.example.devnet.post.services.PostService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -49,6 +50,11 @@ public class PostApiController {
         postService.delete(id);
     }
 
+    @PostMapping("/{postId}/like")
+    public ResponseEntity<PostDto> incrementLikes(@PathVariable Long postId) {
+        PostDto updatedPost = postService.incrementLikes(postId);
+        return ResponseEntity.ok(updatedPost);
+    }
 
 
 }

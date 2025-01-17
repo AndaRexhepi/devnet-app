@@ -10,4 +10,5 @@ public interface UserMapper extends BaseMapper<UserDto, User> {
     // if the source and target attributes are the same name and type then we don't need to specify them
 
     UserDto toDto(User entity);
+
 }

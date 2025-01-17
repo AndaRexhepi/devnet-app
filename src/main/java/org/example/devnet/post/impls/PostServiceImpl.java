@@ -1,21 +1,26 @@
 package org.example.devnet.post.impls;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.example.devnet.comment.repositories.CommentRepository;
 import org.example.devnet.post.dtos.PostDto;
 import org.example.devnet.post.mappers.PostMapper;
 import org.example.devnet.post.models.Post;
 import org.example.devnet.post.repositories.PostRepository;
 import org.example.devnet.post.services.PostService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@EnableTransactionManagement
 public class PostServiceImpl implements PostService {
 
     public final PostRepository postRepository;
+    public final CommentRepository commentRepository;
     public final PostMapper postMapper;
 
     @Override
@@ -53,9 +58,11 @@ public class PostServiceImpl implements PostService {
 
     }
 
+    @Transactional
     @Override
     public void delete(Long id) {
         if (postRepository.findById(id).isPresent()) {
+            commentRepository.deleteByPostId(id);
             postRepository.deleteById(id);
         } else {
             throw new EntityNotFoundException();
@@ -66,5 +73,13 @@ public class PostServiceImpl implements PostService {
     @Override
     public List<Post> findByCommunityId(Long id) {
         return postRepository.findByCommunityId(id);
+    }
+
+    @Override
+    public PostDto incrementLikes(Long postId) {
+        var post = postRepository.findById(postId).orElseThrow(() -> new EntityNotFoundException("Post not found"));
+        post.setLikes(post.getLikes() + 1);
+        postRepository.save(post);
+        return postMapper.toDto(post);
     }
 }

@@ -7,23 +7,21 @@
     <th:block th:replace="~{fragments/stylesheet_links :: my_links}"></th:block>
 </head>
 <body>
-<header>
-    <div th:replace="~{fragments/navigation.html :: navigation}"></div>
-</header>
+
 <main>
     <div class="main-container">
     <div class=" login-container">
         <div class="content">
             <h1>Log In</h1>
-            <form th:action="@{/log_in}" method="post" class="login-form">
+            <form th:action="@{/log_in}" method="post" class="login-form" th:object="${userDto}">
                 <div>
                 <label for="username">Username</label>
-                <input type="text" id="username" name="username" required placeholder="Enter username...">
+                <input type="text" id="username" name="username" required placeholder="Enter username..." th:field="*{username}">
                 </div>
                 <br>
                 <div>
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" required placeholder="Enter password...">
+                <input type="password" id="password" name="password" required placeholder="Enter password..." th:field="*{password}">
                 </div>
                 <br>
                 <button type="submit" value="Log In" class="submit-btn">Log in</button>
@@ -38,7 +36,6 @@
         </div>
     </div>
     </div>
-    <div th:replace="~{fragments/footer :: footer}"></div>
 </main>
 </body>
 </html>

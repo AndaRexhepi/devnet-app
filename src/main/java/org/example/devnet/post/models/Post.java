@@ -44,7 +44,7 @@ public class Post {
     @Column(nullable = false)
     private int likes;
 
-    @OneToMany(mappedBy = "post",cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "post")
     private List<Comment> comments;
 
     @Column(nullable = false)

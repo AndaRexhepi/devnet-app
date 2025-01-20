@@ -72,4 +72,12 @@ public class CommunityServiceImpl implements CommunityService {
             throw new EntityNotFoundException();
         }
     }
+
+    @Override
+    public List<CommunityDto> findAllByOwnerId(Long id) {
+        var communities = communityRepository.findAllByOwnerId(id);
+        return communityMapper.toDtoList(communities);
+    }
+
+
 }

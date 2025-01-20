@@ -5,6 +5,7 @@ import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.devnet.user.models.User;
 
 
 import java.time.LocalDate;
@@ -22,6 +23,11 @@ public class CommunityDto {
     @NotBlank(message = "Name is required")
     @Size(min = 2, max = 100, message = "Name must be between 2 and 100 characters")
     private String name;
+
+    @NotNull
+    @NotBlank
+    @Size(min = 2, max = 100, message = "Name must be between 2 and 100 characters")
+    private User owner;
 
     @NotNull(message = "Description is required")
     @NotBlank(message = "Description is required")

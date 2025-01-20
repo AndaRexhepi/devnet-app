@@ -33,6 +33,7 @@ public class User {
     @Column(nullable = false, length = 100, unique = true)
     private String username;
 
+
     @Column(length = 100)
     private String role;
 

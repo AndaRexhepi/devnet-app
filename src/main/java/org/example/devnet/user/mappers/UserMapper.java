@@ -11,4 +11,5 @@ public interface UserMapper extends BaseMapper<UserDto, User> {
 
     UserDto toDto(User entity);
 
+
 }

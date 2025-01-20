@@ -1,6 +1,7 @@
 package org.example.devnet.community.controllers;
 
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.example.devnet.comment.dtos.CommentDto;
 import org.example.devnet.comment.services.CommentService;
@@ -8,6 +9,9 @@ import org.example.devnet.community.dtos.CommunityDto;
 import org.example.devnet.community.services.CommunityService;
 import org.example.devnet.post.services.PostService;
 import org.example.devnet.projectshowcase.helpers.FileHelperImpl;
+import org.example.devnet.user.dtos.UserDto;
+import org.example.devnet.user.mappers.UserMapper;
+import org.example.devnet.user.models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +27,7 @@ public class CommunityController {
     public final PostService postService;
     public final CommentService commentService;
     private final FileHelperImpl fileHelper;
+    public final UserMapper userMapper;
 
     @GetMapping("/community")
     public String findAll(Model model) {
@@ -46,7 +51,9 @@ public class CommunityController {
     }
 
     @PostMapping("/community")
-    public String createCommunity(@ModelAttribute CommunityDto communityDto, @RequestParam(value = "image", required = false) MultipartFile file, Model model) {
+    public String createCommunity(@ModelAttribute CommunityDto communityDto,
+                                  @RequestParam(value = "image", required = false) MultipartFile file, Model model
+            , HttpServletRequest request) {
         model.addAttribute("community", communityDto);
         if (file != null && !file.isEmpty()) {
             try {
@@ -57,6 +64,12 @@ public class CommunityController {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+        }
+        if (request.getSession().getAttribute("user") != null) {
+
+            UserDto userDto = (UserDto) request.getSession().getAttribute("user");
+            User user = userMapper.toEntity(userDto);
+            communityDto.setOwner(user);
         }
         communityService.add(communityDto);
         return "redirect:/community";

@@ -82,4 +82,9 @@ public class PostServiceImpl implements PostService {
         postRepository.save(post);
         return postMapper.toDto(post);
     }
+
+    @Override
+    public List<Post> findByUsernameId(Long userId) {
+        return postRepository.findByUsernameId(userId);
+    }
 }

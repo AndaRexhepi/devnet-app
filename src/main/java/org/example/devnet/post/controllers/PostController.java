@@ -1,5 +1,6 @@
 package org.example.devnet.post.controllers;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.example.devnet.comment.dtos.CommentDto;
 import org.example.devnet.comment.services.CommentService;
@@ -12,6 +13,9 @@ import org.example.devnet.post.models.Post;
 import org.example.devnet.post.services.PostService;
 import org.example.devnet.projectshowcase.dtos.ProjectDto;
 import org.example.devnet.projectshowcase.helpers.FileHelperImpl;
+import org.example.devnet.user.dtos.UserDto;
+import org.example.devnet.user.mappers.UserMapper;
+import org.example.devnet.user.models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +33,7 @@ public class PostController {
     public final CommunityService communityService;
     public final CommentService commentService;
     public final PostMapper postMapper;
+    public final UserMapper userMapper;
     public final FileHelperImpl fileHelper;
 
 
@@ -41,7 +46,7 @@ public class PostController {
 
     @PostMapping("/create_post")
     public String createPost(@ModelAttribute PostDto post, @RequestParam("image") MultipartFile file, Model model,
-                             @RequestParam("communityName") String communityName) {
+                             @RequestParam("communityName") String communityName, HttpServletRequest request) {
         model.addAttribute("post", post);
         try {
             String fileName = fileHelper.uploadFile("target/classes/static/assets/img/projects/"
@@ -53,6 +58,11 @@ public class PostController {
         }
         CommunityDto community = communityService.findByName(communityName);
         post.setCommunity(community);
+        if (request.getSession().getAttribute("user") != null) {
+            UserDto userDto = (UserDto) request.getSession().getAttribute("user");
+            User user = userMapper.toEntity(userDto);
+            post.setUsername(user);
+        }
         postService.add(post);
         return "redirect:/community";
     }
@@ -65,7 +75,8 @@ public class PostController {
     }
 
     @PostMapping("/edit_post/{id}")
-    public String editPost(@ModelAttribute PostDto post, @PathVariable Long id, @RequestParam("image") MultipartFile file, Model model) {
+    public String editPost(@ModelAttribute PostDto post, @PathVariable Long id,
+                           @RequestParam("image") MultipartFile file, Model model, HttpServletRequest request) {
         model.addAttribute("post", post);
         try {
             if (file != null && !file.isEmpty()) {
@@ -80,6 +91,11 @@ public class PostController {
             postService.modify(post, id);
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+        if (request.getSession().getAttribute("user") != null) {
+            UserDto userDto = (UserDto) request.getSession().getAttribute("user");
+            User user = userMapper.toEntity(userDto);
+            post.setUsername(user);
         }
         postService.modify(post, id);
         return "redirect:/community";

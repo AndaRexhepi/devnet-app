@@ -23,7 +23,7 @@
                     <button class="join-button"><a th:href="@{/create_community}">Create a Community</a></button>
 
 
-                    <form class="community" method="get" th:each="community : ${communities}" th:object="${community}">
+                        <form class="community" method="get" th:each="community : ${communities}" th:object="${community}">
                         <img th:src="*{imageUrl}" alt="Community 2" class="community-pic">
                         <div class="community-info">
                             <h3><a th:href="@{/community_profile/{id}(id=${community.id})}" th:text="*{name}"></a></h3>
@@ -61,7 +61,7 @@
                                  class="post-img" width="400px" height="200px"/>
                         </div>
                         <span class="post-meta">Posted by
-                            <span th:text="*{username}"></span>|
+                            <span th:text="*{username.username}"></span>|
                             <span th:text="*{postedAt}"></span> |
                             <span th:text="${post.community != null} ? ${post.community.name} : 'Unknown Community'"></span>
                         </span>

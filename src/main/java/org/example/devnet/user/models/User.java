@@ -72,4 +72,9 @@ public class User {
 
     @OneToMany(mappedBy = "username")
     private List<Project> projects;
+
+    @Override
+    public String toString() {
+        return username;
+    }
 }

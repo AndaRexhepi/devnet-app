@@ -20,7 +20,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public List<ProjectDto> findAll() {
-        var projects = projectRepository.findAll();
+        var projects = projectRepository.findAllByOrderByIdDesc();
         return projectMapper.toDtoList(projects);
     }
 

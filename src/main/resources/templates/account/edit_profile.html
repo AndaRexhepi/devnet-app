@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Profile</title>
+</head>
+<body>
+<header>
+    <div th:replace="~{fragments/navigation :: navigation}"></div>
+</header>
+<main>
+    <form method="post" th:action="@{/edit_profile/{id}(id=${user.id})}" th:object="${user}" enctype="multipart/form-data">
+        <input type="hidden" th:field="*{id}">
+        <label for="image">Profile Image</label>
+        <input type="file" id="image" name="image" th:src="*{profileImage}">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" th:field="*{name}">
+        <label for="surname">Surname</label>
+        <input type="text" id="surname" name="surname" th:field="*{surname}">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" th:field="*{username}">
+
+        <button type="submit">Submit</button>
+    </form>
+</main>
+</body>
+</html>

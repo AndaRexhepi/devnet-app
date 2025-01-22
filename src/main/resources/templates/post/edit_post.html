@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit Post</title>
     <link rel="stylesheet" href="/style/pages/community/create_post.css">
     <th:block th:replace="~{fragments/stylesheet_links :: my_links}"></th:block>
 </head>
@@ -13,47 +13,43 @@
 <main>
     <div class="create-post-container">
         <h1>Create a New Post</h1>
-        <form class="create-post-form" th:action="@{/edit_post/{id}(id=${post.id})}" method="post"
-              th:if="${post != null}" th:object="${post}" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="community-select">Select Community:</label>
-                <select id="community-select">
-                    <option value="" disabled selected>Select a community</option>
-                    <option th:value="${community.id}" th:each="community : ${communities}" th:text="${community.name}"
-                            th:object="${community}">
-                    </option>
-                </select>
-
+        <form class="create-post-form" method="post" th:action="@{/edit_post/{id}(id=${post.id})}" th:object="${post}" enctype="multipart/form-data">            <div class="form-group">
+            <label for="community-select">Select Community:</label>
+            <select id="community-select" required name="communityId">
+                <option value="" disabled>Select a community</option>
+                <option th:each="community : ${communities}"
+                        th:value="${community.id}"
+                        th:text="${community.name}"
+                        th:selected="${post.community != null && post.community.id == community.id}">
+                </option>
+            </select>
             </div>
             <div class="form-group">
                 <label for="post-title">Title:</label>
                 <input
                         type="text"
                         id="post-title"
+                        required
                         placeholder="Enter the title of your post"
                         name="title"
-                        th:field="*{title}"
+                        th:value="*{title}"
                 />
             </div>
-
             <div class="form-group">
                 <label for="post-body">Body:</label>
                 <textarea
                         id="post-body"
                         rows="5"
+                        required
                         placeholder="Write your post here..."
                         name="body"
-                        th:field="*{body}"
+                        th:text="*{body}"
                 ></textarea>
             </div>
-
             <div class="form-group">
-                <img th:src="${post.imageUrl != null ? post.imageUrl : post.imageUrl}" alt="Project Image"
-                     class="project-img" height="100" width="200"/>
+                <img th:if="${post.imageUrl != null}" th:src="${post.imageUrl}" alt="Post Image" class="project-img" height="100" width="200"/>
                 <label for="image" class="custom-file-upload">Upload Image (optional)</label>
-                <input type="hidden" id="image" style="display: none;" name="image" th:text="*{imageUrl}"/>
-
-                <input type="hidden" th:field="*{imageUrl}" name="imageUrl">
+                <input type="file" id="image" style="display: none;" name="image" />
             </div>
 
             <button type="submit" class="submit-button" value="Submit Post">Submit Post</button>

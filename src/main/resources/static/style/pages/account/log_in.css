@@ -88,5 +88,17 @@ main{
 .main-container h1{
     font-size: 25px;
 }
+.error-message {
+    color: red; /* Red text for error messages */
+    font-size: 0.9em; /* Smaller font size */
+    margin-top: 5px; /* Add some spacing */
+}
+
+
+.global-error ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+}
 
 

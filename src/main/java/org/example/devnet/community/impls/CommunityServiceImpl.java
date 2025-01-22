@@ -1,12 +1,16 @@
 package org.example.devnet.community.impls;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.example.devnet.community.dtos.CommunityDto;
 import org.example.devnet.community.mappers.CommunityMapper;
 import org.example.devnet.community.models.Community;
 import org.example.devnet.community.repositories.CommunityRepository;
 import org.example.devnet.community.services.CommunityService;
+import org.example.devnet.post.models.Post;
+import org.example.devnet.post.repositories.PostRepository;
+import org.example.devnet.user.models.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +21,7 @@ public class CommunityServiceImpl implements CommunityService {
 
 
     public final CommunityRepository communityRepository;
+    public final PostRepository postRepository;
     public final CommunityMapper communityMapper;
 
     @Override
@@ -54,14 +59,17 @@ public class CommunityServiceImpl implements CommunityService {
 
     }
 
-    @Override
-    public void delete(Long id) {
-        if (communityRepository.findById(id).isPresent()){
-            communityRepository.deleteById(id);
-        }else {
-            throw new EntityNotFoundException();
+    @Transactional
+    public void delete(Long communityId) {
+        Community community = communityRepository.findById(communityId)
+                .orElseThrow(() -> new EntityNotFoundException("Community not found"));
+        List<Post> posts = postRepository.findByCommunityId(communityId);
+        for (Post post : posts) {
+            post.setCommunity(null);
         }
+        postRepository.saveAll(posts);
 
+        communityRepository.delete(community);
     }
 
     @Override
@@ -79,5 +87,20 @@ public class CommunityServiceImpl implements CommunityService {
         return communityMapper.toDtoList(communities);
     }
 
+
+    @Transactional
+    public void addMemberToCommunity(Long communityId, User user) {
+        Community community = communityRepository.findById(communityId)
+                .orElseThrow(() -> new EntityNotFoundException("Community not found"));
+
+        // Check if the user is already a member
+        if (community.getMembers().contains(user)) {
+            throw new IllegalStateException("User is already a member of this community.");
+        }
+
+        // Add the user to the community's list of members
+        community.addMember(user);
+        communityRepository.save(community);
+    }
 
 }

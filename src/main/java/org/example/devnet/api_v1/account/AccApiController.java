@@ -3,8 +3,8 @@ package org.example.devnet.api_v1.account;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.RequiredArgsConstructor;
-import org.example.devnet.user.dtos.UserDto;
-import org.example.devnet.user.services.UserService;
+import org.example.devnet.user.dtos.UserRegistrationDto;
+import org.example.devnet.user.services.UserRegistrationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,32 +14,32 @@ import java.util.List;
 @RequestMapping("/api/v1/account")
 @RequiredArgsConstructor
 public class AccApiController {
-    public final UserService userService;
+    public final UserRegistrationService userService;
 
     @GetMapping
-    public List<UserDto> findAll() {
+    public List<UserRegistrationDto> findAll() {
         return userService.findAll();
     }
 
     @GetMapping("/{id}")
-    public UserDto findById(@Valid @PositiveOrZero(message = "Id cannot be negative") @PathVariable Long id) {
+    public UserRegistrationDto findById(@Valid @PositiveOrZero(message = "Id cannot be negative") @PathVariable Long id) {
         return userService.findById(id);
     }
 
     @GetMapping("/default")
-    public UserDto getDefaultUser() {
-        return new UserDto();
+    public UserRegistrationDto getDefaultUser() {
+        return new UserRegistrationDto();
     }
 
     @PostMapping
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public UserDto add(@Valid @RequestBody UserDto userDto) {
+    public UserRegistrationDto add(@Valid @RequestBody UserRegistrationDto userDto) {
         return userService.add(userDto);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public UserDto modify(@Valid @RequestBody UserDto userDto, @PathVariable Long id) {
+    public UserRegistrationDto modify(@Valid @RequestBody UserRegistrationDto userDto, @PathVariable Long id) {
         return userService.modify(userDto, id);
     }
 

@@ -11,7 +11,6 @@ import org.example.devnet.post.repositories.PostRepository;
 import org.example.devnet.post.services.PostService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
 import java.util.List;
 
 @Service
@@ -23,9 +22,10 @@ public class PostServiceImpl implements PostService {
     public final CommentRepository commentRepository;
     public final PostMapper postMapper;
 
+    @Transactional
     @Override
     public List<PostDto> findAll() {
-        var posts = postRepository.findAll();
+        var posts = postRepository.findAllByOrderByIdDesc();
         return postMapper.toDtoList(posts);
     }
 
@@ -55,14 +55,12 @@ public class PostServiceImpl implements PostService {
         } else {
             throw new EntityNotFoundException();
         }
-
     }
 
-    @Transactional
+        @Transactional
     @Override
     public void delete(Long id) {
         if (postRepository.findById(id).isPresent()) {
-            commentRepository.deleteByPostId(id);
             postRepository.deleteById(id);
         } else {
             throw new EntityNotFoundException();

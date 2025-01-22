@@ -14,16 +14,30 @@
         <div class="content">
             <h1>Log In</h1>
             <form th:action="@{/log_in}" method="post" class="login-form" th:object="${userDto}">
+                <!-- Username Field -->
                 <div>
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required placeholder="Enter username..." th:field="*{username}">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required placeholder="Enter username..." th:field="*{username}">
+                    <!-- Display username-specific errors -->
+                    <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error-message"></span>
                 </div>
                 <br>
+
+                <!-- Password Field -->
                 <div>
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required placeholder="Enter password..." th:field="*{password}">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="Enter password..." th:field="*{password}">
+                    <!-- Display password-specific errors -->
+                    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error-message"></span>
                 </div>
                 <br>
+
+                <!-- Display flash error message -->
+                <div th:if="${error}" class="global-error">
+                    <p th:text="${error}" class="error-message"></p>
+                </div>
+
+                <!-- Submit Button -->
                 <button type="submit" value="Log In" class="submit-btn">Log in</button>
             </form>
         </div>

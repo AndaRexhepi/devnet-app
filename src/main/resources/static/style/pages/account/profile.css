@@ -18,6 +18,9 @@ body {
     justify-content: space-between; /* Space between sidebar and main section */
     gap: 20px;
 }
+.logout{
+    margin-left: 70%;
+}
 .sidebar {
     margin-left: 10px;
     width: 350px; /* Fixed width for sidebar */
@@ -114,6 +117,10 @@ body {
     display: flex;
     flex-direction: row;
 }
+.posts-section{
+    display: flex;
+    flex-direction: column;
+}
 .profile-header {
     text-align: left;
     margin-bottom: 20px;
@@ -150,8 +157,12 @@ body {
     border-color: transparent;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
+.edit-button{
+    margin-left: 1000px;
+}
 .join-button a{
-    font-weight: bold;
+    font-size: 15px;
+    font-weight: normal;
     color: white;
     text-decoration: none;
 }
@@ -236,7 +247,7 @@ body {
     color: white;
 }
 .sidebar {
-    width: 350px; /* Fixed width for sidebar */
+    width: 300px; /* Fixed width for sidebar */
     /*margin-right: 10px; !* Space to the right *!*/
     background-color: #eeeeee; /* Light background for sidebar */
     padding: 15px; /* Padding inside sidebar */

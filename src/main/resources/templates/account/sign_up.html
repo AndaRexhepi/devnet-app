@@ -12,7 +12,10 @@
     <div class="container">
         <div class="form-container">
 
-            <form method="post" th:object="${userDto}">
+            <form method="post" th:object="${userDto}" enctype="multipart/form-data">
+                <label for="image">Add Community Profile Image</label>
+                <input type="file" id="image" name="image">
+                <input type="hidden" th:field="*{profileImage}">
                 <label for="name">Name</label>
                 <input type="text" id="name"  required placeholder="Enter name..." name="name" th:field="*{name}">
                 <label for="surname">Surname</label>

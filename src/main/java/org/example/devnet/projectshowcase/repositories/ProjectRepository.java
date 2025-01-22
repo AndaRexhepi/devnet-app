@@ -16,5 +16,6 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
     List<Project> findByDescriptionContaining(String keyword);
 
     List<Project> findByImageUrl(String imageUrl);
+    List<Project> findAllByOrderByIdDesc();
 
 }

@@ -46,9 +46,16 @@ public class Community {
     private List<User> members;
 
     @Column
-    @OneToMany(mappedBy = "community")
+    @OneToMany(mappedBy = "community", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Post> posts;
 
+    public void addMember(User user) {
+        this.members.add(user);
+    }
+
+    public void removeMember(User user) {
+        this.members.remove(user);
+    }
 
 
 }

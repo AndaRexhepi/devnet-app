@@ -44,10 +44,10 @@ public class Post {
     @Column(nullable = false)
     private int likes;
 
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", fetch = FetchType.EAGER)
     private List<Comment> comments;
 
     @Column(nullable = false)
-    private LocalTime postedAt = LocalTime.of(0, 0);
+    private LocalTime postedAt = LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute());
 
 }

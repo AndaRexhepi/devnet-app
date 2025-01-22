@@ -24,7 +24,7 @@
 
     <section class="reviews-section" id="reviews">
 
-        <div class="card-review" th:each="review : ${reviews}" th:object="${review}">
+        <form class="card-review" th:each="review : ${reviews}" th:object="${review}">
             <div class="horizontal">
                 <div class="rating">
                     <div class="five_stars" th:if="*{rating == 5.0}">
@@ -56,47 +56,44 @@
                     </div>
                 </div>
                 <div class="btn-group dropstart">
-                    <button type="button" class="btn btn-secondary " data-bs-toggle="dropdown" aria-expanded="false"
-                            style="color: #333333; background-color: transparent; border: none; font-size: 25px;  width: fit-content; height: fit-content">
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="dropdown" aria-expanded="false"
+                            style="color: #333333; background-color: transparent; border: none; font-size: 25px; width: fit-content; height: fit-content">
                         <span>&#x22EE;</span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" th:href="@{/edit_review/{id}(id=*{id})}">Edit</a></li>
-                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        <li><a class="dropdown-item" th:href="@{/edit_review/{id}(id=${review.id})}">Edit</a></li>
+                        <button type="button" class="btn" data-bs-toggle="modal" th:attr="data-bs-target='#exampleModal-' + ${review.id}"
                                 style="padding: 0">
                             <a class="dropdown-item">Delete</a>
                         </button>
-
                     </ul>
                 </div>
-
             </div>
 
             <div class="review">
                 <p th:text="*{review}"></p>
             </div>
             <div class="review-person">
-                <b th:text="*{username}"></b> <br>
-                <i th:text="*{role}"></i>
+                <b th:text="*{username}"></b> <br> <!-- Access the username property of the User object -->
             </div>
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" th:id="'exampleModal-' + ${review.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Review</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                           Are you sure you want to delete this review?
+                            Are you sure you want to delete this review?
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-close-white" data-bs-dismiss="modal">Back</button>
-                            <button type="button" class="btn btn-danger"><a th:href="@{/{id}(id=*{id})}" style="text-decoration: none; color: white">Delete</a></button>
+                            <button type="button" class="btn btn-danger"><a th:href="@{/delete_review/{id}(id=${review.id})}" style="text-decoration: none; color: white">Delete</a></button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </section>
     <section>
         <h1 class="my_h1"> We would love to hear about your experience with our roadmaps!</h1>
@@ -107,7 +104,7 @@
 
 
     <!-- Modal -->
-    >
+
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

@@ -14,6 +14,7 @@ import java.net.BindException;
 
 @ControllerAdvice
 public class ControllerExceptionHandlerAdvice {
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponseDto> handleException(HttpServletRequest request,
                                                             Exception e) {

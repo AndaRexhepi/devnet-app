@@ -33,4 +33,9 @@ public class ReviewDto {
     @NotBlank(message = "Review is required")
     @Size(min = 2, max = 1000)
     private String review;
+
+    @Override
+    public String toString() {
+        return username.toString();
+    }
 }

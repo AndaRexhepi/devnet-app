@@ -19,4 +19,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     List<Post> findByPostedAtBetween(LocalTime startTime, LocalTime endTime);
 
+    List<Post> findAllByOrderByIdDesc();
+
 }

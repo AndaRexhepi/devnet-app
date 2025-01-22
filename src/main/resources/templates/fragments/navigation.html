@@ -1,4 +1,4 @@
-<nav th:fragment="navigation">
+<nav th:fragment="navigation" th:object="${session.user}">
     <ul>
         <li><a th:href="@{/home}">Home</a></li>
         <li><a th:href="@{/newbiecorner}">Newbie Corner</a></li>
@@ -6,5 +6,5 @@
         <li><a th:href="@{/projectshowcase}">Project Showcase</a></li>
         <li><a th:href="@{/community}">Community</a></li>
     </ul>
-   <a class="login-btn" th:href="@{/profile}">Log in</a>
+   <a class="login-btn" th:href="@{/profile}" th:if="${session.user != null}"><span th:text="${session.user.username}"></span></a>
 </nav>

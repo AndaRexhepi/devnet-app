@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Community Profile</title>
     <link rel="stylesheet" href="/style/pages/community/community_profile.css">
     <link rel="stylesheet" href="/style/pages/community/community.css">
 
@@ -71,11 +71,11 @@
                         </span>
                         </div>
                         <div class="post-actions">
-                            <button
-                                    class="like-button button btn btn-outline-dark" id="like" type="button">
-                                ❤️ Likes
-                            </button>
-                            <span id="like-count" th:text="${post.likes}">0</span>
+<!--                            <button-->
+<!--                                    class="like-button button btn btn-outline-dark" id="like" type="button">-->
+<!--                                ❤️ Likes-->
+<!--                            </button>-->
+<!--                            <span id="like-count" th:text="${post.likes}">0</span>-->
                             <p class="d-inline-flex gap-1">
                                 <button class="btn button btn-outline-dark" style="border-radius: 20px" type="button"
                                         data-bs-toggle="collapse" th:data-bs-target="'#collapsePost' + ${post.id}"
@@ -158,6 +158,29 @@
                         </div>
                     </div>
                 </div>
+                <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel1">Post Deletion</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure you want to delete this post?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn" data-bs-dismiss="modal">Back</button>
+                                <button type="button" class="btn btn-danger"><a th:href="@{/delete_post/{id}(id=${post.id})}"
+                                                                                id="deleteBtn1"
+                                                                                style="text-decoration: none;color: white">
+                                    Delete Post
+                                </a></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
 
@@ -188,28 +211,6 @@
                     <button type="button" class="btn" data-bs-dismiss="modal">Back</button>
                     <button type="button" class="btn btn-danger"><a th:href="@{/community/{id}(id=*{id})}"
                                                                     id="deleteBtn"
-                                                                    style="text-decoration: none;color: white">
-                        Delete Community
-                    </a></button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel1">Community Deletion</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Are you sure you want to delete this post?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn" data-bs-dismiss="modal">Back</button>
-                    <button type="button" class="btn btn-danger"><a th:href="@{/community/{id}(id=*{id})}"
-                                                                    id="deleteBtn1"
                                                                     style="text-decoration: none;color: white">
                         Delete Community
                     </a></button>

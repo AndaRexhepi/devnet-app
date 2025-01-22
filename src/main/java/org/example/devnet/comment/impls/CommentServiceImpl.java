@@ -1,6 +1,7 @@
 package org.example.devnet.comment.impls;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.example.devnet.comment.dtos.CommentDto;
 import org.example.devnet.comment.mappers.CommentMapper;
@@ -22,6 +23,7 @@ public class CommentServiceImpl implements CommentService {
         return commentMapper.toDtoList(commentRepository.findAllByPostId(postId));
     }
 
+    @Transactional
     @Override
     public void deleteByPostId(Long postId) {
         if (commentRepository.findAllByPostId(postId).isEmpty()) {

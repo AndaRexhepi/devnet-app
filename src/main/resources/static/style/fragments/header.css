@@ -40,15 +40,8 @@ nav ul li a {
 
 }
 
-nav ul li a:hover{
-    font-weight: bold;
-}
+
 a.login-btn {
-    background-color: #ffffff;
-    color: #DE572A;
-    border: none;
-    padding: 10px 30px;
-    border-radius: 20px;
     cursor: pointer;
     font-size: 16px;
     margin-left: 200px;
@@ -58,15 +51,11 @@ a.login-btn {
 
 a.login-btn a {
     text-decoration: none;
-    color: #F2992A;
+    color: #ffffff;
     font-family: "IBM Plex Mono", monospace;
     font-weight: bold;
+}
+.login-btn span{
+    color: #ffffff;
 }
 
-a.login-btn:hover {
-    text-decoration: none;
-    color: white;
-    font-family: "IBM Plex Mono", monospace;
-    font-weight: bold;
-    background-color: #F2992A;
-}

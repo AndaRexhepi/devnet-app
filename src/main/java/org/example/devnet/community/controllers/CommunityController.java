@@ -9,13 +9,17 @@ import org.example.devnet.community.dtos.CommunityDto;
 import org.example.devnet.community.services.CommunityService;
 import org.example.devnet.post.services.PostService;
 import org.example.devnet.projectshowcase.helpers.FileHelperImpl;
-import org.example.devnet.user.dtos.UserDto;
-import org.example.devnet.user.mappers.UserMapper;
+import org.example.devnet.user.dtos.UserProfileDto;
+import org.example.devnet.user.dtos.UserRegistrationDto;
+import org.example.devnet.user.impls.UserProfileServiceImpl;
+import org.example.devnet.user.mappers.UserProfileMapper;
+import org.example.devnet.user.mappers.UserRegistrationMapper;
 import org.example.devnet.user.models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 
@@ -27,7 +31,8 @@ public class CommunityController {
     public final PostService postService;
     public final CommentService commentService;
     private final FileHelperImpl fileHelper;
-    public final UserMapper userMapper;
+    public final UserProfileServiceImpl userProfileService;
+    public final UserProfileMapper  userProfileMapper;
 
     @GetMapping("/community")
     public String findAll(Model model) {
@@ -67,9 +72,16 @@ public class CommunityController {
         }
         if (request.getSession().getAttribute("user") != null) {
 
-            UserDto userDto = (UserDto) request.getSession().getAttribute("user");
-            User user = userMapper.toEntity(userDto);
-            communityDto.setOwner(user);
+            Object sessionUser = request.getSession().getAttribute("user");
+
+            if (sessionUser instanceof User) {
+                UserProfileDto dto = userProfileMapper.toDto((User) sessionUser);
+            } else if (sessionUser instanceof UserProfileDto) {
+                User dto = userProfileMapper.toEntity((UserProfileDto) sessionUser);
+                communityDto.setOwner(dto);
+            } else {
+                model.addAttribute("user", null);
+            }
         }
         communityService.add(communityDto);
         return "redirect:/community";
@@ -113,6 +125,26 @@ public class CommunityController {
         return "redirect:/community";
     }
 
+    @PostMapping("/{communityId}/join")
+    public String joinCommunity(@PathVariable Long communityId, HttpServletRequest request, RedirectAttributes redirectAttributes) {
+        // Get the current user from the session
+        UserProfileDto userProfileDto = (UserProfileDto) request.getSession().getAttribute("user");
+        if (userProfileDto == null) {
+            redirectAttributes.addFlashAttribute("error", "You must be logged in to join a community.");
+            return "redirect:/login"; // Redirect to login page if the user is not logged in
+        }
+
+        // Convert UserProfileDto to User entity
+        User user = userProfileMapper.toEntity(userProfileDto);
+        // Add the user to the community's list of members
+        communityService.addMemberToCommunity(communityId, user);
+
+        // Add a success message to be displayed as a toast
+        redirectAttributes.addFlashAttribute("toastMessage", "You have successfully joined the community!");
+
+        // Redirect back to the community page
+        return "redirect:/community/" + communityId;
+    }
 
 }
 

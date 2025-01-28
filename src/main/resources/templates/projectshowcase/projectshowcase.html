@@ -76,19 +76,21 @@
         <form class="project" th:each="project : ${projects}" th:object="${project}" method="post"
               enctype="multipart/form-data">
 
-            <div class="btn-group dropstart project-options">
-                <button type="button" class="btn btn-secondary options" data-bs-toggle="dropdown" aria-expanded="false"
-                        style="background-color: transparent; border: none; font-size: 25px;  width: fit-content; height: fit-content">
-                    <span>&#x22EE;</span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" th:href="@{/edit_project/{id}(id=${project.id})}">Edit</a></li>
-                    <li class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Delete
-                    </li>
-                </ul>
+            <div class="image-container">
+                <div class="btn-group dropstart project-options">
+                    <button type="button" class="btn btn-secondary options" data-bs-toggle="dropdown" aria-expanded="false"
+                            style="background-color: transparent; border: none; font-size: 25px;  width: fit-content; height: fit-content">
+                        <span>&#x22EE;</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" th:href="@{/edit_project/{id}(id=${project.id})}">Edit</a></li>
+                        <li class="btn btn-outline" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Delete
+                        </li>
+                    </ul>
+                </div>
+                <img th:src="*{imageUrl}" alt="img" class="project-img" name="image"/>
             </div>
-            <img th:src="*{imageUrl}" alt="img" class="project-img" name="image"/>
             <div class="text-div">
                 <p th:text="*{description}"></p>
             </div>

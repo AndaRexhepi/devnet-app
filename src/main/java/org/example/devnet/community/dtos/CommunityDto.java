@@ -9,6 +9,8 @@ import org.example.devnet.user.models.User;
 
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Data
@@ -25,7 +27,6 @@ public class CommunityDto {
     private String name;
 
     @NotNull
-    @NotBlank
     @Size(min = 2, max = 100, message = "Name must be between 2 and 100 characters")
     private User owner;
 
@@ -39,6 +40,7 @@ public class CommunityDto {
 
     @PastOrPresent(message = "Created date must be in the past or present")
     private LocalDate createdDate = LocalDate.now();
+
 
 
 

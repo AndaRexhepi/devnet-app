@@ -27,7 +27,7 @@ public class PostDto {
     @NotNull(message = "Community is required")
     private CommunityDto community;
 
-    private Long communityId; // Add this field to hold the community ID
+    private Long communityId;
 
     @NotNull(message = "Title is required")
     @NotBlank(message = "Title is required")
@@ -36,14 +36,11 @@ public class PostDto {
 
     @NotNull(message = "Body of the post is required")
     @NotBlank(message = "Body of the post is required")
-    @Size(min = 2, max = 500, message = "Body must be between 2 and 500 characters")
+    @Size(min = 2, max = 1000, message = "Body must be between 2 and 500 characters")
     private String body;
 
     @Size(max = 1000, message = "Image URL must be less than 1000 characters")
     private String imageUrl;
-
-    @PositiveOrZero(message = "Likes cannot be negative")
-    private int likes;
 
     private List<CommentDto> comments;
 

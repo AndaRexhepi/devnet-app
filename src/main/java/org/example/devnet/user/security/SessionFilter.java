@@ -24,7 +24,7 @@ public class SessionFilter extends OncePerRequestFilter {
             return;
         }
 
-        // get current session
+
         HttpSession session = request.getSession(false);
 
         if (session == null || session.getAttribute("user") == null) {
@@ -36,26 +36,11 @@ public class SessionFilter extends OncePerRequestFilter {
             return;
         }
 
-        // if you have session, you will not go into login and register
+
         if(request.getRequestURI().startsWith("/log_in") || request.getRequestURI().startsWith("/sign_up")) {
             response.sendRedirect("/");
             return;
         }
-        //ketu kishum mujt me validu user-in sipas rolit
-//        UserDto userDto = (UserDto) session.getAttribute("user");
-//
-//        if(userDto.getRole().equals("ADMIN")) {
-//            AdminFilter.doFilter(request, response, filterChain);
-//            return;
-//        } else if (userDto.getRole().equals("USER")) {
-//
-//        } else {
-//            // nese nuk eshte as admin as user, atehere shko ne login
-//            response.sendRedirect("/login");
-//            return;
-//        }
-
-        // perndryshe shko ku ja ke msy me shku!
         filterChain.doFilter(request, response);
 
 

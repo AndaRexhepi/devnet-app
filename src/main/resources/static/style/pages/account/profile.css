@@ -19,7 +19,21 @@ body {
     gap: 20px;
 }
 .logout{
-    margin-left: 70%;
+   float: right;
+    margin-top: 10px;
+
+}
+.profile-header{
+    background-color: #333333;
+    padding: 20px;
+    border-radius: 20px;
+    color: white;
+}
+.logout a{
+    color: red;
+}
+.logout a:hover{
+    color: white;
 }
 .sidebar {
     margin-left: 10px;
@@ -97,10 +111,14 @@ body {
 }
 
 .community-info h3 {
-    margin: 0; /* Remove margin */
-    font-size: 1em; /* Font size for community name */
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 13px;
+    /* Font size for community name */
 }
-
+.community-pic{
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Light shadow */
+}
 .members-count {
     font-size: 0.9em; /* Smaller font for members count */
     color: #666; /* Grey color for members count */
@@ -158,7 +176,8 @@ body {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 .edit-button{
-    margin-left: 1000px;
+    /*margin-left: 1000px;*/
+    float: left;
 }
 .join-button a{
     font-size: 15px;
@@ -219,7 +238,10 @@ body {
     font-size: 2em;
     margin: 10px 0 5px;
 }
+.profile-header .name{
+    margin-top: 0;
 
+}
 .surname {
     font-size: 1.5em;
     color: #666;
@@ -248,29 +270,58 @@ body {
 }
 .sidebar {
     width: 300px; /* Fixed width for sidebar */
-    /*margin-right: 10px; !* Space to the right *!*/
+
     background-color: #eeeeee; /* Light background for sidebar */
     padding: 15px; /* Padding inside sidebar */
     border-radius: 20px;
     height: fit-content/* Rounded corners */
 }
 
+.comment-user{
+    font-weight: bold;
+}
+.comment-actions button{
+    width: 80px;
+    height: 30px;
+    /*background-color: #333333;*/
+    color: #333333;
+    border-radius: 20px;
+    border-color: transparent;
+}
+.comment-text{
+    display: flex;
+    flex-direction: column;
+}
+.comment-text img{
+    filter: hue-rotate(0deg) saturate(100%) brightness(1.2); /* Adjust for red tint */
 
-/*.posts-section {*/
-/*    margin-top: 20px;*/
-/*}*/
-
-/*.posts-section h3 {*/
-/*    margin-bottom: 10px;*/
-/*}*/
-
-/*.post {*/
-/*    background: #f1f1f1;*/
-/*    margin: 10px 0;*/
-/*    padding: 10px;*/
-/*    border-radius: 5px;*/
-/*    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);*/
-/*}*/
+}
+.user-info{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.user-info p{
+    font-size: 13px;
+    font-weight: bolder;
+}
+.comment-input{
+    padding-left: 10px;
+    margin-top: 20px;
+    width: 300px;
+    height: 30px;
+    border-radius: 20px;
+    border-color: transparent;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+.submit-comment{
+    width: 100px;
+    height: 30px;
+    border-radius: 20px;
+    border-color: transparent;
+    background-color: #DE572A;
+    color: white;
+}
 
 /* Responsive styles */
 @media (max-width: 600px) {

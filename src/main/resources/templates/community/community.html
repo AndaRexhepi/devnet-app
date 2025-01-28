@@ -19,16 +19,13 @@
             <div class="content">
                 <aside class="sidebar">
                     <h5>Communities</h5>
-                    <button class="join-button"><a th:href="@{/join_community}">Join a Community</a></button>
+                    <button class="join-button"><a th:href="@{/view_community}">View Communities</a></button>
                     <button class="join-button"><a th:href="@{/create_community}">Create a Community</a></button>
 
 
                     <form class="community" method="get" th:each="community : ${communities}" th:object="${community}">
                         <img th:src="*{imageUrl}" alt="Community 2" class="community-pic">
-                        <div class="community-info">
-                            <h3><a th:href="@{/community_profile/{id}(id=${community.id})}" th:text="*{name}"></a></h3>
-                            <span class="members-count">900 members</span>
-                        </div>
+                        <p th:text="*{name}" th:href="@{/community_profile/{id}(id=${community.id})}"></p>
                     </form>
 
                 </aside>
@@ -67,119 +64,247 @@
                         </span>
 
                         <div class="post-actions">
-                            <!--                            <button-->
-                            <!--                                    class="like-button button btn btn-outline-dark" id="like" type="button">-->
-                            <!--                                ❤️ Likes-->
-                            <!--                            </button>-->
-                            <!--                            <span id="like-count" th:text="${post.likes}">0</span>-->
-                            <!-- Comment button -->
                             <p class="d-inline-flex gap-1">
-                                <button class="btn button btn-outline-dark" style="border-radius: 20px" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#collapsePost" aria-expanded="false"
-                                        aria-controls="collapsePost" data-post-id="${post.id}">
+                                <button
+                                        class="btn button btn-outline-dark"
+                                        style="border-radius: 20px"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        th:data-bs-target="'#collapsePost' + ${post.id}"
+                                        aria-expanded="false"
+                                        th:aria-controls="'collapsePost' + ${post.id}"
+                                >
                                     Comment
                                 </button>
                             </p>
 
                             <!-- Comment form and comments container -->
-                            <div class="collapse" id="collapsePost" data-post-id="${post.id}">
+                            <div class="collapse" th:id="'collapsePost' + ${post.id}">
                                 <div class="card card-body">
-                                    <!-- Add comment form -->
-                                    <form id="add-comment-form" class="input-group mb-3">
-                                        <input type="text" id="comment-input" class="form-control"
-                                               placeholder="Comment here..."
-                                               aria-label="Comment input" required>
-                                        <button class="btn btn-outline-dark" type="submit" id="post-comment-btn">Post
+                                    <form
+                                            class="input-group mb-3"
+                                            method="post"
+                                            th:action="@{/post/{postId}/comment(postId=${post.id})}"
+                                    >
+                                        <input
+                                                type="text"
+                                                id="commentInput"
+                                                class="form-control"
+                                                placeholder="Comment here..."
+                                                aria-label="Recipient's username"
+                                                aria-describedby="button-addon2"
+                                                name="comment"
+                                                required
+                                        />
+                                        <button
+                                                class="btn btn-outline-dark"
+                                                type="submit"
+                                                id="button-addon2 postBtn"
+                                        >
+                                            Post
                                         </button>
                                     </form>
                                 </div>
-                                <div class="card card-body" id="comments-container">
-                                    <!-- Comments will be dynamically inserted here by JavaScript -->
-                                </div>
-                            </div>
-
-                            <!-- Modals for edit and delete (unchanged) -->
-                            <div class="modal fade" id="edit-comment-modal" tabindex="-1"
-                                 aria-labelledby="editCommentModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="editCommentModalLabel">Edit Comment</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
+                                <div class="card card-body">
+                                    <div th:each="comment : ${post.comments}">
+                                        <div class="user-info">
+                                            <img
+                                                    alt=""
+                                                   th:src="${comment.username.profileImage}"
+                                                    height="30px"
+                                                    width="30px"
+                                                    style="border-radius: 50%; margin-top: 6px"
+                                            />
+                                            <p th:text="${comment.username}"></p>
+                                            <p>|</p>
+                                            <p th:text="${comment.postedAt}"></p>
+                                            <div class="btn-group dropstart">
+                                                <button
+                                                        type="button"
+                                                        class="btn btn-secondary"
+                                                        data-bs-toggle="dropdown"
+                                                        aria-expanded="false"
+                                                        style="
+                        background-color: transparent;
+                        border: none;
+                        font-size: 25px;
+                        width: fit-content;
+                        height: fit-content;
+                        color: #333333;
+                        margin: 0;
+                    "
+                                                >
+                                                    <span>&#x22EE;</span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li>
+                                                        <button
+                                                                class="btn btn-primary"
+                                                                data-bs-toggle="modal"
+                                                                th:attr="data-bs-target='#editModal-' + ${comment.id}"
+                                                                style="
+                                                                          background-color: transparent;
+                                                                         border-color: transparent;
+                                                                         color: #333333;
+                                                                                         "
+                                                        >
+                                                            Edit
+                                                        </button>
+                                                    </li>
+                                                    <li
+                                                            class="btn btn-primary"
+                                                            data-bs-toggle="modal"
+                                                            th:attr="data-bs-target='#deleteModal-' + ${comment.id}"
+                                                            style="
+                            background-color: transparent;
+                            border-color: transparent;
+                            color: #333333;
+                        "
+                                                    >
+                                                        Delete
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
-                                        <div class="modal-body">
-                                            <form id="edit-comment-form">
-                                                <input type="text" id="edit-comment-input" class="form-control"
-                                                       placeholder="Edit your comment" required>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Cancel
-                                                    </button>
-                                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                        <p th:text="${comment.comment}" style="margin-left: 30px"></p>
+                                        <hr/>
+                                        <!--                                            edit comment modal-->
+                                        <div
+                                                class="modal fade"
+                                                th:id="'editModal-' + ${comment.id}"
+                                                tabindex="-1"
+                                                aria-labelledby="editModalLabel"
+                                                aria-hidden="true"
+                                        >
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="editModalLabel">
+                                                            Edit Comment
+                                                        </h1>
+                                                        <button
+                                                                type="button"
+                                                                class="btn-close"
+                                                                data-bs-dismiss="modal"
+                                                                aria-label="Close"
+                                                        ></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form th:action="@{'/post/' + ${post.id} + '/comment/edit/' + ${comment.id}}"
+                                                              method="post">
+                                                            <div class="form-group">
+                                                                <label for="commentText">Comment</label>
+                                                                <textarea
+                                                                        class="form-control"
+                                                                        id="commentText"
+                                                                        name="comment"
+                                                                        th:text="${comment.comment}"
+                                                                ></textarea>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button
+                                                                        type="button"
+                                                                        class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal"
+                                                                >
+                                                                    Cancel
+                                                                </button>
+                                                                <button type="submit" class="btn btn-primary">
+                                                                    Save Changes
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
                                                 </div>
-                                            </form>
+                                            </div>
+                                        </div>
+
+                                        <!-- Delete Modal for Each Comment -->
+                                        <div
+                                                class="modal fade"
+                                                th:id="'deleteModal-' + ${comment.id}"
+                                                tabindex="-1"
+                                                aria-labelledby="deleteModalLabel"
+                                                aria-hidden="true"
+                                        >
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="deleteModalLabel">
+                                                            Comment Deletion
+                                                        </h1>
+                                                        <button
+                                                                type="button"
+                                                                class="btn-close"
+                                                                data-bs-dismiss="modal"
+                                                                aria-label="Close"
+                                                        ></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Are you sure you want to delete this comment?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button
+                                                                type="button"
+                                                                class="btn btn-close-white"
+                                                                data-bs-dismiss="modal"
+                                                        >
+                                                            Back
+                                                        </button>
+                                                        <a
+                                                                th:href="@{'/post/' + ${post.id} + '/comment/delete/' + ${comment.id}}"
+                                                                class="btn btn-danger"
+                                                                style="text-decoration: none; color: white"
+                                                        >
+                                                            Delete
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Modals for edit and delete -->
+
+                                    </div>
+                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                         aria-labelledby="exampleModalLabel"
+                                         aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Post
+                                                        Deletion</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Are you sure you want to delete this post?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-close-white"
+                                                            data-bs-dismiss="modal">Black
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger"><a
+                                                            th:href="@{delete_post/{id}(id=${post.id})}"
+                                                            style="text-decoration: none; color: white">Delete</a>
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="modal fade" id="delete-comment-modal" tabindex="-1"
-                                 aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="deleteCommentModalLabel">Delete Comment</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Are you sure you want to delete this comment?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                                Cancel
-                                            </button>
-                                            <button type="button" id="confirm-delete-btn" class="btn btn-danger">
-                                                Delete
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                             aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Post Deletion</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        Are you sure you want to delete this post?
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-close-white" data-bs-dismiss="modal">Black
-                                        </button>
-                                        <button type="button" class="btn btn-danger"><a
-                                                th:href="@{delete_post/{id}(id=${post.id})}"
-                                                style="text-decoration: none; color: white">Delete</a></button>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
-
     </div>
 </main>
 <div th:replace="~{fragments/footer.html :: footer}"></div>
-<script src="../../static/scripts/community/app.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>

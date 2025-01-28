@@ -55,12 +55,6 @@ public class PostApiController {
         postService.delete(id);
     }
 
-    @PostMapping("/{postId}/like")
-    public ResponseEntity<PostDto> incrementLikes(@PathVariable Long postId) {
-        PostDto updatedPost = postService.incrementLikes(postId);
-        return ResponseEntity.ok(updatedPost);
-    }
-
     @PostMapping("/{postId}/comments")
     public ResponseEntity<CommentDto> addComment(@PathVariable Long postId, @RequestBody CommentDto commentDto) {
         PostDto post = postService.findById(postId);

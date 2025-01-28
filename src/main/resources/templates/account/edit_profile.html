@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit Profile</title>
+    <th:block th:replace="~{fragments/stylesheet_links :: my_links}"></th:block>
+    <link rel="stylesheet" href="/style/pages/account/edit_profile.css">
 </head>
 <body>
 <header>
     <div th:replace="~{fragments/navigation :: navigation}"></div>
 </header>
 <main>
+    <div class="profile-form">
     <form method="post" th:action="@{/edit_profile/{id}(id=${user.id})}" th:object="${user}" enctype="multipart/form-data">
+
         <input type="hidden" th:field="*{id}">
         <label for="image">Profile Image</label>
         <input type="file" id="image" name="image" th:src="*{profileImage}">
@@ -22,6 +26,10 @@
 
         <button type="submit">Submit</button>
     </form>
+    </div>
 </main>
+<footer>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</footer>
 </body>
 </html>

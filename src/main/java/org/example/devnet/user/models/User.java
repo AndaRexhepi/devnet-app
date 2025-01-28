@@ -33,7 +33,6 @@ public class User {
     @Column(nullable = false, length = 100, unique = true)
     private String username;
 
-
     @Column(length = 100)
     private String role;
 
@@ -42,9 +41,6 @@ public class User {
 
     @Column
     private String profileImage;
-
-    @Column(length = 500)
-    private String bio;
 
     @Column(nullable = false)
     private LocalDate dateJoined = LocalDate.now();
@@ -63,9 +59,6 @@ public class User {
 
     @OneToMany(mappedBy = "username")
     private List<Review> reviews;
-
-    @ManyToMany(mappedBy = "members")
-    private List<Community> communitiesJoined;
 
     @OneToMany(mappedBy = "owner")
     private List<Community> communitiesCreated;

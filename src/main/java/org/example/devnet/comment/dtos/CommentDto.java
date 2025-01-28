@@ -25,6 +25,8 @@ public class CommentDto {
     @Size(min = 2, max = 100)
     private User username;
 
+    private String user;
+
     private Post post;
 
     @NotNull

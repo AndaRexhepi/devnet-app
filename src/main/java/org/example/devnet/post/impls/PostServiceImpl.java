@@ -19,7 +19,6 @@ import java.util.List;
 public class PostServiceImpl implements PostService {
 
     public final PostRepository postRepository;
-    public final CommentRepository commentRepository;
     public final PostMapper postMapper;
 
     @Transactional
@@ -71,14 +70,6 @@ public class PostServiceImpl implements PostService {
     @Override
     public List<Post> findByCommunityId(Long id) {
         return postRepository.findByCommunityId(id);
-    }
-
-    @Override
-    public PostDto incrementLikes(Long postId) {
-        var post = postRepository.findById(postId).orElseThrow(() -> new EntityNotFoundException("Post not found"));
-        post.setLikes(post.getLikes() + 1);
-        postRepository.save(post);
-        return postMapper.toDto(post);
     }
 
     @Override

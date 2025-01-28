@@ -53,7 +53,12 @@ public class ReviewController {
     }
 
     @PostMapping("edit_review/{id}")
-    public String modifyReview(@PathVariable Long id, @ModelAttribute ReviewDto reviewDto) {
+    public String modifyReview(@PathVariable Long id, @ModelAttribute ReviewDto reviewDto,  HttpServletRequest request) {
+        if (request.getSession().getAttribute("user") != null) {
+            UserProfileDto userDto = (UserProfileDto) request.getSession().getAttribute("user");
+            User user = userProfileMapper.toEntity(userDto);
+            reviewDto.setUsername(user);
+        }
         reviewService.modify(reviewDto, id);
         return "redirect:/reviews";
     }

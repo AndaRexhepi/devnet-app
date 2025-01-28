@@ -8,7 +8,6 @@ import org.example.devnet.community.dtos.CommunityDto;
 import java.util.List;
 
 public interface CommunityService extends BaseService<CommunityDto, Long> {
-    CommunityDto findByName(String communityName);
     List<CommunityDto> findAllByOwnerId(Long id);
-    void addMemberToCommunity(Long communityId, User user);
+
 }

@@ -10,14 +10,9 @@ import java.util.List;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-
-    List<Post> findByTitleContaining(String title);
-
     List<Post> findByCommunityId(Long communityId);
 
     List<Post> findByUsernameId(Long userId);
-
-    List<Post> findByPostedAtBetween(LocalTime startTime, LocalTime endTime);
 
     List<Post> findAllByOrderByIdDesc();
 

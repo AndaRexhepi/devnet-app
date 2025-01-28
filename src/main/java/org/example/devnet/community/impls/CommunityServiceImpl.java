@@ -14,6 +14,7 @@ import org.example.devnet.user.models.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -21,7 +22,6 @@ public class CommunityServiceImpl implements CommunityService {
 
 
     public final CommunityRepository communityRepository;
-    public final PostRepository postRepository;
     public final CommunityMapper communityMapper;
 
     @Override
@@ -32,9 +32,9 @@ public class CommunityServiceImpl implements CommunityService {
 
     @Override
     public CommunityDto findById(Long id) {
-        if(communityRepository.findById(id).isPresent()){
+        if (communityRepository.findById(id).isPresent()) {
             return communityMapper.toDto(communityRepository.findById(id).get());
-        }else {
+        } else {
             throw new EntityNotFoundException();
         }
 
@@ -49,34 +49,21 @@ public class CommunityServiceImpl implements CommunityService {
 
     @Override
     public CommunityDto modify(CommunityDto communityDto, Long id) {
-        if (communityRepository.findById(id).isPresent()){
+        if (communityRepository.findById(id).isPresent()) {
             var entity = communityMapper.toEntity(communityDto);
             communityRepository.save(entity);
             return communityMapper.toDto(entity);
-        }else {
+        } else {
             throw new EntityNotFoundException();
         }
 
     }
 
-    @Transactional
-    public void delete(Long communityId) {
-        Community community = communityRepository.findById(communityId)
-                .orElseThrow(() -> new EntityNotFoundException("Community not found"));
-        List<Post> posts = postRepository.findByCommunityId(communityId);
-        for (Post post : posts) {
-            post.setCommunity(null);
-        }
-        postRepository.saveAll(posts);
-
-        communityRepository.delete(community);
-    }
-
     @Override
-    public CommunityDto findByName(String communityName) {
-        if(communityRepository.findByName(communityName).isPresent()){
-            return communityMapper.toDto(communityRepository.findByName(communityName).get());
-        }else {
+    public void delete(Long communityId) {
+        if (communityRepository.findById(communityId).isPresent()) {
+            communityRepository.deleteById(communityId);
+        } else {
             throw new EntityNotFoundException();
         }
     }
@@ -88,19 +75,12 @@ public class CommunityServiceImpl implements CommunityService {
     }
 
 
-    @Transactional
-    public void addMemberToCommunity(Long communityId, User user) {
-        Community community = communityRepository.findById(communityId)
-                .orElseThrow(() -> new EntityNotFoundException("Community not found"));
 
-        // Check if the user is already a member
-        if (community.getMembers().contains(user)) {
-            throw new IllegalStateException("User is already a member of this community.");
-        }
 
-        // Add the user to the community's list of members
-        community.addMember(user);
-        communityRepository.save(community);
-    }
+
+
 
 }
+
+
+

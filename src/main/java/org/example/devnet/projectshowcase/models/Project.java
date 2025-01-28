@@ -23,7 +23,7 @@ public class Project {
     @JoinColumn(name = "user_id")
     private User username;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 200)
     private String description;
 
     @Column(nullable = false)

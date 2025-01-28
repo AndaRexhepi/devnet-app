@@ -17,15 +17,13 @@ public class ProjectDto {
     @PositiveOrZero(message = "Id cannot be negative")
     private long id;
 
-
     @NotNull(message = "Username is required")
-    @NotBlank(message = "Username is required")
     @Size(min = 2, max = 100)
     private User username;
 
     @NotNull(message = "Description is required")
     @NotBlank(message = "Description is required")
-    @Size(min = 2, max = 100)
+    @Size(min = 2, max = 200)
     private String description;
 
     @NotNull(message = "Image URL is required")

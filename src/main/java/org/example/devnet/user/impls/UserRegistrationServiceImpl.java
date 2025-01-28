@@ -9,6 +9,7 @@ import org.example.devnet.user.exceptions.WrongPassword;
 import org.example.devnet.user.mappers.UserRegistrationMapper;
 import org.example.devnet.user.repositories.UserRepository;
 import org.example.devnet.user.services.UserRegistrationService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
 
     public final UserRepository userRepository;
     public final UserRegistrationMapper userRegistrationMapper;
-//    public final PasswordEncoder passwordEncoder;
+    public final PasswordEncoder passwordEncoder;
 
     @Override
     public List<UserRegistrationDto> findAll() {
@@ -76,7 +77,8 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
             throw new EmailExists("Email already exists");
         }
         var user = userRegistrationMapper.toEntity(userDto);
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setConfirmPassword(passwordEncoder.encode(user.getConfirmPassword()));
         if (userRepository.count() == 0) {
             user.setRole("ADMIN");
         }else {
@@ -90,7 +92,7 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
     public UserRegistrationDto login(String username, String password) {
         var user = userRepository.findByUsername(username);
         if (user.isPresent()) {
-            if (user.get().getPassword().equals(password)) {
+            if (passwordEncoder.matches(password, user.get().getPassword())) {
                 return userRegistrationMapper.toDto(user.get());
             } else {
                 throw new WrongPassword("Invalid email or password!");

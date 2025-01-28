@@ -35,14 +35,11 @@ public class Post {
     @Column(nullable = false, length = 100)
     private String title;
 
-    @Column(nullable = false, length = 500)
+    @Column(nullable = false, length = 1000)
     private String body;
 
     @Column(length = 1000)
     private String imageUrl;
-
-    @Column(nullable = false)
-    private int likes;
 
     @OneToMany(mappedBy = "post", fetch = FetchType.EAGER)
     private List<Comment> comments;

@@ -8,6 +8,5 @@ import java.util.List;
 
 public interface PostService extends BaseService<PostDto, Long> {
     List<Post> findByCommunityId(Long id);
-     PostDto incrementLikes(Long postId);
      List<Post> findByUsernameId(Long userId);
 }

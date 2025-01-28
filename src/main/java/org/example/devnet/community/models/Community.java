@@ -9,6 +9,7 @@ import org.example.devnet.user.models.User;
 import org.example.devnet.post.models.Post;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -37,25 +38,10 @@ public class Community {
 
     private LocalDate createdDate;
 
-    @ManyToMany
-    @JoinTable(
-            name = "community_users",
-            joinColumns = @JoinColumn(name = "community_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
-    private List<User> members;
-
     @Column
-    @OneToMany(mappedBy = "community", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "community")
     private List<Post> posts;
 
-    public void addMember(User user) {
-        this.members.add(user);
-    }
-
-    public void removeMember(User user) {
-        this.members.remove(user);
-    }
 
 
 }

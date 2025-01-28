@@ -14,7 +14,6 @@ import org.example.devnet.user.dtos.UserRegistrationDto;
 import org.example.devnet.user.exceptions.EmailExists;
 import org.example.devnet.user.exceptions.UsernameExists;
 import org.example.devnet.user.mappers.UserProfileMapper;
-import org.example.devnet.user.mappers.UserRegistrationMapper;
 import org.example.devnet.user.models.User;
 import org.example.devnet.user.services.UserProfileService;
 import org.example.devnet.user.services.UserRegistrationService;
@@ -35,7 +34,6 @@ public class UserController {
     public final UserProfileService userProfileService;
     public final CommunityService communityService;
     public final PostService postService;
-    public final UserRegistrationMapper userRegistrationMapper;
     public final UserProfileMapper userProfileMapper;
     public final FileHelper fileHelper;
 
@@ -47,7 +45,7 @@ public class UserController {
 
     @PostMapping("sign_up")
     public String signup(@Valid @ModelAttribute UserRegistrationDto userDto,
-                         BindingResult bindingResult, Model model, @RequestParam(value = "file", required = false) MultipartFile file) {
+                         BindingResult bindingResult, Model model, @RequestParam(value = "image", required = false) MultipartFile file) {
         if (bindingResult.hasErrors()) {
             return "account/sign_up";
         }
@@ -97,7 +95,7 @@ public class UserController {
                         HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
-            // Return to the login page if there are validation errors
+
             return "account/log_in";
         }
 
@@ -111,9 +109,9 @@ public class UserController {
             System.out.println(session.getId());
             return "redirect:/";
         } catch (Exception e) {
-            // Add the error message as a flash attribute
+
             redirectAttributes.addFlashAttribute("error", e.getMessage());
-            return "redirect:/log_in"; // Redirect back to the login page
+            return "redirect:/log_in";
         }
     }
 
@@ -159,23 +157,23 @@ public class UserController {
 
 @PostMapping("edit_profile/{id}")
 public String editProfile(@Valid @ModelAttribute() UserProfileDto userDto, @PathVariable Long id , BindingResult bindingResult,
-                          HttpServletRequest request, @RequestPart(value = "file", required = false) MultipartFile file) {
+                          HttpServletRequest request, @RequestPart(value = "image", required = false) MultipartFile file) {
     if (bindingResult.hasErrors()) {
         return "account/edit_profile";
     }
 
     try {
-        // Log the received UserDto
+
         System.out.println("UserDto received: " + userDto);
 
-        // Handle file upload
+
         if (file != null && !file.isEmpty()) {
             String fileName = fileHelper.uploadFile("target/classes/static/assets/img/projects/",
                     file.getOriginalFilename(),
                     file.getBytes());
             userDto.setProfileImage("/assets/img/projects/" + fileName);
         } else {
-            // If no file is uploaded, retain the existing profile image
+
             UserProfileDto existingUser = userProfileService.findById(id);
             if (existingUser != null) {
                 userDto.setProfileImage(existingUser.getProfileImage());
@@ -184,21 +182,22 @@ public String editProfile(@Valid @ModelAttribute() UserProfileDto userDto, @Path
             }
         }
 
-        // Update the user in the database
+
         userProfileService.modify(userDto, id);
 
-        // Update the user in the session
+
         request.getSession().setAttribute("user", userDto);
 
         return "redirect:/profile";
     } catch (Exception e) {
         System.err.println("Error updating profile: " + e.getMessage());
-        return "account/edit_profile"; // Return to the edit page with an error message
+        return "account/edit_profile";
     }
 }
 
-    @GetMapping("/test")
-    public String test(Model model) {
-        return "test";
+   @GetMapping("delete_profile/{id}")
+    public String deleteProfile(@PathVariable Long id) {
+        userProfileService.delete(id);
+        return "redirect:/log_in";
     }
 }

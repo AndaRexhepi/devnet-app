@@ -39,7 +39,7 @@ public class UserProfileDto {
     @Size(min = 2, max = 100, message = "Profile image must be between 2 and 100 characters")
     private String profileImage;
 
-    @Size(min = 2, max = 500, message = "Bio must be between 2 and 500 characters")
-    private String bio;
+
+
 
 }

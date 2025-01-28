@@ -27,8 +27,6 @@
                 <h1 class="community-name" th:text="*{name}"></h1>
                 <p class="community-description" th:text="*{description}">
                 </p>
-                <p class="members-count">150 members</p>
-                <button class="join-button">Join Community</button>
             </div>
             <a th:href="@{/edit_community/{id}(id=*{id})}" class="edit-button">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="white">
@@ -64,18 +62,14 @@
                         <div style="display: flex; flex-direction: column">
                             <img th:unless="${post.imageUrl == null}" th:src="*{imageUrl}" alt="img"
                                  class="post-img" width="400px" height="200px"/>
-                        <span class="post-meta">Posted by
-                            <span></span>|
+                            <span class="post-meta">Posted by
+                            <span th:text="*{username}"></span>|
                             <span th:text="*{postedAt}"></span>
+                                <span th:text="${post.community != null} ? ${post.community.name} : 'Unknown Community'"></span>
 
                         </span>
                         </div>
                         <div class="post-actions">
-<!--                            <button-->
-<!--                                    class="like-button button btn btn-outline-dark" id="like" type="button">-->
-<!--                                ❤️ Likes-->
-<!--                            </button>-->
-<!--                            <span id="like-count" th:text="${post.likes}">0</span>-->
                             <p class="d-inline-flex gap-1">
                                 <button class="btn button btn-outline-dark" style="border-radius: 20px" type="button"
                                         data-bs-toggle="collapse" th:data-bs-target="'#collapsePost' + ${post.id}"
@@ -100,9 +94,9 @@
                                 <div class="card card-body">
                                     <div th:each="comment : ${post.comments}">
                                         <div class="user-info">
-                                            <img alt="" src="./assets/header.png" height="30px" width="30px"
+                                            <img alt="" th:src="${comment.username.profileImage}" height="30px" width="30px"
                                                  style="border-radius: 50%; margin-top: 6px">
-                                            <p>Anda Rexhepi</p>
+                                            <p th:text="${comment.username}"></p>
                                             <p>|</p>
                                             <p th:text="${comment.postedAt}"></p>
                                             <div class="btn-group dropstart">
@@ -132,7 +126,7 @@
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel2">Post
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel2">Comment
                                                             Deletion</h1>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Close"></button>
@@ -158,22 +152,25 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false"
+                     tabindex="-1"
                      aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="staticBackdropLabel1">Post Deletion</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 Are you sure you want to delete this post?
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn" data-bs-dismiss="modal">Back</button>
-                                <button type="button" class="btn btn-danger"><a th:href="@{/delete_post/{id}(id=${post.id})}"
-                                                                                id="deleteBtn1"
-                                                                                style="text-decoration: none;color: white">
+                                <button type="button" class="btn btn-danger"><a
+                                        th:href="@{/delete_post/{id}(id=${post.id})}"
+                                        id="deleteBtn1"
+                                        style="text-decoration: none;color: white">
                                     Delete Post
                                 </a></button>
                             </div>

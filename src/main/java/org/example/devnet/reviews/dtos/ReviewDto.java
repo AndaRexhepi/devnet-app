@@ -18,7 +18,6 @@ public class ReviewDto {
     private long id;
 
     @NotNull(message = "Username is required")
-    @NotBlank(message = "Username is required")
     @Size(min = 2, max = 100)
     private User username;
 

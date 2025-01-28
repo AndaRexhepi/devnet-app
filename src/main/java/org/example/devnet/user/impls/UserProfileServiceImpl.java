@@ -1,6 +1,7 @@
 package org.example.devnet.user.impls;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.example.devnet.user.dtos.UserProfileDto;
 import org.example.devnet.user.mappers.UserProfileMapper;
@@ -53,7 +54,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 
     }
 
-    @Override
+    @Transactional
     public void delete(Long id) {
         if (userRepository.findById(id).isPresent()) {
             userRepository.deleteById(id);
@@ -61,5 +62,14 @@ public class UserProfileServiceImpl implements UserProfileService {
             throw new EntityNotFoundException("User not found");
         }
 
+    }
+
+    @Override
+    public UserProfileDto findByUsername(String username) {
+        if (userRepository.findByUsername(username).isPresent()) {
+            return userProfileMapper.toDto(userRepository.findByUsername(username).get());
+        }else {
+            throw new EntityNotFoundException("User not found");
+        }
     }
 }

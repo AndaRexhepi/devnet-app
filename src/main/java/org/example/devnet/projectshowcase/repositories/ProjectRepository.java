@@ -10,12 +10,6 @@ import java.util.List;
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, Long> {
 
-
-    List<Project> findByUsername(User username);
-
-    List<Project> findByDescriptionContaining(String keyword);
-
-    List<Project> findByImageUrl(String imageUrl);
     List<Project> findAllByOrderByIdDesc();
 
 }
